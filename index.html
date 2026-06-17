@@ -205,7 +205,7 @@
                     <p class="italic mb-6">"Great floor plan. The designer who designed this home must have been a certified genius."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">CL</div>
-                        <div><p class="font-semibold">Connie Linghus</p><p class="text-sm text-gray-500">12th of June/p></div>
+                        <div><p class="font-semibold">Connie Linghus</p><p class="text-sm text-gray-500">12th of June</p></div>
                     </div>
                 </div>
 
@@ -251,21 +251,49 @@
         </div>
     </section>
 
-    <!-- Ticket Modal -->
+    <!-- Dynamic Ticket Modal -->
     <div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
-        <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-8">
-            <h3 class="text-3xl font-bold text-green-800 mb-6">Select Tickets</h3>
-            <div class="space-y-4">
-                <div class="flex justify-between items-center p-4 border rounded-2xl"><div>Adult</div><div class="font-semibold">$25</div></div>
-                <div class="flex justify-between items-center p-4 border rounded-2xl"><div>Child (3-14)</div><div class="font-semibold">$18</div></div>
-                <div class="flex justify-between items-center p-4 border rounded-2xl bg-green-50"><div>Family (2 Adults + 2 Kids)</div><div class="font-semibold">$65</div></div>
+        <div class="bg-white rounded-3xl max-w-lg w-full mx-4 p-8">
+            <h3 class="text-3xl font-bold text-green-800 mb-8 text-center">Select Tickets</h3>
+            
+            <!-- Adults -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="text-xl font-medium">Adult</div>
+                    <div class="text-xl font-semibold text-green-700">$25 each</div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="changeQuantity('adult', -1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">-</button>
+                    <span id="adult-count" class="text-3xl font-semibold w-12 text-center">1</span>
+                    <button onclick="changeQuantity('adult', 1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">+</button>
+                </div>
             </div>
-            <button onclick="alert('🎟️ Redirecting to ticketing partner... (demo)')" 
-                    class="w-full mt-8 bg-green-700 text-white py-4 rounded-2xl font-semibold text-lg">
+
+            <!-- Children -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="text-xl font-medium">Child (3-14 years)</div>
+                    <div class="text-xl font-semibold text-green-700">$18 each</div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="changeQuantity('child', -1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">-</button>
+                    <span id="child-count" class="text-3xl font-semibold w-12 text-center">1</span>
+                    <button onclick="changeQuantity('child', 1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">+</button>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="bg-gray-50 p-6 rounded-3xl mb-8">
+                <div class="flex justify-between text-xl">
+                    <span class="font-medium">Total</span>
+                    <span id="total-price" class="font-bold text-3xl text-green-700">$43</span>
+                </div>
+            </div>
+
+            <button onclick="proceedToCheckout()" class="w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl font-semibold text-lg transition">
                 Proceed to Checkout
             </button>
-            <button onclick="document.getElementById('ticket-modal').classList.add('hidden')" 
-                    class="w-full mt-3 text-gray-500">Close</button>
+            <button onclick="closeModal()" class="w-full mt-3 text-gray-500 hover:text-gray-700">Close</button>
         </div>
     </div>
 
@@ -282,5 +310,43 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        let adultCount = 1;
+        let childCount = 1;
+
+        function changeQuantity(type, delta) {
+            if (type === 'adult') {
+                adultCount = Math.max(0, adultCount + delta);
+                document.getElementById('adult-count').textContent = adultCount;
+            } else {
+                childCount = Math.max(0, childCount + delta);
+                document.getElementById('child-count').textContent = childCount;
+            }
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const total = (adultCount * 25) + (childCount * 18);
+            document.getElementById('total-price').textContent = '$' + total;
+        }
+
+        function proceedToCheckout() {
+            if (adultCount === 0 && childCount === 0) {
+                alert("Please select at least one ticket.");
+                return;
+            }
+            alert(`🎟️ ${adultCount} Adult(s) + ${childCount} Child(ren) = ${document.getElementById('total-price').textContent}\n\nRedirecting to payment... (demo)`);
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('ticket-modal').classList.add('hidden');
+        }
+
+        // Initialize total when modal opens
+        document.getElementById('ticket-modal').addEventListener('click', function(e) {
+            if (e.target.id === 'ticket-modal') updateTotal();
+        });
+    </script>
 </body>
 </html>
