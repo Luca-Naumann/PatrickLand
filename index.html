@@ -251,7 +251,7 @@
         </div>
     </section>
 
-    <!-- Dynamic Ticket Modal -->
+    <!-- Dynamic Ticket Modal - Eventbrite -->
     <div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
         <div class="bg-white rounded-3xl max-w-lg w-full mx-4 p-8">
             <h3 class="text-3xl font-bold text-green-800 mb-8 text-center">Select Tickets</h3>
@@ -290,9 +290,10 @@
                 </div>
             </div>
 
-            <button onclick="proceedToCheckout()" class="w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl font-semibold text-lg transition">
-                Proceed to Checkout
-            </button>
+            <a id="eventbrite-btn" href="#" target="_blank"
+               class="block w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl font-semibold text-lg text-center transition">
+                Buy Tickets on Eventbrite
+            </a>
             <button onclick="closeModal()" class="w-full mt-3 text-gray-500 hover:text-gray-700">Close</button>
         </div>
     </div>
@@ -330,23 +331,13 @@
             document.getElementById('total-price').textContent = '$' + total;
         }
 
-        function proceedToCheckout() {
-            if (adultCount === 0 && childCount === 0) {
-                alert("Please select at least one ticket.");
-                return;
-            }
-            alert(`🎟️ ${adultCount} Adult(s) + ${childCount} Child(ren) = ${document.getElementById('total-price').textContent}\n\nRedirecting to payment... (demo)`);
-            closeModal();
-        }
-
         function closeModal() {
             document.getElementById('ticket-modal').classList.add('hidden');
         }
 
-        // Initialize total when modal opens
-        document.getElementById('ticket-modal').addEventListener('click', function(e) {
-            if (e.target.id === 'ticket-modal') updateTotal();
-        });
+        // ←←← CHANGE THIS TO YOUR ACTUAL EVENTBRITE LINK
+        const eventbriteLink = "https://www.eventbrite.com/your-event-link-here";
+        document.getElementById('eventbrite-btn').href = eventbriteLink;
     </script>
 </body>
 </html>
