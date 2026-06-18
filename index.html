@@ -251,50 +251,16 @@
         </div>
     </section>
 
-    <!-- Dynamic Ticket Modal - Eventbrite -->
-    <div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
-        <div class="bg-white rounded-3xl max-w-lg w-full mx-4 p-8">
-            <h3 class="text-3xl font-bold text-green-800 mb-8 text-center">Select Tickets</h3>
-            
-            <!-- Adults -->
-            <div class="mb-8">
-                <div class="flex justify-between items-center mb-3">
-                    <div class="text-xl font-medium">Adult</div>
-                    <div class="text-xl font-semibold text-green-700">$24,764 each</div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button onclick="changeQuantity('adult', -1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">-</button>
-                    <span id="adult-count" class="text-3xl font-semibold w-12 text-center">1</span>
-                    <button onclick="changeQuantity('adult', 1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">+</button>
-                </div>
+    <!-- Eventbrite Embedded Widget Modal -->
+    <div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100] p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+            <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+                <h3 class="text-3xl font-bold text-green-800">Get Your Tickets</h3>
+                <button onclick="closeModal()" class="text-3xl text-gray-400 hover:text-gray-600">×</button>
             </div>
-
-            <!-- Children -->
-            <div class="mb-8">
-                <div class="flex justify-between items-center mb-3">
-                    <div class="text-xl font-medium">Child (3-14 years)</div>
-                    <div class="text-xl font-semibold text-green-700">$9,457 each</div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button onclick="changeQuantity('child', -1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">-</button>
-                    <span id="child-count" class="text-3xl font-semibold w-12 text-center">1</span>
-                    <button onclick="changeQuantity('child', 1)" class="w-12 h-12 rounded-2xl border border-gray-300 hover:bg-gray-100 text-2xl font-medium">+</button>
-                </div>
+            <div class="p-6">
+                <div id="eventbrite-widget-container-1992098976665"></div>
             </div>
-
-            <!-- Total -->
-            <div class="bg-gray-50 p-6 rounded-3xl mb-8">
-                <div class="flex justify-between text-xl">
-                    <span class="font-medium">Total</span>
-                    <span id="total-price" class="font-bold text-3xl text-green-700">$34,221</span>
-                </div>
-            </div>
-
-            <a id="eventbrite-btn" href="#" target="_blank"
-               class="block w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl font-semibold text-lg text-center transition">
-                Buy Tickets on Eventbrite
-            </a>
-            <button onclick="closeModal()" class="w-full mt-3 text-gray-500 hover:text-gray-700">Close</button>
         </div>
     </div>
 
@@ -311,33 +277,24 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
     <script>
-        let adultCount = 1;
-        let childCount = 1;
-
-        function changeQuantity(type, delta) {
-            if (type === 'adult') {
-                adultCount = Math.max(0, adultCount + delta);
-                document.getElementById('adult-count').textContent = adultCount;
-            } else {
-                childCount = Math.max(0, childCount + delta);
-                document.getElementById('child-count').textContent = childCount;
-            }
-            updateTotal();
-        }
-
-        function updateTotal() {
-            const total = (adultCount * 24764) + (childCount * 9457);
-            document.getElementById('total-price').textContent = '$' + total;
-        }
-
         function closeModal() {
             document.getElementById('ticket-modal').classList.add('hidden');
         }
 
-        // ←←← CHANGE THIS TO YOUR ACTUAL EVENTBRITE LINK
-        const eventbriteLink = "https://www.eventbrite.com/your-event-link-here";
-        document.getElementById('eventbrite-btn').href = eventbriteLink;
+        // Load Eventbrite widget when modal opens
+        document.getElementById('ticket-modal').addEventListener('shown', function() {
+            window.EBWidgets.createWidget({
+                widgetType: 'checkout',
+                eventId: '1992098976665',
+                iframeContainerId: 'eventbrite-widget-container-1992098976665',
+                iframeContainerHeight: 625,
+                themeSettings: {
+                    brandColor: '#15803d',  // green-700 to match your site
+                }
+            });
+        });
     </script>
 </body>
 </html>
