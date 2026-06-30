@@ -1,300 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PatrickLand - Family fun playground &amp; amusement park in Lalor Park, Sydney. Safe, exciting adventures for all ages.">
-    <title>PatrickLand | Lalor Park Sydney</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PatrickLand - Family fun playground & amusement park in Lalor Park, Sydney. Safe, exciting adventures for all ages.">
+<title>PatrickLand | Lalor Park Sydney</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="font-sans antialiased">
 
-    <!-- Navbar -->
-    <nav class="bg-green-700 text-white sticky top-0 z-50 shadow-lg">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <i class="fas fa-umbrella-beach text-3xl"></i>
-                <span class="text-3xl font-bold tracking-tight">PatrickLand</span>
-            </div>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex gap-8 text-lg">
-                <a href="#about" class="hover:text-yellow-300 transition-colors">About</a>
-                <a href="#attractions" class="hover:text-yellow-300 transition-colors">Attractions</a>
-                <a href="#gallery" class="hover:text-yellow-300 transition-colors">Gallery</a>
-                <a href="#reviews" class="hover:text-yellow-300 transition-colors">Reviews</a>
-                <a href="#visit" class="hover:text-yellow-300 transition-colors">Visit Us</a>
-            </div>
-            
-            <button onclick="document.getElementById('ticket-modal').classList.remove('hidden')" 
-                    class="bg-yellow-400 hover:bg-yellow-300 text-green-900 px-8 py-3 rounded-full font-semibold transition-all hover:scale-105">
-                Buy Tickets
-            </button>
-            
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-3xl">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-green-700 px-6 py-6 border-t border-green-600">
-            <div class="flex flex-col gap-6 text-lg">
-                <a href="#about" class="hover:text-yellow-300">About</a>
-                <a href="#attractions" class="hover:text-yellow-300">Attractions</a>
-                <a href="#gallery" class="hover:text-yellow-300">Gallery</a>
-                <a href="#reviews" class="hover:text-yellow-300">Reviews</a>
-                <a href="#visit" class="hover:text-yellow-300">Visit Us</a>
-            </div>
-        </div>
-    </nav>
+<nav class="bg-green-700 text-white sticky top-0 z-50 shadow-lg">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<i class="fas fa-umbrella-beach text-3xl"></i>
+<span class="text-3xl font-bold tracking-tight">PatrickLand</span>
+</div>
 
-    <!-- Hero -->
-    <section class="hero-bg h-screen flex items-center text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50"></div>
-        <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
-            <h1 class="text-6xl md:text-7xl font-bold mb-6 drop-shadow-md">Welcome to PatrickLand</h1>
-            <p class="text-2xl md:text-3xl mb-10 max-w-2xl mx-auto">Where family adventures come alive in Lalor Park, Sydney</p>
-            <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                <button onclick="document.getElementById('ticket-modal').classList.remove('hidden')" 
-                        class="bg-yellow-400 text-green-900 px-10 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all shadow-lg">
-                    Get Tickets Now
-                </button>
-                <a href="#attractions" class="border-2 border-white px-10 py-4 rounded-full text-xl font-bold hover:bg-white hover:text-green-900 transition-all">Explore Attractions</a>
-            </div>
-        </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-4xl"></i>
-        </div>
-    </section>
+<div class="hidden md:flex gap-8 text-lg">
+<a href="#about" class="hover:text-yellow-300 transition-colors">About</a>
+<a href="#attractions" class="hover:text-yellow-300 transition-colors">Attractions</a>
+<a href="#gallery" class="hover:text-yellow-300 transition-colors">Gallery</a>
+<a href="#reviews" class="hover:text-yellow-300 transition-colors">Reviews</a>
+<a href="#visit" class="hover:text-yellow-300 transition-colors">Visit Us</a>
+</div>
 
-    <!-- About -->
-    <section id="about" class="py-24 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-5xl font-bold text-green-800 mb-8">Where Joy Comes to Play</h2>
-                    <p class="text-lg text-gray-600 mb-8">PatrickLand is a vibrant family playground and amusement park located at 8 Koorabel Rd, Lalor Park NSW 2147. We create safe, exciting, and unforgettable memories for kids of all ages and their families.</p>
-                    <ul class="space-y-5 text-lg">
-                        <li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Safe &amp; supervised play areas</li>
-                        <li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Themed zones for toddlers to big kids</li>
-                        <li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Picnic spots, shade sails &amp; café area</li>
-                    </ul>
-                </div>
-                <img src="https://source.unsplash.com/random/800x600/?happy-family-playground" alt="Happy family enjoying PatrickLand" class="rounded-3xl shadow-2xl w-full">
-            </div>
-        </div>
-    </section>
+<button onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+class="bg-yellow-400 hover:bg-yellow-300 text-green-900 px-8 py-3 rounded-full font-semibold transition-all hover:scale-105">
+Buy Tickets
+</button>
 
-    <!-- Attractions -->
-    <section id="attractions" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center text-green-800 mb-16">Our Attractions</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
-                    <img src="https://source.unsplash.com/random/600x400/?slides" alt="Giant Slides" class="w-full h-64 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-semibold mb-3">Giant Adventure Slides</h3>
-                        <p class="text-gray-600">Twisty, thrilling slides guaranteed to bring big laughs.</p>
-                    </div>
-                </div>
-                <div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
-                    <img src="https://source.unsplash.com/random/600x400/?playground" alt="Patrick's Playground" class="w-full h-64 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-semibold mb-3">Patrick's Playground</h3>
-                        <p class="text-gray-600">Climbing frames, swings, and interactive zones for all ages.</p>
-                    </div>
-                </div>
-                <div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
-                    <img src="https://source.unsplash.com/random/600x400/?carousel" alt="Star Carousel" class="w-full h-64 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-semibold mb-3">Star Carousel</h3>
-                        <p class="text-gray-600">Classic rides with a magical PatrickLand twist.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<button id="mobile-menu-button" class="md:hidden text-3xl">
+<i class="fas fa-bars"></i>
+</button>
+</div>
 
-    <!-- Gallery -->
-    <section id="gallery" class="py-24 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center text-green-800 mb-16">Moments of Joy</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="https://source.unsplash.com/random/600x600/?kids,slides" alt="Kids on slides" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
-                <img src="https://source.unsplash.com/random/600x600/?family,park" alt="Family fun" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
-                <img src="https://source.unsplash.com/random/600x600/?playground,children" alt="Playground action" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
-                <img src="https://source.unsplash.com/random/600x600/?happy,kids,outdoors" alt="Smiling visitors" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
-            </div>
-        </div>
-    </section>
+<div id="mobile-menu" class="hidden md:hidden bg-green-700 px-6 py-6 border-t border-green-600">
+<div class="flex flex-col gap-6 text-lg">
+<a href="#about" class="hover:text-yellow-300">About</a>
+<a href="#attractions" class="hover:text-yellow-300">Attractions</a>
+<a href="#gallery" class="hover:text-yellow-300">Gallery</a>
+<a href="#reviews" class="hover:text-yellow-300">Reviews</a>
+<a href="#visit" class="hover:text-yellow-300">Visit Us</a>
+</div>
+</div>
+</nav>
 
-    <!-- Reviews -->
-    <section id="reviews" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center text-green-800 mb-16">What Families Are Saying</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- All your reviews are here -->
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"Unique retaining wall out front and so much silicon! Could do with a little more special compound."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">DN</div>
-                        <div><p class="font-semibold">Dre Naumann</p><p class="text-sm text-gray-500">10th of June</p></div>
-                    </div>
-                </div>
+<section class="hero-bg h-screen flex items-center text-white relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50"></div>
+<div class="max-w-5xl mx-auto text-center px-6 relative z-10">
+<h1 class="text-6xl md:text-7xl font-bold mb-6 drop-shadow-md">Welcome to PatrickLand</h1>
+<p class="text-2xl md:text-3xl mb-10 max-w-2xl mx-auto">Where family adventures come alive in Lalor Park, Sydney</p>
+<div class="flex flex-col sm:flex-row gap-5 justify-center">
+<button onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+class="bg-yellow-400 text-green-900 px-10 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all shadow-lg">
+Get Tickets Now
+</button>
+<a href="#attractions" class="border-2 border-white px-10 py-4 rounded-full text-xl font-bold hover:bg-white hover:text-green-900 transition-all">Explore Attractions</a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+<i class="fas fa-chevron-down text-4xl"></i>
+</div>
+</section>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"Bathrooms were pretty good, really needs a skirting tile though."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">FS</div>
-                        <div><p class="font-semibold">Fannie Schmellar</p><p class="text-sm text-gray-500">12th of June</p></div>
-                    </div>
-                </div>
+<section id="about" class="py-24 bg-gray-50">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-5xl font-bold text-green-800 mb-8">Where Joy Comes to Play</h2>
+<p class="text-lg text-gray-600 mb-8">PatrickLand is a vibrant family playground and amusement park located at 8 Koorabel Rd, Lalor Park NSW 2147. We create safe, exciting, and unforgettable memories for kids of all ages and their families.</p>
+<ul class="space-y-5 text-lg">
+<li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Safe & supervised play areas</li>
+<li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Themed zones for toddlers to big kids</li>
+<li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Picnic spots, shade sails & café area</li>
+</ul>
+</div>
+<img src="https://source.unsplash.com/random/800x600/?happy-family-playground" alt="Happy family enjoying PatrickLand" class="rounded-3xl shadow-2xl w-full">
+</div>
+</div>
+</section>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"Good place has bird in the roof."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">BD</div>
-                        <div><p class="font-semibold">Ben Dofer</p><p class="text-sm text-gray-500">13 of June</p></div>
-                    </div>
-                </div>
+<section id="attractions" class="py-24 bg-white">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-5xl font-bold text-center text-green-800 mb-16">Our Attractions</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
+<img src="https://source.unsplash.com/random/600x400/?slides" alt="Giant Slides" class="w-full h-64 object-cover">
+<div class="p-8">
+<h3 class="text-2xl font-semibold mb-3">Giant Adventure Slides</h3>
+<p class="text-gray-600">Twisty, thrilling slides guaranteed to bring big laughs.</p>
+</div>
+</div>
+<div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
+<img src="https://source.unsplash.com/random/600x400/?playground" alt="Patrick's Playground" class="w-full h-64 object-cover">
+<div class="p-8">
+<h3 class="text-2xl font-semibold mb-3">Patrick's Playground</h3>
+<p class="text-gray-600">Climbing frames, swings, and interactive zones for all ages.</p>
+</div>
+</div>
+<div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
+<img src="https://source.unsplash.com/random/600x400/?carousel" alt="Star Carousel" class="w-full h-64 object-cover">
+<div class="p-8">
+<h3 class="text-2xl font-semibold mb-3">Star Carousel</h3>
+<p class="text-gray-600">Classic rides with a magical PatrickLand twist.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"big deck only thing is there is a random red screw."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">A</div>
-                        <div><p class="font-semibold">Amanda</p><p class="text-sm text-gray-500">13th of June</p></div>
-                    </div>
-                </div>
+<section id="gallery" class="py-24 bg-gray-50">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-5xl font-bold text-center text-green-800 mb-16">Moments of Joy</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<img src="https://source.unsplash.com/random/600x600/?kids,slides" alt="Kids on slides" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
+<img src="https://source.unsplash.com/random/600x600/?family,park" alt="Family fun" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
+<img src="https://source.unsplash.com/random/600x600/?playground,children" alt="Playground action" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
+<img src="https://source.unsplash.com/random/600x600/?happy,kids,outdoors" alt="Smiling visitors" class="rounded-3xl shadow hover:scale-105 transition-all duration-300">
+</div>
+</div>
+</section>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★★☆</div>
-                    <p class="italic mb-6">"Craftsmanship at every turn."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">JS</div>
-                        <div><p class="font-semibold">Justin Sider-Flanges</p><p class="text-sm text-gray-500">12th of June</p></div>
-                    </div>
-                </div>
+<section id="reviews" class="py-24 bg-white">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-5xl font-bold text-center text-green-800 mb-16">What Families Are Saying</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Unique retaining wall out front and so much silicon! Could do with a little more special compound."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">DN</div>
+<div><p class="font-semibold">Dre Naumann</p><p class="text-sm text-gray-500">10th of June</p></div>
+</div>
+</div>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★★☆</div>
-                    <p class="italic mb-6">"Great location. Close to bottles shops and housing commission flats."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">MC</div>
-                        <div><p class="font-semibold">Mike Cox-Woelen</p><p class="text-sm text-gray-500">12th of June</p></div>
-                    </div>
-                </div>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Bathrooms were pretty good, really needs a skirting tile though."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">FS</div>
+<div><p class="font-semibold">Fannie Schmellar</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"Large gum tree out front that has been expertly trimmed recently."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">JT</div>
-                        <div><p class="font-semibold">Jena Tayleah</p><p class="text-sm text-gray-500">12th of June</p></div>
-                    </div>
-                </div>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Good place has bird in the roof."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">BD</div>
+<div><p class="font-semibold">Ben Dofer</p><p class="text-sm text-gray-500">13 of June</p></div>
+</div>
+</div>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"Great floor plan. The designer who designed this home must have been a certified genius."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">CL</div>
-                        <div><p class="font-semibold">Connie Linghus</p><p class="text-sm text-gray-500">12th of June</p></div>
-                    </div>
-                </div>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"big deck only thing is there is a random red screw."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">A</div>
+<div><p class="font-semibold">Amanda</p><p class="text-sm text-gray-500">13th of June</p></div>
+</div>
+</div>
 
-                <div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
-                    <div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
-                    <p class="italic mb-6">"Decent master suite. I feel it could use a space to store suitcases though. Maybe above the entry?"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">OB</div>
-                        <div><p class="font-semibold">Ophelia Bulges</p><p class="text-sm text-gray-500">12th of June</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★★☆</div>
+<p class="italic mb-6">"Craftsmanship at every turn."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">JS</div>
+<div><p class="font-semibold">Justin Sider-Flanges</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
 
-    <!-- Visit Us -->
-    <section id="visit" class="py-24 bg-green-700 text-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-center mb-16">Plan Your Visit</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-3xl font-semibold mb-8">Location &amp; Details</h3>
-                    <div class="space-y-6 text-lg">
-                        <p><strong>Address:</strong><br>8 Koorabel Rd, Lalor Park NSW 2147</p>
-                        <p><strong>Opening Hours:</strong><br>1:00 AM – 7:00 AM daily (weather permitting)</p>
-                        <p><strong>Ticket Prices:</strong><br>Adults: $25 | Children: $18 | Family (2A+2C): $65</p>
-                        <p><strong>Contact Us:</strong><br><a href="tel:0406966897" class="hover:underline">0406 966 897</a></p>
-                        <div class="bg-yellow-400 text-green-900 p-6 rounded-3xl font-medium">
-                            <strong>Bonus Challenge:</strong><br>
-                            Phone <a href="tel:0406966897" class="font-bold underline">0406 966 897</a> with your best Borat impression and have the chance to win a <strong>FREE FAMILY TICKET!</strong>
-                        </div>
-                    </div>
-                    <a href="https://maps.app.goo.gl/c7SZ9XarvcT3aCum9" target="_blank" 
-                       class="mt-8 inline-flex items-center gap-3 bg-white text-green-700 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all">
-                        <i class="fas fa-map-marker-alt"></i> Open in Google Maps
-                    </a>
-                </div>
-                <div class="rounded-3xl overflow-hidden shadow-2xl">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.5!2d150.9289408!3d-33.7622951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12990030cdecff%3A0x179a86d04f2028f2!2s8+Koorabel+Rd%2C+Lalor+Park+NSW+2147!5e0!3m2!1sen!2sau!4v1720000000000" 
-                            width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★★☆</div>
+<p class="italic mb-6">"Great location. Close to bottles shops and housing commission flats."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">MC</div>
+<div><p class="font-semibold">Mike Cox-Woelen</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
 
-    <!-- Eventbrite Embedded Widget Modal -->
-    <div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100] p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
-            <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10">
-                <h3 class="text-3xl font-bold text-green-800">Get Your Tickets</h3>
-                <button onclick="closeModal()" class="text-3xl text-gray-400 hover:text-gray-600">×</button>
-            </div>
-            <div class="p-6">
-                <div id="eventbrite-widget-container-1992098976665"></div>
-            </div>
-        </div>
-    </div>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Large gum tree out front that has been expertly trimmed recently."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">JT</div>
+<div><p class="font-semibold">Jena Tayleah</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="text-3xl font-bold mb-4">PatrickLand</p>
-            <p class="mb-8">Making memories in Lalor Park, Sydney © 2024-2026</p>
-            <div class="flex justify-center gap-8 text-3xl">
-                <a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Great floor plan. The designer who designed this home must have been a certified genius."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">CL</div>
+<div><p class="font-semibold">Connie Linghus</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
 
-    <script src="script.js"></script>
-    <script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
-    <script>
-        function closeModal() {
-            document.getElementById('ticket-modal').classList.add('hidden');
-        }
+<div class="bg-gray-50 p-8 rounded-3xl shadow hover:shadow-xl transition">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Decent master suite. I feel it could use a space to store suitcases though. Maybe above the entry?"</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">OB</div>
+<div><p class="font-semibold">Ophelia Bulges</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-        // Load Eventbrite widget when modal opens
-        document.getElementById('ticket-modal').addEventListener('shown', function() {
-            window.EBWidgets.createWidget({
-                widgetType: 'checkout',
-                eventId: '1992098976665',
-                iframeContainerId: 'eventbrite-widget-container-1992098976665',
-                iframeContainerHeight: 625,
-                themeSettings: {
-                    brandColor: '#15803d',  // green-700 to match your site
-                }
-            });
-        });
-    </script>
+<section id="visit" class="py-24 bg-green-700 text-white">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-5xl font-bold text-center mb-16">Plan Your Visit</h2>
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<h3 class="text-3xl font-semibold mb-8">Location & Details</h3>
+<div class="space-y-6 text-lg">
+<p><strong>Address:</strong><br>8 Koorabel Rd, Lalor Park NSW 2147</p>
+<p><strong>Opening Hours:</strong><br>1:00 AM – 7:00 AM daily (weather permitting)</p>
+<p><strong>Ticket Prices:</strong><br>Adults: 18 | Family (2A+2C): $65</p>
+<p><strong>Contact Us:</strong><br><a href="tel:0406966897" class="hover:underline">0406 966 897</a></p>
+<div class="bg-yellow-400 text-green-900 p-6 rounded-3xl font-medium">
+<strong>Bonus Challenge:</strong><br>
+Phone <a href="tel:0406966897" class="font-bold underline">0406 966 897</a> with your best Borat impression and have the chance to win a <strong>FREE FAMILY TICKET!</strong>
+</div>
+</div>
+<a href="https://maps.app.goo.gl/c7SZ9XarvcT3aCum9" target="_blank"
+class="mt-8 inline-flex items-center gap-3 bg-white text-green-700 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all">
+<i class="fas fa-map-marker-alt"></i> Open in Google Maps
+</a>
+</div>
+<div class="rounded-3xl overflow-hidden shadow-2xl">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.5!2d150.9289408!3d-33.7622951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12990030cdecff%3A0x179a86d04f2028f2!2s8+Koorabel+Rd%2C+Lalor+Park+NSW+2147!5e0!3m2!1sen!2sau!4v1720000000000"
+width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100] p-4">
+<div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+<div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+<h3 class="text-3xl font-bold text-green-800">Get Your Tickets</h3>
+<button onclick="closeModal()" class="text-3xl text-gray-400 hover:text-gray-600">×</button>
+</div>
+<div class="p-12 text-center">
+<noscript><a href="https://www.eventbrite.com/e/patrickland-tickets-1992098976665" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
+<button id="eventbrite-widget-modal-trigger-1992098976665" type="button" class="bg-green-700 hover:bg-green-600 text-white px-10 py-5 rounded-full text-2xl font-bold transition-all shadow-lg hover:scale-105">
+Select Ticket Options
+</button>
+</div>
+</div>
+</div>
+
+<footer class="bg-gray-900 text-white py-16">
+<div class="max-w-6xl mx-auto px-6 text-center">
+<p class="text-3xl font-bold mb-4">PatrickLand</p>
+<p class="mb-8">Making memories in Lalor Park, Sydney © 2024-2026</p>
+<div class="flex justify-center gap-8 text-3xl">
+<a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-facebook"></i></a>
+<a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+</footer>
+
+<script src="script.js"></script>
+<script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
+<script type="text/javascript">
+function closeModal() {
+document.getElementById('ticket-modal').classList.add('hidden');
+}
+
+var exampleCallback = function() {
+    console.log('Order complete!');
+};
+
+window.EBWidgets.createWidget({
+    widgetType: 'checkout',
+    eventId: '1992098976665',
+    modal: true,
+    modalTriggerElementId: 'eventbrite-widget-modal-trigger-1992098976665',
+    onOrderComplete: exampleCallback
+});
+</script>
 </body>
 </html>
