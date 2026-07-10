@@ -271,24 +271,6 @@ Select Ticket Options
 </div>
 </footer>
 
-<script src="script.js"></script>
-<script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
-<script type="text/javascript">
-function closeModal() {
-document.getElementById('ticket-modal').classList.add('hidden');
-}
 
-var exampleCallback = function() {
-    console.log('Order complete!');
-};
-
-window.EBWidgets.createWidget({
-    widgetType: 'checkout',
-    eventId: '1992098976665',
-    modal: true,
-    modalTriggerElementId: 'eventbrite-widget-modal-trigger-1992098976665',
-    onOrderComplete: exampleCallback
-});
-</script>
 </body>
 </html>
