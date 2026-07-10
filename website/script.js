@@ -45,3 +45,24 @@ function createBackToTop() {
     });
 }
 createBackToTop();
+// Modal Functions
+function closeModal() {
+    document.getElementById('ticket-modal').classList.add('hidden');
+}
+
+function openTicketModal() {
+    document.getElementById('ticket-modal').classList.remove('hidden');
+}
+
+// Eventbrite Widget
+var exampleCallback = function() {
+    console.log('Order complete!');
+};
+
+window.EBWidgets.createWidget({
+    widgetType: 'checkout',
+    eventId: '1992098976665',
+    modal: true,
+    modalTriggerElementId: 'eventbrite-widget-modal-trigger-1992098976665',
+    onOrderComplete: exampleCallback
+});
