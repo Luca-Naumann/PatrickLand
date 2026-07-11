@@ -332,26 +332,17 @@
             unforgettable laughs and memories you'll never forget.
         </p>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-5">
-
-            <button
-                onclick="openTicketModal()"
-                class="hero-ticket-btn">
-
-                <i class="fas fa-ticket-alt mr-2"></i>
-                Buy Tickets
-
-            </button>
-
-            <a href="#attractions"
-               class="hero-explore-btn">
-
-                <i class="fas fa-compass mr-2"></i>
-                Explore Attractions
-
-            </a>
-
-        </div>
+<div class="flex flex-col sm:flex-row gap-5 justify-center">
+    <button onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+        class="hero-ticket-btn">
+        <i class="fas fa-ticket-alt"></i>
+        Get Tickets Now
+    </button>
+    
+    <a href="#attractions" class="hero-explore-btn">
+        Explore Attractions
+    </a>
+</div>
 
     </div>
 
