@@ -292,81 +292,95 @@
     </div>
 
 </div>
-<!-- =========================================
-     PatrickLand Hero
-========================================= -->
+<!-- =========================
+     HERO SECTION
+========================= -->
 
-<section class="hero-bg relative min-h-screen overflow-hidden flex items-center justify-center">
+<section class="hero-section">
 
-    <!-- Floating Clouds -->
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
+    <!-- Background -->
+
+    <div class="hero-overlay"></div>
 
     <!-- Sun Glow -->
+
     <div class="hero-sun"></div>
 
-    <!-- Decorative Circles -->
-    <div class="hero-blob blob1"></div>
-    <div class="hero-blob blob2"></div>
+    <!-- Clouds -->
 
-    <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/35"></div>
+    <div class="hero-cloud cloud-1"></div>
 
-    <!-- Hero Content -->
-    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
+    <div class="hero-cloud cloud-2"></div>
 
-        <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-lg rounded-full px-6 py-2 text-white font-semibold mb-8">
-            🌴 Sydney's Most Unique Family Adventure
+    <div class="hero-cloud cloud-3"></div>
+
+    <!-- Floating Sparkles -->
+
+    <div class="sparkle sparkle-1"></div>
+    <div class="sparkle sparkle-2"></div>
+    <div class="sparkle sparkle-3"></div>
+    <div class="sparkle sparkle-4"></div>
+
+    <!-- Content -->
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            🌴 Sydney's Most Fun Backyard Adventure
         </span>
 
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
-            Welcome to
-            <span class="text-yellow-300 drop-shadow-lg">
-                PatrickLand
-            </span>
+        <h1 class="hero-title">
+            Where Family
+            <br>
+            Adventures
+            <br>
+            Come Alive!
         </h1>
 
-        <p class="text-xl md:text-3xl max-w-3xl mx-auto mb-10 text-white/95">
-            Where family adventures come alive with exciting attractions,
-            unforgettable laughs and memories you'll never forget.
+        <p class="hero-subtitle">
+
+            Explore PatrickLand — an unforgettable place filled with laughs,
+            adventure, imagination and memories for the whole family.
+
         </p>
 
-<div class="flex flex-col sm:flex-row gap-5 justify-center">
-    <button onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
-        class="hero-ticket-btn">
-        <i class="fas fa-ticket-alt"></i>
-        Get Tickets Now
-    </button>
-    
-    <a href="#attractions" class="hero-explore-btn">
-        Explore Attractions
+        <div class="hero-buttons">
+
+            <button
+                onclick="openTicketModal()"
+                class="hero-ticket">
+
+                <i class="fas fa-ticket-alt"></i>
+
+                Buy Tickets
+
+            </button>
+
+            <a
+                href="#attractions"
+                class="hero-explore">
+
+                <i class="fas fa-compass"></i>
+
+                Explore Attractions
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Decorative Grass -->
+
+    <div class="hero-grass"></div>
+
+    <!-- Scroll Indicator -->
+
+    <a href="#about" class="hero-scroll">
+
+        <i class="fas fa-chevron-down"></i>
+
     </a>
-</div>
-
-    </div>
-
-    <!-- Bottom Wave -->
-    <svg class="absolute bottom-0 left-0 w-full z-10"
-         viewBox="0 0 1440 180"
-         preserveAspectRatio="none">
-
-        <path fill="#ffffff"
-              d="M0,96L80,106.7C160,117,320,139,480,144C640,149,800,139,960,117.3C1120,96,1280,64,1360,48L1440,32L1440,180L1360,180C1280,180,1120,180,960,180C800,180,640,180,480,180C320,180,160,180,80,180L0,180Z">
-        </path>
-
-    </svg>
-
-    <!-- Scroll Down -->
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
-
-        <a href="#about">
-
-            <i class="fas fa-chevron-down text-4xl text-white animate-bounce"></i>
-
-        </a>
-
-    </div>
 
 </section>
 
