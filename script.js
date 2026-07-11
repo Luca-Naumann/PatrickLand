@@ -91,9 +91,9 @@ function createBackToTop() {
 }
 
 // ============================================
-// MODAL FUNCTIONS
+// MODAL FUNCTIONS (Matched to your HTML names)
 // ============================================
-function closeTicketModal() {
+function closeModal() {
     const modal = document.getElementById('ticket-modal');
     if (modal) modal.classList.add('hidden');
 }
