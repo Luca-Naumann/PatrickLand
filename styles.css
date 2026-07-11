@@ -2080,3 +2080,24 @@ left:86%;
     }
 
    }
+.hero {
+  background: linear-gradient(
+    180deg,
+    #87ceeb,
+    #fff4c2
+  );
+  background-size: 200% 200%;
+  animation: skyMove 12s ease infinite;
+}
+
+@keyframes skyMove {
+  0% {
+    background-position: top;
+  }
+  50% {
+    background-position: bottom;
+  }
+  100% {
+    background-position: top;
+  }
+}
