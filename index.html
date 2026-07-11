@@ -292,23 +292,176 @@
     </div>
 
 </div>
-<section class="hero-bg h-screen flex items-center text-white relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50"></div>
-<div class="max-w-5xl mx-auto text-center px-6 relative z-10">
-<h1 class="text-6xl md:text-7xl font-bold mb-6 drop-shadow-md">Welcome to PatrickLand</h1>
-<p class="text-2xl md:text-3xl mb-10 max-w-2xl mx-auto">Where family adventures come alive in Lalor Park, Sydney</p>
-<div class="flex flex-col sm:flex-row gap-5 justify-center">
-<button onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
-class="bg-yellow-400 text-green-900 px-10 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all shadow-lg">
-Get Tickets Now
-</button>
-<a href="#attractions" class="border-2 border-white px-10 py-4 rounded-full text-xl font-bold hover:bg-white hover:text-green-900 transition-all">Explore Attractions</a>
-</div>
-</div>
-<div class="absolute bottom-10 inset-x-0 mx-auto w-max animate-bounce">
-  <i class="fas fa-chevron-down text-4xl"></i>
-</div>
-</div>
+<!-- ==========================================
+     PatrickLand Hero v2
+========================================== -->
+
+<section class="hero-section relative min-h-screen overflow-hidden flex items-center">
+
+    <!-- Background Image -->
+    <div class="hero-background"></div>
+
+    <!-- Dark Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Decorative Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <!-- Decorative Glow -->
+    <div class="hero-glow hero-glow-left"></div>
+    <div class="hero-glow hero-glow-right"></div>
+
+    <!-- Floating Decorations -->
+    <div class="hero-decoration hero-star-1">
+        ⭐
+    </div>
+
+    <div class="hero-decoration hero-star-2">
+        ✨
+    </div>
+
+    <div class="hero-decoration hero-balloon">
+        🎈
+    </div>
+
+    <!-- Hero Content -->
+
+    <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left Side -->
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+
+                    🎉 Sydney's Most Unique Family Adventure
+
+                </span>
+
+                <h1 class="hero-title">
+
+                    Where Family
+                    <span class="hero-highlight">
+                        Adventures
+                    </span>
+                    Come Alive
+
+                </h1>
+
+                <p class="hero-description">
+
+                    Discover exciting attractions, unforgettable moments,
+                    laughter, and magical experiences for children and
+                    families at PatrickLand in Lalor Park.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        onclick="openTicketModal()"
+                        class="hero-ticket-button">
+
+                        <i class="fas fa-ticket-alt"></i>
+
+                        <span>Get Tickets</span>
+
+                    </button>
+
+                    <a
+                        href="#attractions"
+                        class="hero-explore-button">
+
+                        Explore Attractions
+
+                        <i class="fas fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+                <!-- Quick Features -->
+
+                <div class="hero-features">
+
+                    <div class="hero-feature">
+
+                        <i class="fas fa-star"></i>
+
+                        <span>Fun For All Ages</span>
+
+                    </div>
+
+                    <div class="hero-feature">
+
+                        <i class="fas fa-shield-heart"></i>
+
+                        <span>Safe & Supervised</span>
+
+                    </div>
+
+                    <div class="hero-feature">
+
+                        <i class="fas fa-location-dot"></i>
+
+                        <span>Lalor Park, Sydney</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+
+            <div class="hero-image-wrapper">
+
+                <div class="hero-image-card">
+
+                    <img
+                        src="images/hero-family.jpg"
+                        alt="Families enjoying PatrickLand">
+
+                    <div class="floating-card card-one">
+
+                        🎢 Adventure
+
+                    </div>
+
+                    <div class="floating-card card-two">
+
+                        🎡 Family Fun
+
+                    </div>
+
+                    <div class="floating-card card-three">
+
+                        ⭐ Memories
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scroll Down -->
+
+    <div class="hero-scroll">
+
+        <span>Scroll</span>
+
+        <i class="fas fa-chevron-down"></i>
+
+    </div>
+
 </section>
 
 <section id="about" class="py-24 bg-gray-50">
