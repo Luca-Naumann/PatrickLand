@@ -1840,3 +1840,232 @@ transform:translateY(30px);
     }
 
 }
+
+/* ==========================================
+   THEME PARK SKYLINE
+========================================== */
+
+.theme-park{
+
+    position:absolute;
+
+    bottom:90px;
+
+    left:0;
+
+    width:100%;
+
+    height:240px;
+
+    z-index:3;
+
+    pointer-events:none;
+
+}
+
+/* =========================
+   Ferris Wheel
+========================= */
+
+.ferris-wheel{
+
+    position:absolute;
+
+    left:8%;
+
+    bottom:0;
+
+}
+
+.wheel{
+
+    width:150px;
+
+    height:150px;
+
+    border:6px solid rgba(255,255,255,.22);
+
+    border-radius:50%;
+
+    animation:spinWheel 40s linear infinite;
+
+}
+
+.wheel::before,
+.wheel::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    width:4px;
+
+    height:150px;
+
+    background:rgba(255,255,255,.22);
+
+    transform:translateX(-50%);
+
+}
+
+.wheel::after{
+
+    transform:
+        translateX(-50%)
+        rotate(90deg);
+
+}
+
+@keyframes spinWheel{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* =========================
+ Roller Coaster
+========================= */
+
+.rollercoaster{
+
+    position:absolute;
+
+    bottom:40px;
+
+    left:20%;
+
+    width:60%;
+
+    height:80px;
+
+    border-top:6px solid rgba(255,255,255,.20);
+
+    border-radius:50%;
+
+}
+
+/* =========================
+ Castle
+========================= */
+
+.castle{
+
+    position:absolute;
+
+    right:10%;
+
+    bottom:0;
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:flex-end;
+
+}
+
+.tower{
+
+    background:rgba(255,255,255,.22);
+
+    width:48px;
+
+    border-radius:8px 8px 0 0;
+
+}
+
+.tower-left{
+
+    height:95px;
+
+}
+
+.tower-centre{
+
+    height:140px;
+
+    width:60px;
+
+}
+
+.tower-right{
+
+    height:110px;
+
+}
+
+/* =========================
+ Trees
+========================= */
+
+.tree{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:22px;
+
+    height:75px;
+
+    background:#14532d;
+
+}
+
+.tree::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:70px;
+
+    height:70px;
+
+    background:#22c55e;
+
+    border-radius:50%;
+
+    left:-24px;
+
+    top:-38px;
+
+}
+
+.tree-1{
+
+left:30%;
+
+}
+
+.tree-2{
+
+left:46%;
+
+}
+
+.tree-3{
+
+left:66%;
+
+}
+
+.tree-4{
+
+left:86%;
+
+}
