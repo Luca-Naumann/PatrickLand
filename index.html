@@ -100,42 +100,198 @@
 </head>
 <body class="font-sans antialiased">
 
-<nav class="bg-green-700 text-white sticky top-0 z-50 shadow-lg">
-<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-<div class="flex items-center gap-3">
-<i class="fas fa-umbrella-beach text-3xl"></i>
-<span class="text-3xl font-bold tracking-tight">PatrickLand</span>
-</div>
 
-<div class="hidden md:flex gap-8 text-lg">
-<a href="#about" class="hover:text-yellow-300 transition-colors">About</a>
-<a href="#attractions" class="hover:text-yellow-300 transition-colors">Attractions</a>
-<a href="#gallery" class="hover:text-yellow-300 transition-colors">Gallery</a>
-<a href="#reviews" class="hover:text-yellow-300 transition-colors">Reviews</a>
-<a href="#visit" class="hover:text-yellow-300 transition-colors">Visit Us</a>
-</div>
+<!-- =========================
+     PatrickLand Navigation v2
+========================= -->
 
-<button onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
-class="bg-yellow-400 hover:bg-yellow-300 text-green-900 px-8 py-3 rounded-full font-semibold transition-all hover:scale-105">
-Buy Tickets
-</button>
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
 
-<button id="mobile-menu-button" class="md:hidden text-3xl">
-<i class="fas fa-bars"></i>
-</button>
-</div>
+    <!-- Decorative Background -->
+    <div class="absolute inset-0 nav-glass"></div>
 
-<div id="mobile-menu" class="hidden md:hidden bg-green-700 px-6 py-6 border-t border-green-600">
-<div class="flex flex-col gap-6 text-lg">
-<a href="#about" class="hover:text-yellow-300">About</a>
-<a href="#attractions" class="hover:text-yellow-300">Attractions</a>
-<a href="#gallery" class="hover:text-yellow-300">Gallery</a>
-<a href="#reviews" class="hover:text-yellow-300">Reviews</a>
-<a href="#visit" class="hover:text-yellow-300">Visit Us</a>
-</div>
-</div>
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <div class="flex items-center justify-between h-20">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 logo-group">
+
+                <div class="logo-circle">
+                    <i class="fas fa-umbrella-beach"></i>
+                </div>
+
+                <div>
+                    <h1 class="logo-text">
+                        PatrickLand
+                    </h1>
+
+                    <p class="logo-subtitle">
+                        Family Adventures
+                    </p>
+                </div>
+
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden lg:flex items-center gap-8 nav-links">
+
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#attractions">
+                        Attractions
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#gallery">
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#reviews">
+                        Reviews
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#visit">
+                        Visit
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Desktop Ticket Button -->
+            <div class="hidden lg:flex">
+
+                <button
+                    onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+                    class="ticket-button">
+
+                    <i class="fas fa-ticket-alt"></i>
+
+                    <span>
+                        Buy Tickets
+                    </span>
+
+                </button>
+
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-button"
+                class="lg:hidden mobile-toggle"
+                aria-label="Open Menu"
+                aria-expanded="false">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+    </div>
+
 </nav>
 
+<!-- =========================
+     Fullscreen Mobile Menu
+========================= -->
+
+<div
+    id="mobile-menu"
+    class="mobile-overlay hidden">
+
+    <!-- Close Button -->
+
+    <button
+        id="mobile-close-button"
+        class="mobile-close"
+        aria-label="Close Menu">
+
+        <i class="fas fa-times"></i>
+
+    </button>
+
+    <!-- Branding -->
+
+    <div class="mobile-brand">
+
+        <div class="mobile-logo">
+
+            <i class="fas fa-umbrella-beach"></i>
+
+        </div>
+
+        <h2>
+            PatrickLand
+        </h2>
+
+        <p>
+            Family Adventures Await
+        </p>
+
+    </div>
+
+    <!-- Links -->
+
+    <nav class="mobile-nav-links">
+
+        <a href="#about">🏡 About</a>
+
+        <a href="#attractions">🎠 Attractions</a>
+
+        <a href="#gallery">📸 Gallery</a>
+
+        <a href="#reviews">⭐ Reviews</a>
+
+        <a href="#visit">📍 Plan Your Visit</a>
+
+    </nav>
+
+    <!-- CTA -->
+
+    <button
+        onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+        class="mobile-ticket-button">
+
+        🎟 Buy Tickets
+
+    </button>
+
+    <!-- Socials -->
+
+    <div class="mobile-socials">
+
+        <a
+            href="https://www.facebook.com/share/1TfCuNmfT3/"
+            target="_blank">
+
+            <i class="fab fa-facebook"></i>
+
+        </a>
+
+        <a
+            href="https://www.instagram.com/patri.ckland?igsh=aG01dHprcjFyMmsy"
+            target="_blank">
+
+            <i class="fab fa-instagram"></i>
+
+        </a>
+
+    </div>
+
+</div>
 <section class="hero-bg h-screen flex items-center text-white relative overflow-hidden">
 <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/50"></div>
 <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
