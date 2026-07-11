@@ -292,173 +292,88 @@
     </div>
 
 </div>
-<!-- ==========================================
-     PatrickLand Hero v2
-========================================== -->
+<!-- =========================================
+     PatrickLand Hero
+========================================= -->
 
-<section class="hero-section relative min-h-screen overflow-hidden flex items-center">
+<section class="hero-bg relative min-h-screen overflow-hidden flex items-center justify-center">
 
-    <!-- Background Image -->
-    <div class="hero-background"></div>
+    <!-- Floating Clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <!-- Sun Glow -->
+    <div class="hero-sun"></div>
+
+    <!-- Decorative Circles -->
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
 
     <!-- Dark Overlay -->
-    <div class="hero-overlay"></div>
-
-    <!-- Decorative Clouds -->
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
-    <div class="cloud cloud-3"></div>
-
-    <!-- Decorative Glow -->
-    <div class="hero-glow hero-glow-left"></div>
-    <div class="hero-glow hero-glow-right"></div>
-
-    <!-- Floating Decorations -->
-    <div class="hero-decoration hero-star-1">
-        ⭐
-    </div>
-
-    <div class="hero-decoration hero-star-2">
-        ✨
-    </div>
-
-    <div class="hero-decoration hero-balloon">
-        🎈
-    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/35"></div>
 
     <!-- Hero Content -->
+    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
 
-    <div class="relative z-20 max-w-7xl mx-auto px-6 w-full">
+        <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-lg rounded-full px-6 py-2 text-white font-semibold mb-8">
+            🌴 Sydney's Most Unique Family Adventure
+        </span>
 
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
+            Welcome to
+            <span class="text-yellow-300 drop-shadow-lg">
+                PatrickLand
+            </span>
+        </h1>
 
-            <!-- Left Side -->
+        <p class="text-xl md:text-3xl max-w-3xl mx-auto mb-10 text-white/95">
+            Where family adventures come alive with exciting attractions,
+            unforgettable laughs and memories you'll never forget.
+        </p>
 
-            <div class="hero-content">
+        <div class="flex flex-col sm:flex-row justify-center gap-5">
 
-                <span class="hero-badge">
+            <button
+                onclick="openTicketModal()"
+                class="hero-ticket-btn">
 
-                    🎉 Sydney's Most Unique Family Adventure
+                <i class="fas fa-ticket-alt mr-2"></i>
+                Buy Tickets
 
-                </span>
+            </button>
 
-                <h1 class="hero-title">
+            <a href="#attractions"
+               class="hero-explore-btn">
 
-                    Where Family
-                    <span class="hero-highlight">
-                        Adventures
-                    </span>
-                    Come Alive
+                <i class="fas fa-compass mr-2"></i>
+                Explore Attractions
 
-                </h1>
-
-                <p class="hero-description">
-
-                    Discover exciting attractions, unforgettable moments,
-                    laughter, and magical experiences for children and
-                    families at PatrickLand in Lalor Park.
-
-                </p>
-
-                <div class="hero-buttons">
-
-                    <button
-                        onclick="openTicketModal()"
-                        class="hero-ticket-button">
-
-                        <i class="fas fa-ticket-alt"></i>
-
-                        <span>Get Tickets</span>
-
-                    </button>
-
-                    <a
-                        href="#attractions"
-                        class="hero-explore-button">
-
-                        Explore Attractions
-
-                        <i class="fas fa-arrow-right"></i>
-
-                    </a>
-
-                </div>
-
-                <!-- Quick Features -->
-
-                <div class="hero-features">
-
-                    <div class="hero-feature">
-
-                        <i class="fas fa-star"></i>
-
-                        <span>Fun For All Ages</span>
-
-                    </div>
-
-                    <div class="hero-feature">
-
-                        <i class="fas fa-shield-heart"></i>
-
-                        <span>Safe & Supervised</span>
-
-                    </div>
-
-                    <div class="hero-feature">
-
-                        <i class="fas fa-location-dot"></i>
-
-                        <span>Lalor Park, Sydney</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Right Side -->
-
-            <div class="hero-image-wrapper">
-
-                <div class="hero-image-card">
-
-                    <img
-                        src="images/hero-family.jpg"
-                        alt="Families enjoying PatrickLand">
-
-                    <div class="floating-card card-one">
-
-                        🎢 Adventure
-
-                    </div>
-
-                    <div class="floating-card card-two">
-
-                        🎡 Family Fun
-
-                    </div>
-
-                    <div class="floating-card card-three">
-
-                        ⭐ Memories
-
-                    </div>
-
-                </div>
-
-            </div>
+            </a>
 
         </div>
 
     </div>
 
+    <!-- Bottom Wave -->
+    <svg class="absolute bottom-0 left-0 w-full z-10"
+         viewBox="0 0 1440 180"
+         preserveAspectRatio="none">
+
+        <path fill="#ffffff"
+              d="M0,96L80,106.7C160,117,320,139,480,144C640,149,800,139,960,117.3C1120,96,1280,64,1360,48L1440,32L1440,180L1360,180C1280,180,1120,180,960,180C800,180,640,180,480,180C320,180,160,180,80,180L0,180Z">
+        </path>
+
+    </svg>
+
     <!-- Scroll Down -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 
-    <div class="hero-scroll">
+        <a href="#about">
 
-        <span>Scroll</span>
+            <i class="fas fa-chevron-down text-4xl text-white animate-bounce"></i>
 
-        <i class="fas fa-chevron-down"></i>
+        </a>
 
     </div>
 
