@@ -1958,55 +1958,7 @@ transform:rotate(360deg);
 
 }
 
-/* =========================
- Castle
-========================= */
 
-.castle{
-
-    position:absolute;
-
-    right:10%;
-
-    bottom:0;
-
-    display:flex;
-
-    gap:12px;
-
-    align-items:flex-end;
-
-}
-
-.tower{
-
-    background:rgba(255,255,255,.22);
-
-    width:48px;
-
-    border-radius:8px 8px 0 0;
-
-}
-
-.tower-left{
-
-    height:95px;
-
-}
-
-.tower-centre{
-
-    height:140px;
-
-    width:60px;
-
-}
-
-.tower-right{
-
-    height:110px;
-
-}
 
 /* =========================
  Trees
@@ -2080,7 +2032,7 @@ left:86%;
 
     right:-40px;
 
-    bottom:-10px;
+    bottom:0px;
 
     width:360px;
 
