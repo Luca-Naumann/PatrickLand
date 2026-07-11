@@ -627,3 +627,337 @@
     }
 
 }
+
+/* =====================================================
+   PatrickLand Hero Section
+===================================================== */
+
+.hero-bg{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+
+    background:
+        linear-gradient(180deg,
+        #7dd3fc 0%,
+        #b8f3ff 35%,
+        #dcfce7 100%);
+}
+
+/* Animated sky */
+
+.hero-bg::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 20% 20%,
+        rgba(255,255,255,.45),
+        transparent 35%),
+
+        radial-gradient(circle at 80% 25%,
+        rgba(255,255,255,.35),
+        transparent 30%),
+
+        radial-gradient(circle at 60% 70%,
+        rgba(255,255,255,.20),
+        transparent 40%);
+
+    animation:skyFloat 16s ease-in-out infinite;
+}
+
+/* Soft sunshine */
+
+.hero-bg::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+    height:650px;
+
+    top:-220px;
+    right:-160px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,
+        rgba(255,235,120,.85) 0%,
+        rgba(255,215,74,.35) 45%,
+        transparent 72%);
+
+    filter:blur(10px);
+
+    animation:sunPulse 6s ease-in-out infinite;
+
+}
+
+/* Hero text */
+
+.hero-bg h1{
+
+    font-family:'Fredoka',sans-serif;
+
+    text-shadow:
+        0 6px 20px rgba(0,0,0,.25);
+
+}
+
+.hero-bg p{
+
+    text-shadow:
+        0 4px 12px rgba(0,0,0,.25);
+
+}
+
+/* Buttons */
+
+.hero-bg button,
+.hero-bg a{
+
+    transition:
+        transform .35s,
+        box-shadow .35s,
+        background .35s;
+
+}
+
+.hero-bg button:hover,
+.hero-bg a:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.18);
+
+}
+
+/* Gold ticket button */
+
+.hero-bg button{
+
+    background:
+        linear-gradient(135deg,
+        #FFE680,
+        #FFD54A,
+        #FFC107);
+
+    color:#14532d;
+
+    box-shadow:
+        0 12px 35px rgba(255,213,74,.45);
+
+}
+
+.hero-bg button:hover{
+
+    box-shadow:
+        0 20px 50px rgba(255,213,74,.6);
+
+}
+
+/* Outline button */
+
+.hero-bg a{
+
+    backdrop-filter:blur(8px);
+
+    background:
+        rgba(255,255,255,.12);
+
+}
+
+/* Scroll icon */
+
+.hero-bg .fa-chevron-down{
+
+    text-shadow:
+        0 0 18px rgba(255,255,255,.8);
+
+    animation:
+        bounceArrow 2s infinite;
+
+}
+
+/* Floating clouds */
+
+.cloud{
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:999px;
+
+    opacity:.85;
+
+    filter:blur(1px);
+
+}
+
+.cloud::before,
+.cloud::after{
+
+    content:"";
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+}
+
+.cloud::before{
+
+    width:70px;
+    height:70px;
+
+    left:15px;
+    top:-25px;
+
+}
+
+.cloud::after{
+
+    width:90px;
+    height:90px;
+
+    right:10px;
+    top:-35px;
+
+}
+
+/* Cloud sizes */
+
+.cloud1{
+
+    width:170px;
+    height:55px;
+
+    top:110px;
+    left:-120px;
+
+    animation:cloudMove 40s linear infinite;
+
+}
+
+.cloud2{
+
+    width:220px;
+    height:70px;
+
+    top:220px;
+    right:-180px;
+
+    animation:cloudMove2 55s linear infinite;
+
+}
+
+.cloud3{
+
+    width:140px;
+    height:50px;
+
+    bottom:180px;
+    left:-150px;
+
+    animation:cloudMove 50s linear infinite;
+
+}
+
+/* Animations */
+
+@keyframes cloudMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(calc(100vw + 350px));
+    }
+
+}
+
+@keyframes cloudMove2{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(calc(-100vw - 350px));
+    }
+
+}
+
+@keyframes skyFloat{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes sunPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+}
+
+@keyframes bounceArrow{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(10px);
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    .hero-bg h1{
+
+        font-size:3rem;
+
+    }
+
+    .hero-bg p{
+
+        font-size:1.25rem;
+
+    }
+
+    .cloud{
+
+        transform:scale(.75);
+
+    }
+
+}
