@@ -1,137 +1,139 @@
-// ============================================
-// MOBILE MENU MANAGEMENT
-// ============================================
-function initMobileMenu() {
-    const menu = document.getElementById("mobile-menu");
-    const openButton = document.getElementById("mobile-menu-button");
-    const closeButton = document.getElementById("mobile-close-button");
+const menu = document.getElementById("mobile-menu");
 
-    if (!menu || !openButton || !closeButton) {
-        console.warn("Mobile menu elements not found");
-        return;
+const openButton =
+document.getElementById("mobile-menu-button");
+
+const closeButton =
+document.getElementById("mobile-close-button");
+
+openButton.addEventListener("click",()=>{
+
+    menu.classList.add("active");
+
+    document.body.style.overflow="hidden";
+
+});
+
+closeButton.addEventListener("click",()=>{
+
+    menu.classList.remove("active");
+
+    document.body.style.overflow="";
+
+});
+
+document.querySelectorAll(".mobile-nav-links a")
+
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        menu.classList.remove("active");
+
+        document.body.style.overflow="";
+
+    });
+
+});
+
+document.addEventListener("keydown",(event)=>{
+
+    if(event.key==="Escape"){
+
+        menu.classList.remove("active");
+
+        document.body.style.overflow="";
+
     }
 
-    const closeMenu = () => {
-        menu.classList.remove("active");
-        document.body.style.overflow = "";
-    };
+});
 
-    openButton.addEventListener("click", () => {
-        menu.classList.add("active");
-        document.body.style.overflow = "hidden";
-    });
+window.addEventListener("scroll",()=>{
 
-    closeButton.addEventListener("click", closeMenu);
+    const nav=document.getElementById("navbar");
 
-    // Close menu when clicking links
-    document.querySelectorAll(".mobile-nav-links a").forEach(link => {
-        link.addEventListener("click", closeMenu);
-    });
+    if(window.scrollY>80){
 
-    // Close menu on Escape key
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeMenu();
-    });
-}
+        nav.classList.add("scrolled");
 
-// ============================================
-// NAVBAR SCROLL EFFECT
-// ============================================
-function initNavbarScroll() {
-    const nav = document.getElementById("navbar");
-    if (!nav) return;
+    }else{
 
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 80) {
-            nav.classList.add("scrolled");
-        } else {
-            nav.classList.remove("scrolled");
+        nav.classList.remove("scrolled");
+
+    }
+
+});
+
+// Smooth Scrolling for all links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        if (this.getAttribute('href') !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
-}
+});
 
-// ============================================
-// SMOOTH SCROLLING
-// ============================================
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href !== '#' && href.length > 1) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
-}
-
-// ============================================
-// BACK TO TOP BUTTON
-// ============================================
+// Back to top button (optional but nice)
 function createBackToTop() {
     const btn = document.createElement('button');
     btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     btn.className = 'fixed bottom-8 right-8 bg-green-700 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-2xl opacity-0 transition-all hover:bg-green-600 z-50';
-    btn.setAttribute('aria-label', 'Back to top');
     document.body.appendChild(btn);
 
     window.addEventListener('scroll', () => {
-        btn.classList.toggle('opacity-0', window.scrollY <= 500);
+        if (window.scrollY > 500) {
+            btn.classList.remove('opacity-0');
+        } else {
+            btn.classList.add('opacity-0');
+        }
     });
 
     btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
-
-// ============================================
-// MODAL FUNCTIONS
-// ============================================
-function closeTicketModal() {
-    const modal = document.getElementById('ticket-modal');
-    if (modal) modal.classList.add('hidden');
+createBackToTop();
+// Modal Functions
+function closeModal() {
+    document.getElementById('ticket-modal').classList.add('hidden');
 }
 
 function openTicketModal() {
-    const modal = document.getElementById('ticket-modal');
-    if (modal) modal.classList.remove('hidden');
+    document.getElementById('ticket-modal').classList.remove('hidden');
 }
 
-// ============================================
-// EVENTBRITE WIDGET (SAFE INITIALIZATION)
-// ============================================
-function initEventbriteWidget() {
-    if (typeof window.EBWidgets === 'undefined') {
-        console.warn("Eventbrite widget script not loaded");
-        return;
-    }
+// Eventbrite Widget
+var exampleCallback = function() {
+    console.log('Order complete!');
+};
 
-    const exampleCallback = function() {
-        console.log('Order complete!');
-    };
+window.EBWidgets.createWidget({
+    widgetType: 'checkout',
+    eventId: '1992098976665',
+    modal: true,
+    modalTriggerElementId: 'eventbrite-widget-modal-trigger-1992098976665',
+    onOrderComplete: exampleCallback
+});
+const menu = document.getElementById("mobile-menu");
+const openButton = document.getElementById("mobile-menu-button");
+const closeButton = document.getElementById("mobile-close-button");
 
-    window.EBWidgets.createWidget({
-        widgetType: 'checkout',
-        eventId: '1992098976665',
-        modal: true,
-        modalTriggerElementId: 'eventbrite-widget-modal-trigger-1992098976665',
-        onOrderComplete: exampleCallback
+if (menu && openButton && closeButton) {
+    openButton.addEventListener("click", () => {
+        menu.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+
+    closeButton.addEventListener("click", () => {
+        menu.classList.remove("active");
+        document.body.style.overflow = "";
     });
 }
 
-// ============================================
-// INITIALIZATION
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    initMobileMenu();
-    initNavbarScroll();
-    initSmoothScroll();
-    createBackToTop();
-    initEventbriteWidget();
-});
