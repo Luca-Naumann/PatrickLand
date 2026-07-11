@@ -1718,83 +1718,6 @@ transform:translateY(30px);
     border-radius:50%;
 }
 
-/* ==========================================
-   BALLOONS
-========================================== */
-
-.balloon{
-
-    position:absolute;
-
-    width:70px;
-    height:90px;
-
-    border-radius:50%;
-
-    opacity:.9;
-
-    animation:balloonFloat 12s ease-in-out infinite;
-
-}
-
-.balloon::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:2px;
-    height:70px;
-
-    background:white;
-
-    left:50%;
-    top:90px;
-
-}
-
-.balloon-red{
-
-    background:#FF6B6B;
-
-    left:8%;
-    bottom:280px;
-
-}
-
-.balloon-yellow{
-
-    background:#FFD54A;
-
-    right:10%;
-    bottom:320px;
-
-    animation-delay:2s;
-
-}
-
-.balloon-blue{
-
-    background:#60A5FA;
-
-    left:120%;
-    bottom:320px;
-
-    animation-delay:4s;
-
-}
-
-@keyframes balloonFloat{
-
-    0%,100%{
-        transform:translateY(0) rotate(-2deg);
-    }
-
-    50%{
-        transform:translateY(-35px) rotate(2deg);
-    }
-
-}
 
 .hero-content{
 
@@ -1963,67 +1886,7 @@ transform:rotate(360deg);
 
 
 
-/* =========================
- Trees
-========================= */
 
-.tree{
-
-    position:absolute;
-
-    bottom:0;
-
-    width:22px;
-
-    height:75px;
-
-    background:#14532d;
-
-}
-
-.tree::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:70px;
-
-    height:70px;
-
-    background:#22c55e;
-
-    border-radius:50%;
-
-    left:-24px;
-
-    top:-38px;
-
-}
-
-.tree-1{
-
-left:30%;
-
-}
-
-.tree-2{
-
-left:46%;
-
-}
-
-.tree-3{
-
-left:66%;
-
-}
-
-.tree-4{
-
-left:86%;
-
-}
 
 /* ==========================
    Ferris Wheel
@@ -2100,4 +1963,82 @@ left:86%;
   100% {
     background-position: top;
   }
+}
+
+/* ==========================
+   Trees
+========================== */
+
+.hero-tree{
+    position:absolute;
+    bottom:0;
+    width:190px;
+    z-index:2;
+    animation:treeFloat 6s ease-in-out infinite;
+}
+
+.hero-tree svg{
+    width:100%;
+}
+
+.tree-left{
+    left:3%;
+}
+
+.tree-right{
+    right:14%;
+}
+
+/* ==========================
+   Balloons
+========================== */
+
+.balloon{
+    position:absolute;
+    width:95px;
+    z-index:2;
+    animation:balloonFloat 7s ease-in-out infinite;
+}
+
+.balloon svg{
+    width:100%;
+}
+
+.balloon-left{
+    top:120px;
+    left:14%;
+}
+
+.balloon-right{
+    top:90px;
+    right:18%;
+    animation-delay:2.5s;
+}
+
+/* ==========================
+   Animations
+========================== */
+
+@keyframes balloonFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(2deg);
+    }
+
+}
+
+@keyframes treeFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+
 }
