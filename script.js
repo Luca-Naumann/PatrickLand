@@ -1,12 +1,67 @@
-// Mobile Menu Toggle
-const mobileBtn = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
+const menu = document.getElementById("mobile-menu");
 
-mobileBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    const icon = mobileBtn.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-times');
+const openButton =
+document.getElementById("mobile-menu-button");
+
+const closeButton =
+document.getElementById("mobile-close-button");
+
+openButton.addEventListener("click",()=>{
+
+    menu.classList.add("active");
+
+    document.body.style.overflow="hidden";
+
+});
+
+closeButton.addEventListener("click",()=>{
+
+    menu.classList.remove("active");
+
+    document.body.style.overflow="";
+
+});
+
+document.querySelectorAll(".mobile-nav-links a")
+
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        menu.classList.remove("active");
+
+        document.body.style.overflow="";
+
+    });
+
+});
+
+document.addEventListener("keydown",(event)=>{
+
+    if(event.key==="Escape"){
+
+        menu.classList.remove("active");
+
+        document.body.style.overflow="";
+
+    }
+
+});
+
+window.addEventListener("scroll",()=>{
+
+    const nav=document.getElementById("navbar");
+
+    if(window.scrollY>80){
+
+        nav.classList.add("scrolled");
+
+    }else{
+
+        nav.classList.remove("scrolled");
+
+    }
+
 });
 
 // Smooth Scrolling for all links
