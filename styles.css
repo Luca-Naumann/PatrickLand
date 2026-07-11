@@ -1560,17 +1560,19 @@ transform:translateY(30px);
 
 }
 
-}
-/* ==========================================
+}/* ==========================================
    GLASS HERO CONTENT
 ========================================== */
 
 .hero-content{
 
+    /* 1. Adjusted to .04 to let more background color bleed through */
     background:
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.04);
 
-    backdrop-filter:blur(18px);
+    /* 2. Reduced from 18px to 10px so the blur feels thin and clear */
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px); /* Added for Safari compatibility */
 
     border:1px solid rgba(255,255,255,.15);
 
@@ -1578,10 +1580,12 @@ transform:translateY(30px);
 
     padding:70px;
 
+    /* 3. Softened the shadow so it doesn't add dark weight to the card */
     box-shadow:
-        0 30px 80px rgba(0,0,0,.20);
+        0 30px 80px rgba(0,0,0,.12); 
 
 }
+
 
 .hero-title{
 
