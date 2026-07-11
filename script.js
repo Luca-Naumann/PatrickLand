@@ -121,3 +121,18 @@ window.EBWidgets.createWidget({
     modalTriggerElementId: 'eventbrite-widget-modal-trigger-1992098976665',
     onOrderComplete: exampleCallback
 });
+const menu = document.getElementById("mobile-menu");
+const openButton = document.getElementById("mobile-menu-button");
+const closeButton = document.getElementById("mobile-close-button");
+
+if (menu && openButton && closeButton) {
+    openButton.addEventListener("click", () => {
+        menu.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+
+    closeButton.addEventListener("click", () => {
+        menu.classList.remove("active");
+        document.body.style.overflow = "";
+    });
+}
