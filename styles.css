@@ -1472,8 +1472,6 @@ transform:translateY(30px);
 
     z-index:2;
 
-    animation:wheelFloat 6s ease-in-out infinite;
-
 }
 
 .ferris-wheel svg{
@@ -1482,31 +1480,7 @@ transform:translateY(30px);
 
     height:auto;
 
-    animation:wheelSpin 60s linear infinite;
-
 }
-
-@keyframes wheelSpin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-@keyframes wheelFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-12px);
-    }
 
    }
 .hero {
