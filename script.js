@@ -136,9 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initEventbriteWidget();
 });
 
-const hero = document.querySelector(".hero-bg");
+const hero = document.querySelector(".hero-selection");
+
+if(hero){
 
 hero.addEventListener("mousemove",(e)=>{
+
 
     const x=(e.clientX/window.innerWidth-.5)*30;
 
@@ -150,6 +153,16 @@ hero.addEventListener("mousemove",(e)=>{
         `translate(${x*.35}px,${y*.35}px)`;
 
     });
+    if(wheel){
+
+        wheel.style.transform=
+        `translate(${x*.45}px,${y*.45}px)`;
+
+    }
+}
+});
+
+
 
     document.querySelectorAll(".balloon").forEach(el=>{
 
@@ -159,145 +172,6 @@ hero.addEventListener("mousemove",(e)=>{
     });
 
     const wheel=document.querySelector(".ferris-wheel");
-
-    if(wheel){
-
-        wheel.style.transform=
-        `translate(${x*.45}px,${y*.45}px)`;
-
-    }
-
-});
-
-/* =====================================================
-   PATRICKLAND REVIEWS CAROUSEL
-===================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const carousel = document.querySelector(".reviews-carousel");
-    const cards = document.querySelectorAll(".review-card");
-
-    if (!carousel || cards.length === 0) return;
-
-
-    let currentIndex = 0;
-
-
-    function goToReview(index){
-
-        if(index < 0){
-            index = cards.length - 1;
-        }
-
-        if(index >= cards.length){
-            index = 0;
-        }
-
-
-        currentIndex = index;
-
-
-        carousel.scrollTo({
-
-            left:
-            cards[index].offsetLeft -
-            carousel.offsetLeft,
-
-            behavior:"smooth"
-
-        });
-
-    }
-
-
-
-    /* =====================================
-       AUTO SCROLL
-    ===================================== */
-
-    let autoPlay = setInterval(()=>{
-
-        goToReview(currentIndex + 1);
-
-    },6000);
-
-
-
-    /* Pause when user interacts */
-
-    function pauseAuto(){
-
-        clearInterval(autoPlay);
-
-
-        autoPlay=setInterval(()=>{
-
-            goToReview(currentIndex + 1);
-
-        },8000);
-
-    }
-
-
-
-    carousel.addEventListener(
-        "mouseenter",
-        pauseAuto
-    );
-
-
-    carousel.addEventListener(
-        "touchstart",
-        pauseAuto
-    );
-
-
-
-    /* =====================================
-       UPDATE ACTIVE CARD
-    ===================================== */
-
-
-    const observer = new IntersectionObserver(
-
-        entries=>{
-
-            entries.forEach(entry=>{
-
-                if(entry.isIntersecting){
-
-                    currentIndex =
-                    [...cards]
-                    .indexOf(entry.target);
-
-                }
-
-            });
-
-        },
-
-        {
-
-            root:carousel,
-
-            threshold:.6
-
-        }
-
-    );
-
-
-
-    cards.forEach(card=>{
-
-        observer.observe(card);
-
-    });
-
-
-
-});
 
 /* =======================================================
    PatrickLand Premium Reviews Carousel v1.0
@@ -312,12 +186,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const carousel = document.querySelector(".reviews-carousel");
     const cards = [...document.querySelectorAll(".review-card")];
-    const indicatorsContainer = document.querySelector(".review-indicators");
+    const indicatorsContainer = document.getElementById("reviewIndicators");
 
     const previousButton = document.querySelector(".review-prev");
     const nextButton = document.querySelector(".review-next");
 
-    if (!carousel || cards.length === 0) return;
+    if (!carousel || cards.length === 0 || !indicatorsContainer) return;
 
     let currentIndex = 0;
 
