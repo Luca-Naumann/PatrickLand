@@ -432,3 +432,141 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateActiveStates();
+
+        /* ======================================
+       OBSERVE ACTIVE REVIEW
+    ====================================== */
+
+    const observer = new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (!entry.isIntersecting) return;
+
+                const index = cards.indexOf(entry.target);
+
+                if (index !== -1) {
+
+                    currentIndex = index;
+
+                    updateActiveStates();
+
+                }
+
+            });
+
+        },
+
+        {
+
+            root: carousel,
+
+            threshold: 0.65
+
+        }
+
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+
+    /* ======================================
+       AUTOPLAY
+    ====================================== */
+
+    function startAutoplay() {
+
+        clearInterval(autoplayTimer);
+
+        autoplayTimer = setInterval(() => {
+
+            scrollToCard(currentIndex + 1);
+
+        }, 5500);
+
+    }
+
+    function stopAutoplay() {
+
+        clearInterval(autoplayTimer);
+
+    }
+
+    function restartAutoplay() {
+
+        stopAutoplay();
+
+        startAutoplay();
+
+    }
+
+    startAutoplay();
+
+
+    /* ======================================
+       PAUSE WHEN USER INTERACTS
+    ====================================== */
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+
+    carousel.addEventListener("mouseleave", startAutoplay);
+
+    carousel.addEventListener("touchstart", stopAutoplay);
+
+    carousel.addEventListener("touchend", restartAutoplay);
+
+
+    /* ======================================
+       PREVIOUS / NEXT BUTTONS
+    ====================================== */
+
+    if (previousButton) {
+
+        previousButton.addEventListener("click", () => {
+
+            scrollToCard(currentIndex - 1);
+
+            restartAutoplay();
+
+        });
+
+    }
+
+    if (nextButton) {
+
+        nextButton.addEventListener("click", () => {
+
+            scrollToCard(currentIndex + 1);
+
+            restartAutoplay();
+
+        });
+
+    }
+
+
+    /* ======================================
+       KEYBOARD SUPPORT
+    ====================================== */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "ArrowLeft") {
+
+            scrollToCard(currentIndex - 1);
+
+            restartAutoplay();
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+            scrollToCard(currentIndex + 1);
+
+            restartAutoplay();
+
+        }
+
+    });
