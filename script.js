@@ -135,3 +135,36 @@ document.addEventListener('DOMContentLoaded', () => {
     createBackToTop();
     initEventbriteWidget();
 });
+
+const hero = document.querySelector(".hero-bg");
+
+hero.addEventListener("mousemove",(e)=>{
+
+    const x=(e.clientX/window.innerWidth-.5)*30;
+
+    const y=(e.clientY/window.innerHeight-.5)*30;
+
+    document.querySelectorAll(".cloud").forEach(el=>{
+
+        el.style.transform=
+        `translate(${x*.35}px,${y*.35}px)`;
+
+    });
+
+    document.querySelectorAll(".balloon").forEach(el=>{
+
+        el.style.transform=
+        `translate(${x*.6}px,${y*.6}px)`;
+
+    });
+
+    const wheel=document.querySelector(".ferris-wheel");
+
+    if(wheel){
+
+        wheel.style.transform=
+        `translate(${x*.45}px,${y*.45}px)`;
+
+    }
+
+});
