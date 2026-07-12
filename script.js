@@ -298,3 +298,137 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+
+/* =======================================================
+   PatrickLand Premium Reviews Carousel v1.0
+   PART 1 - INITIALISE
+======================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ======================================
+       ELEMENTS
+    ====================================== */
+
+    const carousel = document.querySelector(".reviews-carousel");
+    const cards = [...document.querySelectorAll(".review-card")];
+    const indicatorsContainer = document.querySelector(".review-indicators");
+
+    const previousButton = document.querySelector(".review-prev");
+    const nextButton = document.querySelector(".review-next");
+
+    if (!carousel || cards.length === 0) return;
+
+    let currentIndex = 0;
+
+    let autoplayTimer = null;
+
+    let isDragging = false;
+
+    let startX = 0;
+
+    let scrollStart = 0;
+
+    let scrollFinished;
+
+    /* ======================================
+       CREATE PREMIUM INDICATORS
+    ====================================== */
+
+    cards.forEach((card, index) => {
+
+        const indicator = document.createElement("button");
+
+        indicator.className = "review-indicator";
+
+        indicator.setAttribute(
+            "aria-label",
+            `Go to review ${index + 1}`
+        );
+
+        indicator.addEventListener("click", () => {
+
+            scrollToCard(index);
+
+            restartAutoplay();
+
+        });
+
+        indicatorsContainer.appendChild(indicator);
+
+    });
+
+    const indicators = [
+        ...document.querySelectorAll(".review-indicator")
+    ];
+
+    /* ======================================
+       UPDATE ACTIVE CARD
+    ====================================== */
+
+    function updateActiveStates() {
+
+        cards.forEach((card, index) => {
+
+            if (index === currentIndex) {
+
+                card.classList.add("active");
+
+            } else {
+
+                card.classList.remove("active");
+
+            }
+
+        });
+
+        indicators.forEach((indicator, index) => {
+
+            indicator.classList.toggle(
+                "active",
+                index === currentIndex
+            );
+
+        });
+
+    }
+
+    /* ======================================
+       SCROLL TO CARD
+    ====================================== */
+
+    function scrollToCard(index) {
+
+        if (index < 0) {
+
+            currentIndex = cards.length - 1;
+
+        }
+
+        else if (index >= cards.length) {
+
+            currentIndex = 0;
+
+        }
+
+        else {
+
+            currentIndex = index;
+
+        }
+
+        cards[currentIndex].scrollIntoView({
+
+            behavior: "smooth",
+
+            inline: "center",
+
+            block: "nearest"
+
+        });
+
+        updateActiveStates();
+
+    }
+
+    updateActiveStates();
