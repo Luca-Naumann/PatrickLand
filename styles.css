@@ -2141,3 +2141,99 @@ transform:translateY(30px);
 
 
 }
+
+/* =====================================================
+   PREMIUM REVIEW INDICATORS
+===================================================== */
+
+
+.review-indicators{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+/* Individual dots */
+
+.review-indicator{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:999px;
+
+    background:
+
+    rgba(21,128,61,.25);
+
+
+    border:
+
+    1px solid rgba(255,213,74,.5);
+
+
+    cursor:pointer;
+
+    transition:
+
+    width .4s ease,
+
+    background .4s ease,
+
+    transform .4s ease;
+
+}
+
+
+
+/* Active */
+
+.review-indicator.active{
+
+    width:42px;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        #FFD54A,
+
+        #FFC107
+
+    );
+
+
+    box-shadow:
+
+    0 0 20px rgba(255,213,74,.7);
+
+
+    transform:
+
+    translateY(-2px);
+
+}
+
+
+
+/* Hover */
+
+.review-indicator:hover{
+
+    transform:
+
+    scale(1.2);
+
+}
