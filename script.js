@@ -168,3 +168,133 @@ hero.addEventListener("mousemove",(e)=>{
     }
 
 });
+
+/* =====================================================
+   PATRICKLAND REVIEWS CAROUSEL
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const carousel = document.querySelector(".reviews-carousel");
+    const cards = document.querySelectorAll(".review-card");
+
+    if (!carousel || cards.length === 0) return;
+
+
+    let currentIndex = 0;
+
+
+    function goToReview(index){
+
+        if(index < 0){
+            index = cards.length - 1;
+        }
+
+        if(index >= cards.length){
+            index = 0;
+        }
+
+
+        currentIndex = index;
+
+
+        carousel.scrollTo({
+
+            left:
+            cards[index].offsetLeft -
+            carousel.offsetLeft,
+
+            behavior:"smooth"
+
+        });
+
+    }
+
+
+
+    /* =====================================
+       AUTO SCROLL
+    ===================================== */
+
+    let autoPlay = setInterval(()=>{
+
+        goToReview(currentIndex + 1);
+
+    },6000);
+
+
+
+    /* Pause when user interacts */
+
+    function pauseAuto(){
+
+        clearInterval(autoPlay);
+
+
+        autoPlay=setInterval(()=>{
+
+            goToReview(currentIndex + 1);
+
+        },8000);
+
+    }
+
+
+
+    carousel.addEventListener(
+        "mouseenter",
+        pauseAuto
+    );
+
+
+    carousel.addEventListener(
+        "touchstart",
+        pauseAuto
+    );
+
+
+
+    /* =====================================
+       UPDATE ACTIVE CARD
+    ===================================== */
+
+
+    const observer = new IntersectionObserver(
+
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    currentIndex =
+                    [...cards]
+                    .indexOf(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+
+            root:carousel,
+
+            threshold:.6
+
+        }
+
+    );
+
+
+
+    cards.forEach(card=>{
+
+        observer.observe(card);
+
+    });
+
+
+
+});
