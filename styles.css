@@ -1743,3 +1743,401 @@ transform:translateY(30px);
     font-size:1.2rem;
 
 }
+
+/* =====================================================
+   PREMIUM PATRICKLAND REVIEWS CAROUSEL
+===================================================== */
+
+
+/* Section */
+
+#reviews{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fffbea 100%
+    );
+
+}
+
+
+/* Decorative glow */
+
+#reviews::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    top:-200px;
+
+    right:-200px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,213,74,.25),
+        transparent 70%
+    );
+
+}
+
+
+#reviews::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    bottom:-200px;
+
+    left:-200px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(34,197,94,.18),
+        transparent 70%
+    );
+
+}
+
+
+/* Heading */
+
+#reviews h2{
+
+    position:relative;
+
+    z-index:2;
+
+    font-family:'Fredoka',sans-serif;
+
+    letter-spacing:-2px;
+
+    color:#166534;
+
+}
+
+
+
+/* =====================================================
+   HORIZONTAL CAROUSEL
+===================================================== */
+
+
+.reviews-carousel{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    gap:35px;
+
+    overflow-x:auto;
+
+    scroll-snap-type:x mandatory;
+
+    scroll-behavior:smooth;
+
+    padding:
+
+    50px 20px 70px;
+
+
+    scrollbar-width:none;
+
+}
+
+
+.reviews-carousel::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+/* =====================================================
+   REVIEW CARD
+===================================================== */
+
+
+.review-card{
+
+    position:relative;
+
+    flex:
+
+    0 0 380px;
+
+
+    scroll-snap-align:center;
+
+    scroll-snap-stop:always;
+
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(255,255,255,.95),
+
+        rgba(255,255,255,.75)
+
+    );
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border-radius:38px;
+
+
+    padding:35px;
+
+
+    border:
+
+    1px solid rgba(255,213,74,.35);
+
+
+    box-shadow:
+
+    0 25px 70px rgba(0,0,0,.12);
+
+
+    transition:
+
+    transform .4s ease,
+
+    box-shadow .4s ease;
+
+}
+
+
+
+/* Gold luxury line */
+
+
+.review-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:12%;
+
+
+    width:76%;
+
+    height:5px;
+
+
+    border-radius:999px;
+
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        #FFD54A,
+
+        transparent
+
+    );
+
+}
+
+
+
+/* Hover */
+
+
+.review-card:hover{
+
+    transform:
+
+    translateY(-12px);
+
+
+    box-shadow:
+
+    0 40px 90px rgba(0,0,0,.18);
+
+}
+
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+
+.review-card .text-yellow-400{
+
+    color:#FFD54A;
+
+
+    font-size:1.8rem;
+
+
+    letter-spacing:4px;
+
+
+    text-shadow:
+
+    0 0 15px rgba(255,213,74,.7);
+
+}
+
+
+
+/* =====================================================
+   REVIEW TEXT
+===================================================== */
+
+
+.review-card p{
+
+    color:#374151;
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+}
+
+
+
+/* =====================================================
+   REVIEW USER
+===================================================== */
+
+
+.review-card .flex.items-center{
+
+    margin-top:25px;
+
+}
+
+
+
+.review-card .w-12.h-12{
+
+    width:65px;
+
+    height:65px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #FFD54A,
+
+        #FF7F50
+
+    );
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    box-shadow:
+
+    0 12px 30px rgba(255,213,74,.45);
+
+}
+
+
+
+/* User name */
+
+.review-card .font-semibold{
+
+    color:#166534;
+
+    font-size:1.1rem;
+
+}
+
+
+
+/* Date */
+
+.review-card .text-gray-500{
+
+    color:#6b7280;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+
+@media(max-width:700px){
+
+
+    .reviews-carousel{
+
+        padding-left:25px;
+
+        padding-right:25px;
+
+    }
+
+
+    .review-card{
+
+        flex:
+
+        0 0 85vw;
+
+        padding:30px;
+
+    }
+
+
+}
