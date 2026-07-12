@@ -892,51 +892,7 @@ transform:translateY(-6px);
 
 }
 
-/* ==========================================
-   LUXURY GOLD BORDER ANIMATION
-========================================== */
 
-.hero-ticket,
-.hero-explore{
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-ticket::before,
-.hero-explore::before{
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    padding: 2px;
-
-    background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        transparent 310deg,
-        #b8860b 325deg,
-        #ffd700 340deg,
-        #fff7b0 350deg,
-        #ffd700 360deg
-    );
-
-    animation: rotateBorder 6s linear infinite;
-
-    /* Makes only the border visible */
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-
-    pointer-events: none;
-}
-
-@keyframes rotateBorder{
-    to{
-        transform: rotate(360deg);
-    }
-}
 
 /* ======================
 CLOUDS
