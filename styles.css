@@ -907,6 +907,8 @@ opacity:.9;
 border-radius:999px;
 
 filter:blur(2px);
+   
+z-index:10;
 
 }
 
