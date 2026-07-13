@@ -195,6 +195,19 @@ function initReviewsCarousel() {
         sectionObserver.observe(reviewsSection);
     }
 
+    // Ensure the browser doesn't apply scroll anchoring for this area
+    try {
+        if (reviewsSection) reviewsSection.style.overflowAnchor = 'none';
+        carousel.style.overflowAnchor = 'none';
+    } catch (e) {
+        // ignore if not supported
+    }
+
+    // Prevent cards from receiving focus which can cause the browser to scroll them into view
+    cards.forEach(card => {
+        try { card.tabIndex = -1; } catch (e) {}
+    });
+
     // helper: restore vertical scroll position after actions that may cause focus/anchor jumps
     function restoreVerticalScroll(savedY) {
         // small timeout allows the browser to finish any auto-scrolling, then we restore
@@ -360,12 +373,14 @@ function initReviewsCarousel() {
     // KEYBOARD SUPPORT
     document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowLeft") {
+            event.preventDefault();
             const savedY = window.scrollY;
             scrollToCard(currentIndex - 1);
             restartAutoplay();
             restoreVerticalScroll(savedY);
         }
         if (event.key === "ArrowRight") {
+            event.preventDefault();
             const savedY = window.scrollY;
             scrollToCard(currentIndex + 1);
             restartAutoplay();
