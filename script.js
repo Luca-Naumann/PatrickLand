@@ -231,7 +231,7 @@ sectionObserver.observe(reviewsSection);
             currentIndex = index;
         }
 
-        cards[currentIndex].carousel.scrollTo({
+        .carousel.scrollTo({
     left:
         cards[currentIndex].offsetLeft -
         (carousel.offsetWidth - cards[currentIndex].offsetWidth) / 2,
