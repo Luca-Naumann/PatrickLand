@@ -126,87 +126,39 @@ function initEventbriteWidget() {
 }
 
 // ============================================
-// INITIALIZATION
+// HERO SECTION PARALLAX EFFECT
 // ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    initMobileMenu();
-    initNavbarScroll();
-    initSmoothScroll();
-    createBackToTop();
-    initEventbriteWidget();
-});
+function initHeroParallax() {
+    const hero = document.querySelector(".hero-section");
 
- const hero = document.querySelector(".hero-section");
+    if (hero) {
+        hero.addEventListener("mousemove", (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
 
-if (hero) {
+            // Move clouds
+            document.querySelectorAll(".cloud").forEach(el => {
+                el.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
+            });
 
-hero.addEventListener("mousemove",(e)=>{
+            // Move balloons
+            document.querySelectorAll(".balloon").forEach(el => {
+                el.style.transform = `translate(${x * 0.6}px, ${y * 0.6}px)`;
+            });
 
-    const x=(e.clientX/window.innerWidth-.5)*30;
-    const y=(e.clientY/window.innerHeight-.5)*30;
-
-    document.querySelectorAll(".cloud").forEach(el=>{
-        el.style.transform =
-        `translate(${x*.35}px,${y*.35}px)`;
-    });
-
-    document.querySelectorAll(".balloon").forEach(el=>{
-        el.style.transform =
-        `translate(${x*.6}px,${y*.6}px)`;
-    });
-
-    const wheel=document.querySelector(".ferris-wheel");
-
-    if(wheel){
-        wheel.style.transform =
-        `translate(${x*.45}px,${y*.45}px)`;
-    }
-
-});
-
-
-
-    const x=(e.clientX/window.innerWidth-.5)*30;
-
-    const y=(e.clientY/window.innerHeight-.5)*30;
-
-    document.querySelectorAll(".cloud").forEach(el=>{
-
-        el.style.transform=
-        `translate(${x*.35}px,${y*.35}px)`;
-
-    });
-    if(wheel){
-
-        wheel.style.transform=
-        `translate(${x*.45}px,${y*.45}px)`;
-
+            // Move ferris wheel
+            const wheel = document.querySelector(".ferris-wheel");
+            if (wheel) {
+                wheel.style.transform = `translate(${x * 0.45}px, ${y * 0.45}px)`;
+            }
+        });
     }
 }
-});
 
-
-
-    document.querySelectorAll(".balloon").forEach(el=>{
-
-        el.style.transform=
-        `translate(${x*.6}px,${y*.6}px)`;
-
-    });
-
-    const wheel=document.querySelector(".ferris-wheel");
-
-/* =======================================================
-   PatrickLand Premium Reviews Carousel v1.0
-   PART 1 - INITIALISE
-======================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* ======================================
-       ELEMENTS
-    ====================================== */
-
+// ============================================
+// REVIEWS CAROUSEL INITIALIZATION
+// ============================================
+function initReviewsCarousel() {
     const carousel = document.querySelector(".reviews-carousel");
     const cards = [...document.querySelectorAll(".review-card")];
     const indicatorsContainer = document.getElementById("reviewIndicators");
@@ -217,253 +169,140 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!carousel || cards.length === 0 || !indicatorsContainer) return;
 
     let currentIndex = 0;
-
     let autoplayTimer = null;
 
-    let isDragging = false;
-
-    let startX = 0;
-
-    let scrollStart = 0;
-
-    let scrollFinished;
-
-    /* ======================================
-       CREATE PREMIUM INDICATORS
-    ====================================== */
-
+    // CREATE PREMIUM INDICATORS
     cards.forEach((card, index) => {
-
         const indicator = document.createElement("button");
-
         indicator.className = "review-indicator";
-
-        indicator.setAttribute(
-            "aria-label",
-            `Go to review ${index + 1}`
-        );
-
+        indicator.setAttribute("aria-label", `Go to review ${index + 1}`);
         indicator.addEventListener("click", () => {
-
             scrollToCard(index);
-
             restartAutoplay();
-
         });
-
         indicatorsContainer.appendChild(indicator);
-
     });
 
-    const indicators = [
-        ...document.querySelectorAll(".review-indicator")
-    ];
+    const indicators = [...document.querySelectorAll(".review-indicator")];
 
-    /* ======================================
-       UPDATE ACTIVE CARD
-    ====================================== */
-
+    // UPDATE ACTIVE CARD
     function updateActiveStates() {
-
         cards.forEach((card, index) => {
-
             if (index === currentIndex) {
-
                 card.classList.add("active");
-
             } else {
-
                 card.classList.remove("active");
-
             }
-
         });
 
         indicators.forEach((indicator, index) => {
-
-            indicator.classList.toggle(
-                "active",
-                index === currentIndex
-            );
-
+            indicator.classList.toggle("active", index === currentIndex);
         });
-
     }
 
-    /* ======================================
-       SCROLL TO CARD
-    ====================================== */
-
+    // SCROLL TO CARD
     function scrollToCard(index) {
-
         if (index < 0) {
-
             currentIndex = cards.length - 1;
-
-        }
-
-        else if (index >= cards.length) {
-
+        } else if (index >= cards.length) {
             currentIndex = 0;
-
-        }
-
-        else {
-
+        } else {
             currentIndex = index;
-
         }
 
         cards[currentIndex].scrollIntoView({
-
             behavior: "smooth",
-
             inline: "center",
-
             block: "nearest"
-
         });
 
         updateActiveStates();
-
     }
 
     updateActiveStates();
 
-        /* ======================================
-       OBSERVE ACTIVE REVIEW
-    ====================================== */
-
+    // OBSERVE ACTIVE REVIEW
     const observer = new IntersectionObserver(
-
         (entries) => {
-
             entries.forEach((entry) => {
-
                 if (!entry.isIntersecting) return;
-
                 const index = cards.indexOf(entry.target);
-
                 if (index !== -1) {
-
                     currentIndex = index;
-
                     updateActiveStates();
-
                 }
-
             });
-
         },
-
         {
-
             root: carousel,
-
             threshold: 0.65
-
         }
-
     );
 
     cards.forEach((card) => observer.observe(card));
 
-
-    /* ======================================
-       AUTOPLAY
-    ====================================== */
-
+    // AUTOPLAY
     function startAutoplay() {
-
         clearInterval(autoplayTimer);
-
         autoplayTimer = setInterval(() => {
-
             scrollToCard(currentIndex + 1);
-
         }, 5500);
-
     }
 
     function stopAutoplay() {
-
         clearInterval(autoplayTimer);
-
     }
 
     function restartAutoplay() {
-
         stopAutoplay();
-
         startAutoplay();
-
     }
 
     startAutoplay();
 
-
-    /* ======================================
-       PAUSE WHEN USER INTERACTS
-    ====================================== */
-
+    // PAUSE WHEN USER INTERACTS
     carousel.addEventListener("mouseenter", stopAutoplay);
-
     carousel.addEventListener("mouseleave", startAutoplay);
-
     carousel.addEventListener("touchstart", stopAutoplay);
-
     carousel.addEventListener("touchend", restartAutoplay);
 
-
-    /* ======================================
-       PREVIOUS / NEXT BUTTONS
-    ====================================== */
-
+    // PREVIOUS / NEXT BUTTONS
     if (previousButton) {
-
         previousButton.addEventListener("click", () => {
-
             scrollToCard(currentIndex - 1);
-
             restartAutoplay();
-
         });
-
     }
 
     if (nextButton) {
-
         nextButton.addEventListener("click", () => {
-
             scrollToCard(currentIndex + 1);
-
             restartAutoplay();
-
         });
-
     }
 
-
-    /* ======================================
-       KEYBOARD SUPPORT
-    ====================================== */
-
+    // KEYBOARD SUPPORT
     document.addEventListener("keydown", (event) => {
-
         if (event.key === "ArrowLeft") {
-
             scrollToCard(currentIndex - 1);
-
             restartAutoplay();
-
         }
-
         if (event.key === "ArrowRight") {
-
             scrollToCard(currentIndex + 1);
-
             restartAutoplay();
-
         }
-
     });
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    initMobileMenu();
+    initNavbarScroll();
+    initSmoothScroll();
+    createBackToTop();
+    initHeroParallax();
+    initReviewsCarousel();
+    initEventbriteWidget();
+});
