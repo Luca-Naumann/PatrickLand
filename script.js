@@ -173,26 +173,30 @@ function initReviewsCarousel() {
 
     const reviewsSection = document.getElementById("reviews");
 
-let reviewsVisible = false;
+    let reviewsVisible = false;
 
-const sectionObserver = new IntersectionObserver(
-    (entries) => {
-        reviewsVisible = entries[0].isIntersecting;
+    // Only observe if the reviews section exists
+    if (reviewsSection) {
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                reviewsVisible = entries[0].isIntersecting;
 
-        if (reviewsVisible) {
-            startAutoplay();
-        } else {
-            stopAutoplay();
-        }
-    },
-    {
-        threshold: 0.35
+                if (reviewsVisible) {
+                    startAutoplay();
+                } else {
+                    stopAutoplay();
+                }
+            },
+            {
+                threshold: 0.35
+            }
+        );
+
+        sectionObserver.observe(reviewsSection);
     }
-);
 
-sectionObserver.observe(reviewsSection);
-
-    // CREATE PREMIUM INDICATORS
+    // CREATE INDICATORS (clear any existing to avoid duplicates)
+    indicatorsContainer.innerHTML = '';
     cards.forEach((card, index) => {
         const indicator = document.createElement("button");
         indicator.className = "review-indicator";
@@ -231,12 +235,19 @@ sectionObserver.observe(reviewsSection);
             currentIndex = index;
         }
 
-        .carousel.scrollTo({
-    left:
-        cards[currentIndex].offsetLeft -
-        (carousel.offsetWidth - cards[currentIndex].offsetWidth) / 2,
-    behavior: "smooth"
-});
+        // Ensure carousel exists and the current card is defined
+        const currentCard = cards[currentIndex];
+        if (carousel && currentCard) {
+            // Only perform horizontal scrolling on the carousel element (avoid page jump)
+            // Use scrollLeft instead of scrollIntoView to prevent the browser from scrolling the page vertically
+            try {
+                const left = currentCard.offsetLeft - (carousel.offsetWidth - currentCard.offsetWidth) / 2;
+                carousel.scrollTo({ left: left, behavior: "smooth" });
+            } catch (err) {
+                // Fallback: don't do anything if element scroll fails
+                console.warn('carousel scroll failed', err);
+            }
+        }
 
         updateActiveStates();
     }
@@ -265,21 +276,26 @@ sectionObserver.observe(reviewsSection);
 
     // AUTOPLAY
     function startAutoplay() {
+        // don't create multiple intervals
+        if (autoplayTimer) return;
 
-    stopAutoplay();
-
-    autoplayTimer = setInterval(() => {
-
+        // start only if the reviews section is visible
         if (!reviewsVisible) return;
 
-        scrollToCard(currentIndex + 1);
+        autoplayTimer = setInterval(() => {
+            // If the section is not visible (user scrolled away), don't advance
+            if (!reviewsVisible) return;
 
-    }, 5500);
+            scrollToCard(currentIndex + 1);
 
+        }, 5500);
     }
 
     function stopAutoplay() {
-        clearInterval(autoplayTimer);
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
     }
 
     function restartAutoplay() {
@@ -290,10 +306,10 @@ sectionObserver.observe(reviewsSection);
     startAutoplay();
 
     // PAUSE WHEN USER INTERACTS
-    carousel.addEventListener("mouseenter", stopAutoplay);
-    carousel.addEventListener("mouseleave", startAutoplay);
-    carousel.addEventListener("touchstart", stopAutoplay);
-    carousel.addEventListener("touchend", restartAutoplay);
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('touchstart', stopAutoplay);
+    carousel.addEventListener('touchend', restartAutoplay);
 
     // PREVIOUS / NEXT BUTTONS
     if (previousButton) {
