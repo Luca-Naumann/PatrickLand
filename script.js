@@ -137,7 +137,7 @@ function initHeroParallax() {
             const y = (e.clientY / window.innerHeight - 0.5) * 30;
 
             // Move clouds
-            document.querySelectorAll(".cloud").forEach(el => {
+            document.querySelectorAll(".hero-cloud").forEach(el => {
                 el.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
             });
 
@@ -686,6 +686,274 @@ function initReviewsCarousel(){
 
     carousel.addEventListener(
         "mouseenter",
+// ============================================
+// PREMIUM REVIEWS CAROUSEL
+// ============================================
+function initReviewsCarousel() {
+
+    const carousel = document.querySelector(".reviews-carousel");
+    const cards = [...document.querySelectorAll(".review-card")];
+    const indicatorsContainer = document.getElementById("reviewIndicators");
+    const reviewsSection = document.getElementById("reviews");
+
+    const previousButton = document.querySelector(".review-prev");
+    const nextButton = document.querySelector(".review-next");
+
+
+    if (!carousel || cards.length === 0 || !indicatorsContainer) {
+        console.warn("Reviews carousel missing elements");
+        return;
+    }
+
+
+    let currentIndex = 0;
+    let autoplayTimer = null;
+    let reviewsVisible = false;
+
+
+    // ================================
+    // CREATE INDICATORS
+    // ================================
+
+    indicatorsContainer.innerHTML = "";
+
+    cards.forEach((card,index)=>{
+
+        const button = document.createElement("button");
+
+        button.className = "review-indicator";
+        button.type = "button";
+
+        button.setAttribute(
+            "aria-label",
+            `Go to review ${index+1}`
+        );
+
+
+        button.addEventListener("click",()=>{
+
+            goToReview(index);
+            restartAutoplay();
+
+        });
+
+
+        indicatorsContainer.appendChild(button);
+
+    });
+
+
+    const indicators =
+    [...document.querySelectorAll(".review-indicator")];
+
+
+
+    // ================================
+    // UPDATE UI
+    // ================================
+
+    function updateCards(){
+
+        cards.forEach((card,index)=>{
+
+            card.classList.toggle(
+                "active",
+                index === currentIndex
+            );
+
+        });
+
+
+        indicators.forEach((dot,index)=>{
+
+            dot.classList.toggle(
+                "active",
+                index === currentIndex
+            );
+
+        });
+
+    }
+
+
+
+
+    // ================================
+    // MOVE TO REVIEW
+    // ================================
+
+    function goToReview(index){
+
+
+        if(index < 0){
+            index = cards.length - 1;
+        }
+
+
+        if(index >= cards.length){
+            index = 0;
+        }
+
+
+        currentIndex = index;
+
+
+        const card = cards[currentIndex];
+
+
+        const position =
+            card.offsetLeft -
+            (
+                carousel.clientWidth -
+                card.clientWidth
+            ) / 2;
+
+
+
+        carousel.scrollTo({
+
+            left: position,
+
+            behavior:"smooth"
+
+        });
+
+
+        updateCards();
+
+    }
+
+
+
+
+    // ================================
+    // AUTOPLAY
+    // ================================
+
+    function startAutoplay(){
+
+        if(autoplayTimer || !reviewsVisible){
+            return;
+        }
+
+
+        autoplayTimer=setInterval(()=>{
+
+            goToReview(
+                currentIndex + 1
+            );
+
+        },5500);
+
+    }
+
+
+
+    function stopAutoplay(){
+
+        clearInterval(autoplayTimer);
+
+        autoplayTimer=null;
+
+    }
+
+
+
+    function restartAutoplay(){
+
+        stopAutoplay();
+
+        startAutoplay();
+
+    }
+
+
+
+
+    // ================================
+    // VISIBILITY
+    // ================================
+
+    if(reviewsSection){
+
+        const observer =
+        new IntersectionObserver(
+            entries=>{
+
+                reviewsVisible =
+                entries[0].isIntersecting;
+
+
+                if(reviewsVisible){
+                    startAutoplay();
+                }
+                else{
+                    stopAutoplay();
+                }
+
+            },
+            {
+                threshold:0.35
+            }
+        );
+
+
+        observer.observe(reviewsSection);
+
+    }
+
+
+
+
+    // ================================
+    // BUTTON CONTROLS
+    // ================================
+
+    if(previousButton){
+
+        previousButton.addEventListener(
+            "click",
+            ()=>{
+
+                goToReview(
+                    currentIndex-1
+                );
+
+                restartAutoplay();
+
+            }
+        );
+
+    }
+
+
+
+    if(nextButton){
+
+        nextButton.addEventListener(
+            "click",
+            ()=>{
+
+                goToReview(
+                    currentIndex+1
+                );
+
+                restartAutoplay();
+
+            }
+        );
+
+    }
+
+
+
+
+    // ================================
+    // PAUSE ON USER INTERACTION
+    // ================================
+
+    carousel.addEventListener(
+        "mouseenter",
         stopAutoplay
     );
 
@@ -709,55 +977,42 @@ function initReviewsCarousel(){
 
 
 
-    /*
-    ============================================
-    DETECT MANUAL SCROLL
-    ============================================
-    */
-
+    // ================================
+    // DETECT SWIPES / SCROLL
+    // ================================
 
     const cardObserver =
     new IntersectionObserver(
-    entries=>{
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    const index =
+                    cards.indexOf(
+                        entry.target
+                    );
 
 
-        entries.forEach(entry=>{
+                    if(index !== -1){
 
+                        currentIndex=index;
 
-            if(entry.isIntersecting){
+                        updateCards();
 
-
-                const index =
-                cards.indexOf(
-                    entry.target
-                );
-
-
-                if(index!==-1){
-
-
-                    currentIndex=index;
-
-
-                    updateCards();
-
+                    }
 
                 }
 
-            }
+            });
 
-
-        });
-
-
-    },
-    {
-
-        root:carousel,
-
-        threshold:.65
-
-    });
+        },
+        {
+            root:carousel,
+            threshold:0.65
+        }
+    );
 
 
 
