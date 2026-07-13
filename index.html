@@ -172,7 +172,7 @@
             <div class="hidden lg:flex">
 
                 <button
-                    onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+                    onclick="openTicketModal()"
                     class="ticket-button">
 
                     <i class="fas fa-ticket-alt"></i>
@@ -262,7 +262,7 @@
     <!-- CTA -->
 
     <button
-        onclick="document.getElementById('ticket-modal').classList.remove('hidden')"
+        onclick="openTicketModal()"
         class="mobile-ticket-button">
 
          Buy Tickets
@@ -518,8 +518,8 @@
 <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
 
 <path fill="#f9fafb"
-d="M0,64L60,74.7C120,85,240,107,360,117.3C480,128,600,128,720,112C840,96,960,64,1080,69.3C1200,75,1320,117,1380,138.7L1440,160L1440,181L1380,181C1320,181,1200,181,1080,181C960,181,840,181,720,181C600,181,480,181,360,181C240,181,120,181,60,181L0,181Z">
-</path>
+d="M0,64L60,74.7C120,85,240,107,360,117.3C480,128,600,128,720,112C840,96,960,64,1080,69.3C1200,75,1320,117,1380,138.7L1440,160L1440,181L1380,181C1320,181,1200,181,1080,181C960,181,840,181,720,181C600,181,480,181,360,181C240,181,120,181,60,181L0,181Z"
+></path>
 
 </svg>
 
@@ -529,7 +529,7 @@ d="M0,64L60,74.7C120,85,240,107,360,117.3C480,128,600,128,720,112C840,96,960,64,
 <div class="grid md:grid-cols-2 gap-16 items-center">
 <div>
 <h2 class="text-5xl font-bold text-green-800 mb-8">Where Joy Comes to Play</h2>
-<p class="text-lg text-gray-600 mb-8">PatrickLand is a vibrant family playground and amusement park located at 8 Koorabel Rd, Lalor Park NSW 2147. We create safe, exciting, and unforgettable memories for families of all ages.</p>
+<p class="text-lg text-gray-600 mb-8">PatrickLand is a vibrant family playground and amusement park located at 8 Koorabel Rd, Lalor Park NSW 2147. We create safe, exciting, and unforgettable memories for families of all sizes.</p>
 <ul class="space-y-5 text-lg">
 <li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Safe & supervised play areas</li>
 <li class="flex items-start gap-4"><i class="fas fa-check-circle text-green-600 mt-1 text-xl"></i> Themed zones for toddlers to big kids</li>
@@ -710,7 +710,7 @@ class="mt-8 inline-flex items-center gap-3 bg-white text-green-700 px-8 py-4 rou
 </a>
 </div>
 <div class="rounded-3xl overflow-hidden shadow-2xl">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.5!2d150.9289408!3d-33.7622951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12990030cdecff%3A0x179a86d04f2028f2!2s8+Koorabel+Rd%2C+Lalor+Park+NSW+2147!5e0!3m2!1sen!2sau!4v1719395203929" width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.5!2d150.9289408!3d-33.7622951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12990030cdecff%3A0x179a86d04f2028f2!2s8+Koorabel+Rd%2C+Lalor+Park+NSW+2147!5e0!3m2!1sen!2sau!4v1623456789" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
 </div>
 </div>
@@ -741,9 +741,12 @@ Select Ticket Options
 </div>
 </div>
 </footer>
-    
-<script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
+
+<!-- Load your custom JavaScript FIRST (defines all functions) -->
 <script src="script.js"></script>
+
+<!-- Load Eventbrite AFTER your custom JS so it can use EBWidgets properly -->
+<script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
 
 </body>
 </html>
