@@ -199,9 +199,11 @@ function initReviewsCarousel() {
     indicatorsContainer.innerHTML = '';
     cards.forEach((card, index) => {
         const indicator = document.createElement("button");
+        indicator.type = 'button'; // prevent default submit behavior in forms
         indicator.className = "review-indicator";
         indicator.setAttribute("aria-label", `Go to review ${index + 1}`);
-        indicator.addEventListener("click", () => {
+        indicator.addEventListener("click", (e) => {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
             scrollToCard(index);
             restartAutoplay();
         });
@@ -242,7 +244,10 @@ function initReviewsCarousel() {
             // Use scrollLeft instead of scrollIntoView to prevent the browser from scrolling the page vertically
             try {
                 const left = currentCard.offsetLeft - (carousel.offsetWidth - currentCard.offsetWidth) / 2;
-                carousel.scrollTo({ left: left, behavior: "smooth" });
+                // If carousel is not scrollable horizontally, don't call scrollTo on it
+                if (carousel.scrollWidth > carousel.clientWidth) {
+                    carousel.scrollTo({ left: left, behavior: "smooth" });
+                }
             } catch (err) {
                 // Fallback: don't do anything if element scroll fails
                 console.warn('carousel scroll failed', err);
@@ -313,14 +318,16 @@ function initReviewsCarousel() {
 
     // PREVIOUS / NEXT BUTTONS
     if (previousButton) {
-        previousButton.addEventListener("click", () => {
+        previousButton.addEventListener("click", (e) => {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
             scrollToCard(currentIndex - 1);
             restartAutoplay();
         });
     }
 
     if (nextButton) {
-        nextButton.addEventListener("click", () => {
+        nextButton.addEventListener("click", (e) => {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
             scrollToCard(currentIndex + 1);
             restartAutoplay();
         });
