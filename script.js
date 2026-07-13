@@ -137,7 +137,7 @@ function initHeroParallax() {
             const y = (e.clientY / window.innerHeight - 0.5) * 30;
 
             // Move clouds
-            document.querySelectorAll(".hero-cloud").forEach(el => {
+            document.querySelectorAll(".cloud").forEach(el => {
                 el.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
             });
 
@@ -194,19 +194,6 @@ function initReviewsCarousel() {
 
         sectionObserver.observe(reviewsSection);
     }
-
-    // Ensure the browser doesn't apply scroll anchoring for this area
-    try {
-        if (reviewsSection) reviewsSection.style.overflowAnchor = 'none';
-        carousel.style.overflowAnchor = 'none';
-    } catch (e) {
-        // ignore if not supported
-    }
-
-    // Prevent cards from receiving focus which can cause the browser to scroll them into view
-    cards.forEach(card => {
-        try { card.tabIndex = -1; } catch (e) {}
-    });
 
     // helper: restore vertical scroll position after actions that may cause focus/anchor jumps
     function restoreVerticalScroll(savedY) {
@@ -298,735 +285,95 @@ function initReviewsCarousel() {
                 const index = cards.indexOf(entry.target);
                 if (index !== -1) {
                     currentIndex = index;
-// ============================================
-// PREMIUM REVIEWS CAROUSEL
-// TikTok / Instagram style indicators
-// ============================================
-
-function initReviewsCarousel(){
-
-    const carousel = document.querySelector(".reviews-carousel");
-    const cards = [...document.querySelectorAll(".review-card")];
-    const indicatorsContainer = document.getElementById("reviewIndicators");
-    const reviewsSection = document.getElementById("reviews");
-
-
-    if(!carousel || cards.length === 0 || !indicatorsContainer){
-        return;
-    }
-
-
-    let currentIndex = 0;
-    let autoplayTimer = null;
-    let progressTimer = null;
-
-    let reviewsVisible = false;
-
-
-
-    /*
-    ============================================
-    CREATE 5 MOVING INDICATORS
-    ============================================
-    */
-
-    const indicatorCount = 5;
-
-    indicatorsContainer.innerHTML="";
-
-
-    for(let i=0;i<indicatorCount;i++){
-
-        const button=document.createElement("button");
-
-        button.className="review-indicator";
-
-        button.type="button";
-
-        button.dataset.position=i;
-
-
-        button.addEventListener("click",()=>{
-
-            const target =
-            getIndicatorTarget(i);
-
-            goToReview(target);
-
-            restartAutoplay();
-
-        });
-
-
-        indicatorsContainer.appendChild(button);
-
-    }
-
-
-    const indicators =
-    [...document.querySelectorAll(".review-indicator")];
-
-
-
-
-    /*
-    ============================================
-    INDICATOR WINDOW
-    ============================================
-    */
-
-    function getIndicatorTarget(position){
-
-        let start =
-        currentIndex - 2;
-
-
-        if(start < 0){
-            start = 0;
-        }
-
-
-        let target =
-        start + position;
-
-
-        if(target >= cards.length){
-
-            target =
-            cards.length - 1;
-
-        }
-
-
-        return target;
-
-    }
-
-
-
-    function updateIndicators(){
-
-        let start =
-        currentIndex - 2;
-
-
-        if(start < 0){
-            start=0;
-        }
-
-
-        if(start + 5 > cards.length){
-
-            start =
-            cards.length - 5;
-
-        }
-
-
-        indicators.forEach((dot,index)=>{
-
-
-            const reviewIndex =
-            start + index;
-
-
-            dot.classList.toggle(
-                "active",
-                reviewIndex === currentIndex
-            );
-
-
-            dot.dataset.review =
-            reviewIndex;
-
-
-        });
-
-    }
-
-
-
-
-
-    /*
-    ============================================
-    ACTIVE CARD
-    ============================================
-    */
-
-
-    function updateCards(){
-
-        cards.forEach((card,index)=>{
-
-
-            card.classList.toggle(
-                "active",
-                index===currentIndex
-            );
-
-
-        });
-
-
-        updateIndicators();
-
-    }
-
-
-
-
-
-    /*
-    ============================================
-    MOVE CAROUSEL
-    ============================================
-    */
-
-
-    function goToReview(index){
-
-
-        if(index < 0){
-
-            index =
-            cards.length-1;
-
-        }
-
-
-        if(index >= cards.length){
-
-            index=0;
-
-        }
-
-
-        currentIndex=index;
-
-
-        const card =
-        cards[currentIndex];
-
-
-        const position =
-        card.offsetLeft -
-        (
-            carousel.offsetWidth -
-            card.offsetWidth
-        )/2;
-
-
-
-        carousel.scrollTo({
-
-            left:position,
-
-            behavior:"smooth"
-
-        });
-
-
-
-        updateCards();
-
-
-    }
-
-
-
-
-
-    /*
-    ============================================
-    AUTOPLAY WITH PROGRESS
-    ============================================
-    */
-
-
-    function startAutoplay(){
-
-        if(autoplayTimer || !reviewsVisible){
-            return;
-        }
-
-
-
-        let progress=0;
-
-
-        autoplayTimer=setInterval(()=>{
-
-
-            progress+=2;
-
-
-            const active =
-            document.querySelector(
-                ".review-indicator.active"
-            );
-
-
-            if(active){
-
-                active.style.setProperty(
-                    "--progress",
-                    progress+"%"
-                );
-
-            }
-
-
-
-            if(progress>=100){
-
-
-                progress=0;
-
-
-                goToReview(
-                    currentIndex+1
-                );
-
-            }
-
-
-
-        },100);
-
-    }
-
-
-
-
-
-    function stopAutoplay(){
-
-        clearInterval(autoplayTimer);
-
-        autoplayTimer=null;
-
-
-        indicators.forEach(dot=>{
-
-            dot.style.removeProperty(
-                "--progress"
-            );
-
-        });
-
-    }
-
-
-
-    function restartAutoplay(){
-
-        stopAutoplay();
-
-        startAutoplay();
-
-    }
-
-
-
-
-    /*
-    ============================================
-    VISIBILITY OBSERVER
-    ============================================
-    */
-
-
-    if(reviewsSection){
-
-
-        const sectionObserver =
-        new IntersectionObserver(
-        entries=>{
-
-
-            reviewsVisible =
-            entries[0].isIntersecting;
-
-
-            if(reviewsVisible){
-
-                startAutoplay();
-
-            }
-            else{
-
-                stopAutoplay();
-
-            }
-
-
-        },
-        {
-            threshold:.35
-        });
-
-
-        sectionObserver.observe(
-            reviewsSection
-        );
-
-
-    }
-
-
-
-
-    /*
-    ============================================
-    USER CONTROLS
-    ============================================
-    */
-
-
-    carousel.addEventListener(
-        "mouseenter",
-// ============================================
-// PREMIUM REVIEWS CAROUSEL
-// ============================================
-function initReviewsCarousel() {
-
-    const carousel = document.querySelector(".reviews-carousel");
-    const cards = [...document.querySelectorAll(".review-card")];
-    const indicatorsContainer = document.getElementById("reviewIndicators");
-    const reviewsSection = document.getElementById("reviews");
-
-    const previousButton = document.querySelector(".review-prev");
-    const nextButton = document.querySelector(".review-next");
-
-
-    if (!carousel || cards.length === 0 || !indicatorsContainer) {
-        console.warn("Reviews carousel missing elements");
-        return;
-    }
-
-
-    let currentIndex = 0;
-    let autoplayTimer = null;
-    let reviewsVisible = false;
-
-
-    // ================================
-    // CREATE INDICATORS
-    // ================================
-
-    indicatorsContainer.innerHTML = "";
-
-    cards.forEach((card,index)=>{
-
-        const button = document.createElement("button");
-
-        button.className = "review-indicator";
-        button.type = "button";
-
-        button.setAttribute(
-            "aria-label",
-            `Go to review ${index+1}`
-        );
-
-
-        button.addEventListener("click",()=>{
-
-            goToReview(index);
-            restartAutoplay();
-
-        });
-
-
-        indicatorsContainer.appendChild(button);
-
-    });
-
-
-    const indicators =
-    [...document.querySelectorAll(".review-indicator")];
-
-
-
-    // ================================
-    // UPDATE UI
-    // ================================
-
-    function updateCards(){
-
-        cards.forEach((card,index)=>{
-
-            card.classList.toggle(
-                "active",
-                index === currentIndex
-            );
-
-        });
-
-
-        indicators.forEach((dot,index)=>{
-
-            dot.classList.toggle(
-                "active",
-                index === currentIndex
-            );
-
-        });
-
-    }
-
-
-
-
-    // ================================
-    // MOVE TO REVIEW
-    // ================================
-
-    function goToReview(index){
-
-
-        if(index < 0){
-            index = cards.length - 1;
-        }
-
-
-        if(index >= cards.length){
-            index = 0;
-        }
-
-
-        currentIndex = index;
-
-
-        const card = cards[currentIndex];
-
-
-        const position =
-            card.offsetLeft -
-            (
-                carousel.clientWidth -
-                card.clientWidth
-            ) / 2;
-
-
-
-        carousel.scrollTo({
-
-            left: position,
-
-            behavior:"smooth"
-
-        });
-
-
-        updateCards();
-
-    }
-
-
-
-
-    // ================================
-    // AUTOPLAY
-    // ================================
-
-    function startAutoplay(){
-
-        if(autoplayTimer || !reviewsVisible){
-            return;
-        }
-
-
-        autoplayTimer=setInterval(()=>{
-
-            goToReview(
-                currentIndex + 1
-            );
-
-        },5500);
-
-    }
-
-
-
-    function stopAutoplay(){
-
-        clearInterval(autoplayTimer);
-
-        autoplayTimer=null;
-
-    }
-
-
-
-    function restartAutoplay(){
-
-        stopAutoplay();
-
-        startAutoplay();
-
-    }
-
-
-
-
-    // ================================
-    // VISIBILITY
-    // ================================
-
-    if(reviewsSection){
-
-        const observer =
-        new IntersectionObserver(
-            entries=>{
-
-                reviewsVisible =
-                entries[0].isIntersecting;
-
-
-                if(reviewsVisible){
-                    startAutoplay();
+                    updateActiveStates();
                 }
-                else{
-                    stopAutoplay();
-                }
-
-            },
-            {
-                threshold:0.35
-            }
-        );
-
-
-        observer.observe(reviewsSection);
-
-    }
-
-
-
-
-    // ================================
-    // BUTTON CONTROLS
-    // ================================
-
-    if(previousButton){
-
-        previousButton.addEventListener(
-            "click",
-            ()=>{
-
-                goToReview(
-                    currentIndex-1
-                );
-
-                restartAutoplay();
-
-            }
-        );
-
-    }
-
-
-
-    if(nextButton){
-
-        nextButton.addEventListener(
-            "click",
-            ()=>{
-
-                goToReview(
-                    currentIndex+1
-                );
-
-                restartAutoplay();
-
-            }
-        );
-
-    }
-
-
-
-
-    // ================================
-    // PAUSE ON USER INTERACTION
-    // ================================
-
-    carousel.addEventListener(
-        "mouseenter",
-        stopAutoplay
-    );
-
-
-    carousel.addEventListener(
-        "mouseleave",
-        startAutoplay
-    );
-
-
-    carousel.addEventListener(
-        "touchstart",
-        stopAutoplay
-    );
-
-
-    carousel.addEventListener(
-        "touchend",
-        restartAutoplay
-    );
-
-
-
-    // ================================
-    // DETECT SWIPES / SCROLL
-    // ================================
-
-    const cardObserver =
-    new IntersectionObserver(
-        entries=>{
-
-            entries.forEach(entry=>{
-
-                if(entry.isIntersecting){
-
-                    const index =
-                    cards.indexOf(
-                        entry.target
-                    );
-
-
-                    if(index !== -1){
-
-                        currentIndex=index;
-
-                        updateCards();
-
-                    }
-
-                }
-
             });
-
         },
         {
-            root:carousel,
-            threshold:0.65
+            root: carousel,
+            threshold: 0.65
         }
     );
 
+    cards.forEach((card) => observer.observe(card));
 
+    // AUTOPLAY
+    function startAutoplay() {
+        // don't create multiple intervals
+        if (autoplayTimer) return;
 
-    cards.forEach(card=>{
+        // start only if the reviews section is visible
+        if (!reviewsVisible) return;
 
-        cardObserver.observe(card);
+        autoplayTimer = setInterval(() => {
+            // If the section is not visible (user scrolled away), don't advance
+            if (!reviewsVisible) return;
 
+            scrollToCard(currentIndex + 1);
+
+        }, 5500);
+    }
+
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    }
+
+    function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    startAutoplay();
+
+    // PAUSE WHEN USER INTERACTS
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('touchstart', stopAutoplay);
+    carousel.addEventListener('touchend', restartAutoplay);
+
+    // PREVIOUS / NEXT BUTTONS
+    if (previousButton) {
+        previousButton.addEventListener("click", (e) => {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            const savedY = window.scrollY;
+            scrollToCard(currentIndex - 1);
+            restartAutoplay();
+            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
+            restoreVerticalScroll(savedY);
+        });
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", (e) => {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            const savedY = window.scrollY;
+            scrollToCard(currentIndex + 1);
+            restartAutoplay();
+            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
+            restoreVerticalScroll(savedY);
+        });
+    }
+
+    // KEYBOARD SUPPORT
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+            const savedY = window.scrollY;
+            scrollToCard(currentIndex - 1);
+            restartAutoplay();
+            restoreVerticalScroll(savedY);
+        }
+        if (event.key === "ArrowRight") {
+            const savedY = window.scrollY;
+            scrollToCard(currentIndex + 1);
+            restartAutoplay();
+            restoreVerticalScroll(savedY);
+        }
     });
-
-
-
-    updateCards();
-
 }
+
 // ============================================
 // INITIALIZATION
 // ============================================
