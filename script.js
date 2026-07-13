@@ -298,97 +298,480 @@ function initReviewsCarousel() {
                 const index = cards.indexOf(entry.target);
                 if (index !== -1) {
                     currentIndex = index;
-                    updateActiveStates();
-                }
-            });
+// ============================================
+// PREMIUM REVIEWS CAROUSEL
+// TikTok / Instagram style indicators
+// ============================================
+
+function initReviewsCarousel(){
+
+    const carousel = document.querySelector(".reviews-carousel");
+    const cards = [...document.querySelectorAll(".review-card")];
+    const indicatorsContainer = document.getElementById("reviewIndicators");
+    const reviewsSection = document.getElementById("reviews");
+
+
+    if(!carousel || cards.length === 0 || !indicatorsContainer){
+        return;
+    }
+
+
+    let currentIndex = 0;
+    let autoplayTimer = null;
+    let progressTimer = null;
+
+    let reviewsVisible = false;
+
+
+
+    /*
+    ============================================
+    CREATE 5 MOVING INDICATORS
+    ============================================
+    */
+
+    const indicatorCount = 5;
+
+    indicatorsContainer.innerHTML="";
+
+
+    for(let i=0;i<indicatorCount;i++){
+
+        const button=document.createElement("button");
+
+        button.className="review-indicator";
+
+        button.type="button";
+
+        button.dataset.position=i;
+
+
+        button.addEventListener("click",()=>{
+
+            const target =
+            getIndicatorTarget(i);
+
+            goToReview(target);
+
+            restartAutoplay();
+
+        });
+
+
+        indicatorsContainer.appendChild(button);
+
+    }
+
+
+    const indicators =
+    [...document.querySelectorAll(".review-indicator")];
+
+
+
+
+    /*
+    ============================================
+    INDICATOR WINDOW
+    ============================================
+    */
+
+    function getIndicatorTarget(position){
+
+        let start =
+        currentIndex - 2;
+
+
+        if(start < 0){
+            start = 0;
+        }
+
+
+        let target =
+        start + position;
+
+
+        if(target >= cards.length){
+
+            target =
+            cards.length - 1;
+
+        }
+
+
+        return target;
+
+    }
+
+
+
+    function updateIndicators(){
+
+        let start =
+        currentIndex - 2;
+
+
+        if(start < 0){
+            start=0;
+        }
+
+
+        if(start + 5 > cards.length){
+
+            start =
+            cards.length - 5;
+
+        }
+
+
+        indicators.forEach((dot,index)=>{
+
+
+            const reviewIndex =
+            start + index;
+
+
+            dot.classList.toggle(
+                "active",
+                reviewIndex === currentIndex
+            );
+
+
+            dot.dataset.review =
+            reviewIndex;
+
+
+        });
+
+    }
+
+
+
+
+
+    /*
+    ============================================
+    ACTIVE CARD
+    ============================================
+    */
+
+
+    function updateCards(){
+
+        cards.forEach((card,index)=>{
+
+
+            card.classList.toggle(
+                "active",
+                index===currentIndex
+            );
+
+
+        });
+
+
+        updateIndicators();
+
+    }
+
+
+
+
+
+    /*
+    ============================================
+    MOVE CAROUSEL
+    ============================================
+    */
+
+
+    function goToReview(index){
+
+
+        if(index < 0){
+
+            index =
+            cards.length-1;
+
+        }
+
+
+        if(index >= cards.length){
+
+            index=0;
+
+        }
+
+
+        currentIndex=index;
+
+
+        const card =
+        cards[currentIndex];
+
+
+        const position =
+        card.offsetLeft -
+        (
+            carousel.offsetWidth -
+            card.offsetWidth
+        )/2;
+
+
+
+        carousel.scrollTo({
+
+            left:position,
+
+            behavior:"smooth"
+
+        });
+
+
+
+        updateCards();
+
+
+    }
+
+
+
+
+
+    /*
+    ============================================
+    AUTOPLAY WITH PROGRESS
+    ============================================
+    */
+
+
+    function startAutoplay(){
+
+        if(autoplayTimer || !reviewsVisible){
+            return;
+        }
+
+
+
+        let progress=0;
+
+
+        autoplayTimer=setInterval(()=>{
+
+
+            progress+=2;
+
+
+            const active =
+            document.querySelector(
+                ".review-indicator.active"
+            );
+
+
+            if(active){
+
+                active.style.setProperty(
+                    "--progress",
+                    progress+"%"
+                );
+
+            }
+
+
+
+            if(progress>=100){
+
+
+                progress=0;
+
+
+                goToReview(
+                    currentIndex+1
+                );
+
+            }
+
+
+
+        },100);
+
+    }
+
+
+
+
+
+    function stopAutoplay(){
+
+        clearInterval(autoplayTimer);
+
+        autoplayTimer=null;
+
+
+        indicators.forEach(dot=>{
+
+            dot.style.removeProperty(
+                "--progress"
+            );
+
+        });
+
+    }
+
+
+
+    function restartAutoplay(){
+
+        stopAutoplay();
+
+        startAutoplay();
+
+    }
+
+
+
+
+    /*
+    ============================================
+    VISIBILITY OBSERVER
+    ============================================
+    */
+
+
+    if(reviewsSection){
+
+
+        const sectionObserver =
+        new IntersectionObserver(
+        entries=>{
+
+
+            reviewsVisible =
+            entries[0].isIntersecting;
+
+
+            if(reviewsVisible){
+
+                startAutoplay();
+
+            }
+            else{
+
+                stopAutoplay();
+
+            }
+
+
         },
         {
-            root: carousel,
-            threshold: 0.65
-        }
+            threshold:.35
+        });
+
+
+        sectionObserver.observe(
+            reviewsSection
+        );
+
+
+    }
+
+
+
+
+    /*
+    ============================================
+    USER CONTROLS
+    ============================================
+    */
+
+
+    carousel.addEventListener(
+        "mouseenter",
+        stopAutoplay
     );
 
-    cards.forEach((card) => observer.observe(card));
 
-    // AUTOPLAY
-    function startAutoplay() {
-        // don't create multiple intervals
-        if (autoplayTimer) return;
+    carousel.addEventListener(
+        "mouseleave",
+        startAutoplay
+    );
 
-        // start only if the reviews section is visible
-        if (!reviewsVisible) return;
 
-        autoplayTimer = setInterval(() => {
-            // If the section is not visible (user scrolled away), don't advance
-            if (!reviewsVisible) return;
+    carousel.addEventListener(
+        "touchstart",
+        stopAutoplay
+    );
 
-            scrollToCard(currentIndex + 1);
 
-        }, 5500);
-    }
+    carousel.addEventListener(
+        "touchend",
+        restartAutoplay
+    );
 
-    function stopAutoplay() {
-        if (autoplayTimer) {
-            clearInterval(autoplayTimer);
-            autoplayTimer = null;
-        }
-    }
 
-    function restartAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-    }
 
-    startAutoplay();
+    /*
+    ============================================
+    DETECT MANUAL SCROLL
+    ============================================
+    */
 
-    // PAUSE WHEN USER INTERACTS
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-    carousel.addEventListener('touchstart', stopAutoplay);
-    carousel.addEventListener('touchend', restartAutoplay);
 
-    // PREVIOUS / NEXT BUTTONS
-    if (previousButton) {
-        previousButton.addEventListener("click", (e) => {
-            if (e && typeof e.preventDefault === 'function') e.preventDefault();
-            const savedY = window.scrollY;
-            scrollToCard(currentIndex - 1);
-            restartAutoplay();
-            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
-            restoreVerticalScroll(savedY);
+    const cardObserver =
+    new IntersectionObserver(
+    entries=>{
+
+
+        entries.forEach(entry=>{
+
+
+            if(entry.isIntersecting){
+
+
+                const index =
+                cards.indexOf(
+                    entry.target
+                );
+
+
+                if(index!==-1){
+
+
+                    currentIndex=index;
+
+
+                    updateCards();
+
+
+                }
+
+            }
+
+
         });
-    }
 
-    if (nextButton) {
-        nextButton.addEventListener("click", (e) => {
-            if (e && typeof e.preventDefault === 'function') e.preventDefault();
-            const savedY = window.scrollY;
-            scrollToCard(currentIndex + 1);
-            restartAutoplay();
-            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
-            restoreVerticalScroll(savedY);
-        });
-    }
 
-    // KEYBOARD SUPPORT
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            const savedY = window.scrollY;
-            scrollToCard(currentIndex - 1);
-            restartAutoplay();
-            restoreVerticalScroll(savedY);
-        }
-        if (event.key === "ArrowRight") {
-            event.preventDefault();
-            const savedY = window.scrollY;
-            scrollToCard(currentIndex + 1);
-            restartAutoplay();
-            restoreVerticalScroll(savedY);
-        }
+    },
+    {
+
+        root:carousel,
+
+        threshold:.65
+
     });
-}
 
+
+
+    cards.forEach(card=>{
+
+        cardObserver.observe(card);
+
+    });
+
+
+
+    updateCards();
+
+}
 // ============================================
 // INITIALIZATION
 // ============================================
