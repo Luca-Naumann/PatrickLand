@@ -171,6 +171,27 @@ function initReviewsCarousel() {
     let currentIndex = 0;
     let autoplayTimer = null;
 
+    const reviewsSection = document.getElementById("reviews");
+
+let reviewsVisible = false;
+
+const sectionObserver = new IntersectionObserver(
+    (entries) => {
+        reviewsVisible = entries[0].isIntersecting;
+
+        if (reviewsVisible) {
+            startAutoplay();
+        } else {
+            stopAutoplay();
+        }
+    },
+    {
+        threshold: 0.35
+    }
+);
+
+sectionObserver.observe(reviewsSection);
+
     // CREATE PREMIUM INDICATORS
     cards.forEach((card, index) => {
         const indicator = document.createElement("button");
@@ -210,11 +231,12 @@ function initReviewsCarousel() {
             currentIndex = index;
         }
 
-        cards[currentIndex].scrollIntoView({
-            behavior: "smooth",
-            inline: "center",
-            block: "nearest"
-        });
+        cards[currentIndex].carousel.scrollTo({
+    left:
+        cards[currentIndex].offsetLeft -
+        (carousel.offsetWidth - cards[currentIndex].offsetWidth) / 2,
+    behavior: "smooth"
+});
 
         updateActiveStates();
     }
@@ -243,10 +265,17 @@ function initReviewsCarousel() {
 
     // AUTOPLAY
     function startAutoplay() {
-        clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(() => {
-            scrollToCard(currentIndex + 1);
-        }, 5500);
+
+    stopAutoplay();
+
+    autoplayTimer = setInterval(() => {
+
+        if (!reviewsVisible) return;
+
+        scrollToCard(currentIndex + 1);
+
+    }, 5500);
+
     }
 
     function stopAutoplay() {
