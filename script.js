@@ -23,9 +23,10 @@ function initMobileMenu() {
 
     closeButton.addEventListener("click", closeMenu);
 
-    // Close menu when clicking links
-    document.querySelectorAll(".mobile-nav-links a").forEach(link => {
-        link.addEventListener("click", closeMenu);
+    document
+    .querySelectorAll(".mobile-nav-links a, .mobile-ticket-button")
+    .forEach(element => {
+        element.addEventListener("click", closeMenu);
     });
 
     // Close menu on Escape key
