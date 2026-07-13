@@ -195,6 +195,17 @@ function initReviewsCarousel() {
         sectionObserver.observe(reviewsSection);
     }
 
+    // helper: restore vertical scroll position after actions that may cause focus/anchor jumps
+    function restoreVerticalScroll(savedY) {
+        // small timeout allows the browser to finish any auto-scrolling, then we restore
+        setTimeout(() => {
+            // Only restore if the savedY is a finite number
+            if (Number.isFinite(savedY)) {
+                window.scrollTo(window.scrollX, savedY);
+            }
+        }, 10);
+    }
+
     // CREATE INDICATORS (clear any existing to avoid duplicates)
     indicatorsContainer.innerHTML = '';
     cards.forEach((card, index) => {
@@ -204,8 +215,15 @@ function initReviewsCarousel() {
         indicator.setAttribute("aria-label", `Go to review ${index + 1}`);
         indicator.addEventListener("click", (e) => {
             if (e && typeof e.preventDefault === 'function') e.preventDefault();
+
+            const savedY = window.scrollY;
             scrollToCard(index);
             restartAutoplay();
+
+            // blur to avoid focus-caused scrolling
+            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
+
+            restoreVerticalScroll(savedY);
         });
         indicatorsContainer.appendChild(indicator);
     });
@@ -320,28 +338,38 @@ function initReviewsCarousel() {
     if (previousButton) {
         previousButton.addEventListener("click", (e) => {
             if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            const savedY = window.scrollY;
             scrollToCard(currentIndex - 1);
             restartAutoplay();
+            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
+            restoreVerticalScroll(savedY);
         });
     }
 
     if (nextButton) {
         nextButton.addEventListener("click", (e) => {
             if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            const savedY = window.scrollY;
             scrollToCard(currentIndex + 1);
             restartAutoplay();
+            if (e.currentTarget && typeof e.currentTarget.blur === 'function') e.currentTarget.blur();
+            restoreVerticalScroll(savedY);
         });
     }
 
     // KEYBOARD SUPPORT
     document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowLeft") {
+            const savedY = window.scrollY;
             scrollToCard(currentIndex - 1);
             restartAutoplay();
+            restoreVerticalScroll(savedY);
         }
         if (event.key === "ArrowRight") {
+            const savedY = window.scrollY;
             scrollToCard(currentIndex + 1);
             restartAutoplay();
+            restoreVerticalScroll(savedY);
         }
     });
 }
