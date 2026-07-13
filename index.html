@@ -742,11 +742,11 @@ Select Ticket Options
 </div>
 </footer>
 
-<!-- Load your custom JavaScript FIRST (defines all functions) -->
-<script src="script.js"></script>
 
-<!-- Load Eventbrite AFTER your custom JS so it can use EBWidgets properly -->
+
+<!-- Load Eventbrite BEFORE your custom JS so it can use EBWidgets properly -->
 <script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
-
+<!-- Load your custom JavaScript SECOND (defines all functions) -->
+<script src="script.js"></script>
 </body>
 </html>
