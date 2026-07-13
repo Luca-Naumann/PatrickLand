@@ -1860,6 +1860,10 @@ transform:translateY(30px);
 
     scroll-behavior:smooth;
 
+   scroll-padding-inline:50%;
+   
+   overscroll-behavior-x:contain;
+
     padding:
 
     50px 20px 70px;
@@ -2143,92 +2147,110 @@ transform:translateY(30px);
 }
 
 /* =====================================================
-   PREMIUM REVIEW INDICATORS
+   TIKTOK-STYLE REVIEW INDICATORS
 ===================================================== */
-
 
 .review-indicators{
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
-    gap:10px;
+    gap:12px;
 
-    margin-top:20px;
+    margin-top:32px;
+
+    min-height:18px;
+
+    user-select:none;
 
 }
-
-
-/* Individual dots */
 
 .review-indicator{
 
-    width:12px;
+    position:relative;
 
-    height:12px;
+    width:10px;
+    height:10px;
 
     border-radius:999px;
 
-    background:
+    background:rgba(255,255,255,.55);
 
-    rgba(21,128,61,.25);
+    backdrop-filter:blur(8px);
 
+    border:1px solid rgba(255,255,255,.55);
 
-    border:
+    transition:
+        all .45s cubic-bezier(.22,.61,.36,1);
 
-    1px solid rgba(255,213,74,.5);
-
+    overflow:hidden;
 
     cursor:pointer;
 
-    transition:
-
-    width .4s ease,
-
-    background .4s ease,
-
-    transform .4s ease;
-
 }
 
-
-
-/* Active */
+/* Active pill */
 
 .review-indicator.active{
 
     width:42px;
 
     background:
+        linear-gradient(
+            90deg,
+            #FFD54A,
+            #FFC107
+        );
 
-    linear-gradient(
-
-        90deg,
-
-        #FFD54A,
-
-        #FFC107
-
-    );
-
+    border-color:#FFD54A;
 
     box-shadow:
-
-    0 0 20px rgba(255,213,74,.7);
-
-
-    transform:
-
-    translateY(-2px);
+        0 0 18px rgba(255,213,74,.6);
 
 }
 
+/* Progress animation */
 
+.review-indicator.active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:0%;
+    height:100%;
+
+    background:rgba(255,255,255,.35);
+
+    animation:reviewProgress 6s linear forwards;
+
+}
 
 /* Hover */
+
+.review-indicator:hover{
+
+    transform:scale(1.18);
+
+}
+
+/* Progress Fill */
+
+@keyframes reviewProgress{
+
+    from{
+        width:0%;
+    }
+
+    to{
+        width:100%;
+    }
+
+}
 
 .review-indicator:hover{
 
@@ -2237,3 +2259,36 @@ transform:translateY(30px);
     scale(1.2);
 
 }
+
+
+/* =====================================================
+   ACTIVE REVIEW CARD
+===================================================== */
+
+.review-card{
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        border-color .45s ease,
+        opacity .45s ease;
+
+}
+
+.review-card.active{
+
+    transform:scale(1.03);
+
+    border-color:#FFD54A;
+
+    box-shadow:
+        0 30px 90px rgba(255,213,74,.28);
+
+}
+
+.review-card.active .text-yellow-400{
+
+    filter:brightness(1.15);
+
+}
+
