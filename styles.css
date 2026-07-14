@@ -2237,3 +2237,898 @@ transform:translateY(30px);
     scale(1.2);
 
 }
+
+/* =======================================================
+   ABOUT SECTION — "ADMIT ONE" TICKET THEME
+   Signature idea: the story card is shaped like a real
+   admission ticket (perforated seam + notches + stamp +
+   barcode), and the four pillars below are laid out as
+   numbered stops along a dashed trail.
+======================================================= */
+.about-section{
+
+position:relative;
+
+overflow:hidden;
+
+padding:120px 24px;
+
+background:linear-gradient(180deg,#ffffff 0%,#fffbea 55%,#fff9ec 100%);
+
+}
+
+
+.about-wrap{
+
+position:relative;
+
+z-index:2;
+
+max-width:1160px;
+
+margin:0 auto;
+
+}
+
+
+/* ---------- Decorative backdrop ---------- */
+
+
+.about-blob{
+
+position:absolute;
+
+border-radius:50%;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+.about-blob-gold{
+
+width:520px; height:520px;
+
+top:-200px; left:-200px;
+
+background:radial-gradient(rgba(255,213,74,.35),transparent 70%);
+
+animation:aboutDrift1 16s ease-in-out infinite;
+
+}
+
+.about-blob-green{
+
+width:560px; height:560px;
+
+bottom:-220px; right:-200px;
+
+background:radial-gradient(rgba(21,128,61,.16),transparent 70%);
+
+animation:aboutDrift2 18s ease-in-out infinite;
+
+}
+
+@keyframes aboutDrift1{ 0%,100%{transform:translate(0,0)} 50%{transform:translate(24px,26px)} }
+
+@keyframes aboutDrift2{ 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-18px)} }
+
+
+.about-sparkle{
+
+position:absolute;
+
+width:6px; height:6px;
+
+border-radius:50%;
+
+background:#FFD54A;
+
+box-shadow:0 0 8px rgba(255,213,74,.85);
+
+animation:aboutTwinkle 3.2s ease-in-out infinite;
+
+z-index:1;
+
+}
+
+.as-1{ top:6%; left:10%; animation-delay:0s; }
+
+.as-2{ top:20%; right:14%; animation-delay:.5s; }
+
+.as-3{ top:58%; left:5%; animation-delay:1s; }
+
+.as-4{ bottom:16%; right:8%; animation-delay:1.5s; }
+
+.as-5{ bottom:6%; left:42%; animation-delay:2s; }
+
+@keyframes aboutTwinkle{
+
+0%,100%{ opacity:.2; transform:scale(.6) translateY(0); }
+
+50%{ opacity:1; transform:scale(1.4) translateY(-7px); }
+
+}
+
+
+/* ---------- Header ---------- */
+
+
+.about-header{
+
+text-align:center;
+
+max-width:760px;
+
+margin:0 auto 64px;
+
+opacity:0;
+
+transform:translateY(24px);
+
+transition:opacity .7s ease, transform .7s ease;
+
+}
+
+.about-header.is-visible{ opacity:1; transform:translateY(0); }
+
+
+.about-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:9px 22px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.65);
+
+backdrop-filter:blur(14px);
+
+-webkit-backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,213,74,.5);
+
+box-shadow:0 10px 26px rgba(0,0,0,.08);
+
+color:#166534;
+
+font-weight:800;
+
+font-size:.82rem;
+
+letter-spacing:.04em;
+
+text-transform:uppercase;
+
+margin-bottom:22px;
+
+animation:aboutBadgeFloat 5s ease-in-out infinite;
+
+}
+
+@keyframes aboutBadgeFloat{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+
+.about-heading{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(2.3rem,5vw,3.5rem);
+
+line-height:1.08;
+
+color:#14532d;
+
+margin:0 0 20px;
+
+}
+
+.about-heading em{
+
+font-style:normal;
+
+background:linear-gradient(135deg,#FFC107,#FFD54A 55%,#FFE680);
+
+-webkit-background-clip:text;
+
+background-clip:text;
+
+color:transparent;
+
+}
+
+
+.about-subtitle{
+
+font-size:1.15rem;
+
+line-height:1.75;
+
+color:#4b5563;
+
+max-width:640px;
+
+margin:0 auto;
+
+}
+
+
+/* ---------- The Ticket (main story card) ---------- */
+
+
+.ticket{
+
+position:relative;
+
+display:grid;
+
+grid-template-columns:1fr;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.8));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.4);
+
+border-radius:34px;
+
+box-shadow:0 30px 80px rgba(0,0,0,.13);
+
+margin-bottom:56px;
+
+opacity:0;
+
+transform:translateY(32px);
+
+transition:opacity .8s ease, transform .8s ease;
+
+}
+
+.ticket.is-visible{ opacity:1; transform:translateY(0); }
+
+
+@media (min-width:920px){
+
+.ticket{ grid-template-columns:1.05fr 1fr; }
+
+}
+
+
+.ticket-stub{
+
+position:relative;
+
+min-height:320px;
+
+overflow:hidden;
+
+border-radius:34px 34px 0 0;
+
+}
+
+@media (min-width:920px){
+
+.ticket-stub{ min-height:100%; border-radius:34px 0 0 34px; }
+
+}
+
+.ticket-stub img{
+
+width:100%; height:100%;
+
+min-height:320px;
+
+object-fit:cover;
+
+display:block;
+
+transform:scale(1.02);
+
+transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.ticket:hover .ticket-stub img{ transform:scale(1.1); }
+
+
+.ticket-stub-fallback{
+
+width:100%; height:100%; min-height:320px;
+
+background:linear-gradient(135deg,#15803d,#166534 60%,#14532d);
+
+display:flex; align-items:center; justify-content:center;
+
+color:rgba(255,213,74,.5);
+
+font-size:4rem;
+
+}
+
+
+.ticket-stub-overlay{
+
+position:absolute; inset:auto 0 0 0;
+
+padding:28px 30px;
+
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.68));
+
+color:#fff;
+
+}
+
+.ticket-stub-overlay p:first-child{
+
+font-family:'Fredoka',sans-serif;
+
+font-size:1.35rem;
+
+font-weight:600;
+
+margin:0 0 3px;
+
+}
+
+.ticket-stub-overlay p:last-child{
+
+font-size:.9rem;
+
+opacity:.85;
+
+margin:0;
+
+}
+
+
+.ticket-stamp{
+
+position:absolute;
+
+top:22px; right:22px;
+
+width:92px; height:92px;
+
+border-radius:50%;
+
+border:2px dashed rgba(255,213,74,.9);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+transform:rotate(-12deg);
+
+background:rgba(20,83,45,.55);
+
+backdrop-filter:blur(4px);
+
+color:#FFE680;
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:.62rem;
+
+letter-spacing:.06em;
+
+line-height:1.25;
+
+text-transform:uppercase;
+
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+
+.ticket-seam{
+
+position:relative;
+
+display:none;
+
+}
+
+@media (min-width:920px){
+
+.ticket-seam{
+
+display:block;
+
+border-left:3px dashed rgba(255,193,7,.5);
+
+}
+
+.ticket-seam::before,
+
+.ticket-seam::after{
+
+content:"";
+
+position:absolute;
+
+left:-13px;
+
+width:26px; height:26px;
+
+border-radius:50%;
+
+background:#fffbea;
+
+box-shadow:inset 0 0 0 1px rgba(255,213,74,.4);
+
+}
+
+.ticket-seam::before{ top:-13px; }
+
+.ticket-seam::after{ bottom:-13px; }
+
+}
+
+
+.ticket-info{
+
+padding:42px 44px 38px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+border-top:3px dashed rgba(255,193,7,.5);
+
+}
+
+@media (min-width:920px){
+
+.ticket-info{ border-top:none; grid-column:3; }
+
+}
+
+
+.ticket-eyebrow{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+width:fit-content;
+
+padding:6px 14px;
+
+border-radius:999px;
+
+background:#14532d;
+
+color:#FFD54A;
+
+font-size:.7rem;
+
+font-weight:800;
+
+letter-spacing:.1em;
+
+text-transform:uppercase;
+
+margin-bottom:16px;
+
+}
+
+
+.ticket-title{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(1.5rem,3vw,2rem);
+
+color:#14532d;
+
+margin:0 0 16px;
+
+}
+
+
+.ticket-info p.body{
+
+line-height:1.75;
+
+color:#4b5563;
+
+margin:0 0 14px;
+
+}
+
+
+.ticket-list{
+
+list-style:none;
+
+margin:16px 0 26px;
+
+padding:0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:11px;
+
+}
+
+.ticket-list li{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:11px;
+
+font-size:1rem;
+
+color:#374151;
+
+}
+
+.ticket-list i{ color:#15803d; margin-top:3px; }
+
+
+.ticket-cta{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+width:fit-content;
+
+padding:15px 34px;
+
+border-radius:999px;
+
+text-decoration:none;
+
+font-weight:700;
+
+color:#14532d;
+
+background:linear-gradient(135deg,#FFD54A,#FFC107,#FFE680);
+
+box-shadow:0 14px 36px rgba(255,193,7,.4);
+
+transition:.35s;
+
+margin-bottom:26px;
+
+}
+
+.ticket-cta:hover{ transform:translateY(-4px); box-shadow:0 0 32px rgba(255,213,74,.7); }
+
+
+.ticket-barcode{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding-top:18px;
+
+border-top:1px dashed rgba(0,0,0,.1);
+
+}
+
+.ticket-barcode-bars{
+
+height:30px;
+
+flex-shrink:0;
+
+background-image:repeating-linear-gradient(
+
+90deg,
+
+#14532d 0 2px,
+
+transparent 2px 5px,
+
+#14532d 5px 6px,
+
+transparent 6px 11px,
+
+#14532d 11px 14px,
+
+transparent 14px 17px
+
+);
+
+width:110px;
+
+}
+
+.ticket-barcode-text{
+
+font-size:.72rem;
+
+letter-spacing:.08em;
+
+color:#9ca3af;
+
+font-weight:700;
+
+text-transform:uppercase;
+
+}
+
+
+/* ---------- Trail stops (feature cards) ---------- */
+
+
+.trail{
+
+position:relative;
+
+margin-bottom:56px;
+
+}
+
+
+.trail-path{
+
+display:none;
+
+}
+
+@media (min-width:1024px){
+
+.trail-path{
+
+display:block;
+
+position:absolute;
+
+top:34px;
+
+left:12.5%;
+
+right:12.5%;
+
+height:0;
+
+border-top:3px dashed rgba(21,128,61,.28);
+
+z-index:0;
+
+}
+
+}
+
+
+.trail-grid{
+
+position:relative;
+
+z-index:1;
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:26px;
+
+}
+
+@media (min-width:640px){ .trail-grid{ grid-template-columns:1fr 1fr; } }
+
+@media (min-width:1024px){ .trail-grid{ grid-template-columns:repeat(4,1fr); } }
+
+
+.trail-stop{
+
+position:relative;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.78));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.32);
+
+border-radius:28px;
+
+padding:40px 24px 28px;
+
+text-align:center;
+
+box-shadow:0 18px 46px rgba(0,0,0,.08);
+
+transition:transform .4s ease, box-shadow .4s ease;
+
+opacity:0;
+
+transform:translateY(26px);
+
+}
+
+.trail-stop.is-visible{ opacity:1; transform:translateY(0); }
+
+.trail-stop:hover{ transform:translateY(-10px); box-shadow:0 32px 64px rgba(0,0,0,.14); }
+
+.trail-stop:hover .trail-pin{ transform:translate(-50%,-4px) rotate(0deg) scale(1.08); }
+
+.trail-stop:hover .trail-icon{ transform:rotate(-8deg) scale(1.1); }
+
+
+.trail-pin{
+
+position:absolute;
+
+top:-18px; left:50%;
+
+transform:translateX(-50%);
+
+width:36px; height:36px;
+
+border-radius:50% 50% 50% 0;
+
+background:linear-gradient(135deg,#FFD54A,#FFC107);
+
+transform-origin:center;
+
+display:flex; align-items:center; justify-content:center;
+
+box-shadow:0 8px 18px rgba(0,0,0,.2);
+
+transition:transform .4s ease;
+
+rotate: -45deg;
+
+}
+
+.trail-pin span{
+
+rotate:45deg;
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:700;
+
+font-size:.7rem;
+
+color:#14532d;
+
+}
+
+
+.trail-icon{
+
+font-size:2.4rem;
+
+margin:12px 0 14px;
+
+display:inline-block;
+
+transition:transform .35s ease;
+
+}
+
+.trail-stop h4{
+
+font-family:'Fredoka',sans-serif;
+
+font-size:1.15rem;
+
+color:#14532d;
+
+margin:0 0 8px;
+
+}
+
+.trail-stop p{
+
+font-size:.92rem;
+
+color:#6b7280;
+
+line-height:1.6;
+
+margin:0;
+
+}
+
+
+/* ---------- Stats strip ---------- */
+
+
+.stats{
+
+position:relative;
+
+z-index:1;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:28px;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.78));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.4);
+
+border-radius:34px;
+
+box-shadow:0 30px 80px rgba(0,0,0,.13);
+
+padding:44px 28px;
+
+text-align:center;
+
+opacity:0;
+
+transform:translateY(26px);
+
+transition:opacity .8s ease, transform .8s ease;
+
+}
+
+.stats.is-visible{ opacity:1; transform:translateY(0); }
+
+@media (min-width:768px){ .stats{ grid-template-columns:repeat(4,1fr); } }
+
+
+.stat-num{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(2.1rem,4vw,2.9rem);
+
+background:linear-gradient(135deg,#FFC107,#FFD54A);
+
+-webkit-background-clip:text;
+
+background-clip:text;
+
+color:transparent;
+
+display:block;
+
+}
+
+.stat-label{
+
+color:#166534;
+
+font-weight:700;
+
+font-size:.88rem;
+
+}
