@@ -513,5 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createBackToTop();
     initHeroParallax();
     initReviewsCarousel();
+    initAboutSection();
     initEventbriteWidget();
 });
+
