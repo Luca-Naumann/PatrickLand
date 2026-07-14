@@ -897,6 +897,59 @@ class="mt-8 inline-flex items-center gap-3 bg-white text-green-700 px-8 py-4 rou
 </div>
 </section>
 
+<!-- =======================================================
+     PatrickLand Premium Image Viewer (Lightbox)
+======================================================= -->
+
+<div id="image-viewer" class="image-viewer">
+
+    <!-- Background -->
+    <div class="image-viewer-backdrop"></div>
+
+    <!-- Close Button -->
+    <button id="viewer-close"
+            class="viewer-close"
+            aria-label="Close Image Viewer">
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+    <!-- Previous -->
+    <button id="viewer-prev"
+            class="viewer-arrow viewer-prev"
+            aria-label="Previous Image">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+    </button>
+
+    <!-- Image Container -->
+    <div class="viewer-content">
+
+        <img
+            id="viewer-image"
+            src=""
+            alt="PatrickLand Image"
+        >
+
+        <div id="viewer-caption"
+             class="viewer-caption">
+        </div>
+
+    </div>
+
+    <!-- Next -->
+    <button id="viewer-next"
+            class="viewer-arrow viewer-next"
+            aria-label="Next Image">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+</div>
+
 <div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100] p-4">
 <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
 <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10">
