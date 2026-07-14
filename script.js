@@ -376,6 +376,134 @@ function initReviewsCarousel() {
 }
 
 // ============================================
+
+// ABOUT SECTION — scroll reveal + stat counters
+
+// ============================================
+
+function initAboutSection() {
+
+const section = document.getElementById("about");
+
+if (!section) return;
+
+
+const revealTargets = [...section.querySelectorAll("[data-reveal]")];
+
+if (revealTargets.length) {
+
+const revealObserver = new IntersectionObserver((entries) => {
+
+entries.forEach((entry, i) => {
+
+if (entry.isIntersecting) {
+
+setTimeout(() => entry.target.classList.add("is-visible"), i * 40);
+
+revealObserver.unobserve(entry.target);
+
+}
+
+});
+
+}, { threshold: 0.15 });
+
+revealTargets.forEach((el) => revealObserver.observe(el));
+
+}
+
+
+const trailStops = [...section.querySelectorAll(".trail-stop")];
+
+if (trailStops.length) {
+
+const stopObserver = new IntersectionObserver((entries) => {
+
+entries.forEach((entry, i) => {
+
+if (entry.isIntersecting) {
+
+setTimeout(() => entry.target.classList.add("is-visible"), i * 120);
+
+stopObserver.unobserve(entry.target);
+
+}
+
+});
+
+}, { threshold: 0.2 });
+
+trailStops.forEach((el) => stopObserver.observe(el));
+
+}
+
+
+const statNumbers = [...section.querySelectorAll(".stat-num")];
+
+const statsBlock = section.querySelector(".stats");
+
+if (!statNumbers.length || !statsBlock) return;
+
+
+let animated = false;
+
+function animateStats() {
+
+statNumbers.forEach((el) => {
+
+const target = parseFloat(el.dataset.count || "0");
+
+const suffix = el.dataset.suffix || "";
+
+const duration = 1400;
+
+const start = performance.now();
+
+function tick(now) {
+
+const progress = Math.min((now - start) / duration, 1);
+
+const eased = 1 - Math.pow(1 - progress, 3);
+
+el.textContent = Math.round(target * eased) + suffix;
+
+if (progress < 1) requestAnimationFrame(tick);
+
+else el.textContent = target + suffix;
+
+}
+
+requestAnimationFrame(tick);
+
+});
+
+}
+
+
+const statsObserver = new IntersectionObserver((entries) => {
+
+entries.forEach((entry) => {
+
+if (entry.isIntersecting && !animated) {
+
+animated = true;
+
+animateStats();
+
+statsObserver.unobserve(entry.target);
+
+}
+
+});
+
+}, { threshold: 0.4 });
+
+statsObserver.observe(statsBlock);
+
+}
+
+
+// ============================================
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
