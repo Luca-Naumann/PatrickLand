@@ -733,40 +733,85 @@ class="gallery-image">
 </section>
 
 
-<section id="attractions" class="py-24 bg-white">
-<div class="max-w-6xl mx-auto px-6">
-<h2 class="text-5xl font-bold text-center text-green-800 mb-16">Our Attractions</h2>
-<div class="grid md:grid-cols-3 gap-8">
-<div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
-<img src="images/giant-slide.png"
-alt="Giant Slides"
-class="w-full h-64 object-cover gallery-image">
-<div class="p-8">
-<h3 class="text-2xl font-semibold mb-3">Giant Adventure Slides</h3>
-<p class="text-gray-600">Twisty, thrilling slides guaranteed to bring big laughs.</p>
-</div>
-</div>
-<div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
-<img src="https://source.unsplash.com/random/600x400/?playground" 
-alt="Patrick's Playground" 
-class="w-full h-64 object-cover gallery-image">
-<div class="p-8">
-<h3 class="text-2xl font-semibold mb-3">Patrick's Playground</h3>
-<p class="text-gray-600">Climbing frames, swings, and interactive zones for all ages.</p>
-</div>
-</div>
-<div class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow hover:shadow-2xl transition-all duration-300">
-<img src="https://source.unsplash.com/random/600x400/?carousel" 
-alt="Star Carousel" 
-class="w-full h-64 object-cover gallery-image">
-<div class="p-8">
-<h3 class="text-2xl font-semibold mb-3">Star Carousel</h3>
-<p class="text-gray-600">Classic rides with a magical PatrickLand twist.</p>
-</div>
-</div>
-</div>
-</div>
+<section id="attractions" class="attractions-section">
+
+    <div class="attractions-blob attractions-blob-gold"></div>
+    <div class="attractions-blob attractions-blob-green"></div>
+    <div class="attractions-sparkle at-1"></div>
+    <div class="attractions-sparkle at-2"></div>
+    <div class="attractions-sparkle at-3"></div>
+    <div class="attractions-sparkle at-4"></div>
+
+    <div class="attractions-wrap">
+
+        <div class="attractions-header" data-reveal>
+            <span class="attractions-badge"><i class="fas fa-ferris-wheel"></i> Rides &amp; Adventures For Every Age</span>
+            <h2 class="attractions-heading">Rides, Slides &amp; <em>Big</em> Adventures</h2>
+            <p class="attractions-subtitle">Every ride at PatrickLand is picked for its own kind of magic — pick a pass below and see what's waiting.</p>
+        </div>
+
+        <div class="ride-grid">
+
+            <!-- Giant Adventure Slides -->
+            <div class="ride-card" data-reveal>
+                <div class="ride-card-media">
+                    <span class="ride-tag ride-tag-thrill"><i class="fas fa-bolt"></i> Thrill</span>
+                    <img src="images/giant-slide.png" alt="Giant Adventure Slides" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'ride-card-fallback',innerHTML:'<i class=&quot;fas fa-person-falling-burst&quot;></i>'}));">
+                </div>
+                <div class="ride-card-stats">
+                    <span><i class="fas fa-ruler-vertical"></i> 120cm+</span>
+                    <span><i class="fas fa-clock"></i> ~5 min</span>
+                    <span><i class="fas fa-child"></i> Ages 6+</span>
+                </div>
+                <div class="ride-card-body">
+                    <h3>Giant Adventure Slides</h3>
+                    <p>Twisty, thrilling slides guaranteed to bring big laughs — and a few happy screams.</p>
+                </div>
+            </div>
+
+            <!-- Patrick's Playground -->
+            <div class="ride-card" data-reveal>
+                <div class="ride-card-media">
+                    <span class="ride-tag ride-tag-family"><i class="fas fa-people-roof"></i> All Ages</span>
+                    <img src="images/playground.jpg" alt="Patrick's Playground" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'ride-card-fallback',innerHTML:'<i class=&quot;fas fa-shapes&quot;></i>'}));">
+                </div>
+                <div class="ride-card-stats">
+                    <span><i class="fas fa-ruler-vertical"></i> No limit</span>
+                    <span><i class="fas fa-user-shield"></i> Supervised</span>
+                    <span><i class="fas fa-child"></i> Ages 1+</span>
+                </div>
+                <div class="ride-card-body">
+                    <h3>Patrick's Playground</h3>
+                    <p>Climbing frames, swings, and interactive zones built for every age and stage.</p>
+                </div>
+            </div>
+
+            <!-- Star Carousel -->
+            <div class="ride-card" data-reveal>
+                <div class="ride-card-media">
+                    <span class="ride-tag ride-tag-classic"><i class="fas fa-star"></i> Family</span>
+                    <img src="images/carousel.jpg" alt="Star Carousel" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'ride-card-fallback',innerHTML:'<i class=&quot;fas fa-horse&quot;></i>'}));">
+                </div>
+                <div class="ride-card-stats">
+                    <span><i class="fas fa-ruler-vertical"></i> 90cm+</span>
+                    <span><i class="fas fa-clock"></i> ~3 min</span>
+                    <span><i class="fas fa-child"></i> Ages 2+</span>
+                </div>
+                <div class="ride-card-body">
+                    <h3>Star Carousel</h3>
+                    <p>Classic rides with a magical PatrickLand twist — a favourite for the little ones.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </section>
+
+
 
 <section id="gallery" class="py-24 bg-gray-50">
 <div class="max-w-6xl mx-auto px-6">
