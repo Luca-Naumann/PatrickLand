@@ -726,5 +726,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAboutSection();
     initEventbriteWidget();
     initImageViewer();
+    initAttractionsSection();
 });
 
