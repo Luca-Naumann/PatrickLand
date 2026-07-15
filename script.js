@@ -502,6 +502,194 @@ statsObserver.observe(statsBlock);
 
 }
 
+// ============================================
+// PREMIUM IMAGE VIEWER (LIGHTBOX)
+// ============================================
+function initImageViewer() {
+
+    const viewer = document.getElementById("image-viewer");
+    const image = document.getElementById("viewer-image");
+    const caption = document.getElementById("viewer-caption");
+
+    const closeButton = document.getElementById("viewer-close");
+    const previousButton = document.getElementById("viewer-prev");
+    const nextButton = document.getElementById("viewer-next");
+
+    const galleryImages = [...document.querySelectorAll(".gallery-image")];
+
+    if (
+        !viewer ||
+        !image ||
+        !caption ||
+        galleryImages.length === 0
+    ) {
+        return;
+    }
+
+    let currentIndex = 0;
+
+    // ----------------------------
+    // OPEN
+    // ----------------------------
+    function openViewer(index) {
+
+        currentIndex = index;
+
+        image.src = galleryImages[index].src;
+        image.alt = galleryImages[index].alt;
+
+        caption.textContent = galleryImages[index].alt;
+
+        viewer.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+    // ----------------------------
+    // CLOSE
+    // ----------------------------
+    function closeViewer() {
+
+        viewer.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+    // ----------------------------
+    // SHOW IMAGE
+    // ----------------------------
+    function showImage(index) {
+
+        if (index < 0) {
+
+            currentIndex = galleryImages.length - 1;
+
+        } else if (index >= galleryImages.length) {
+
+            currentIndex = 0;
+
+        } else {
+
+            currentIndex = index;
+
+        }
+
+        image.src = galleryImages[currentIndex].src;
+        image.alt = galleryImages[currentIndex].alt;
+
+        caption.textContent = galleryImages[currentIndex].alt;
+
+    }
+
+    // ----------------------------
+    // IMAGE CLICK
+    // ----------------------------
+    galleryImages.forEach((img, index) => {
+
+        img.addEventListener("click", () => {
+
+            openViewer(index);
+
+        });
+
+    });
+
+    // ----------------------------
+    // BUTTONS
+    // ----------------------------
+    closeButton.addEventListener("click", closeViewer);
+
+    previousButton.addEventListener("click", () => {
+
+        showImage(currentIndex - 1);
+
+    });
+
+    nextButton.addEventListener("click", () => {
+
+        showImage(currentIndex + 1);
+
+    });
+
+    // ----------------------------
+    // CLICK BACKDROP TO CLOSE
+    // ----------------------------
+    viewer.addEventListener("click", (event) => {
+
+        if (
+            event.target.classList.contains("image-viewer") ||
+            event.target.classList.contains("image-viewer-backdrop")
+        ) {
+
+            closeViewer();
+
+        }
+
+    });
+
+    // ----------------------------
+    // KEYBOARD SUPPORT
+    // ----------------------------
+    document.addEventListener("keydown", (event) => {
+
+        if (!viewer.classList.contains("active")) return;
+
+        switch (event.key) {
+
+            case "Escape":
+
+                closeViewer();
+
+                break;
+
+            case "ArrowLeft":
+
+                showImage(currentIndex - 1);
+
+                break;
+
+            case "ArrowRight":
+
+                showImage(currentIndex + 1);
+
+                break;
+
+        }
+
+    });
+
+    // ----------------------------
+    // SWIPE SUPPORT
+    // ----------------------------
+    let startX = 0;
+
+    viewer.addEventListener("touchstart", (event) => {
+
+        startX = event.changedTouches[0].screenX;
+
+    });
+
+    viewer.addEventListener("touchend", (event) => {
+
+        const endX = event.changedTouches[0].screenX;
+
+        if (startX - endX > 60) {
+
+            showImage(currentIndex + 1);
+
+        }
+
+        if (endX - startX > 60) {
+
+            showImage(currentIndex - 1);
+
+        }
+
+    });
+
+}
 
 // ============================================
 // INITIALIZATION
@@ -515,5 +703,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initReviewsCarousel();
     initAboutSection();
     initEventbriteWidget();
+    initImageViewer();
 });
 
