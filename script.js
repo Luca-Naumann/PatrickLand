@@ -692,6 +692,28 @@ function initImageViewer() {
 }
 
 // ============================================
+// ATTRACTIONS SECTION — scroll reveal
+// ============================================
+function initAttractionsSection() {
+    const section = document.getElementById("attractions");
+    if (!section) return;
+
+    const revealTargets = [...section.querySelectorAll("[data-reveal]")];
+    if (!revealTargets.length) return;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add("is-visible"), i * 60);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    revealTargets.forEach((el) => revealObserver.observe(el));
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
