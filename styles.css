@@ -3132,3 +3132,345 @@ font-weight:700;
 font-size:.88rem;
 
 }
+
+/* =======================================================
+   PATRICKLAND PREMIUM IMAGE VIEWER
+======================================================= */
+
+.image-viewer{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
+
+    z-index:99999;
+
+}
+
+/* Open */
+
+.image-viewer.active{
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+}
+
+/* =====================================
+   BACKDROP
+===================================== */
+
+.image-viewer-backdrop{
+
+    position:absolute;
+    inset:0;
+
+    background:
+        rgba(10,18,15,.82);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+}
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.viewer-content{
+
+    position:relative;
+
+    z-index:5;
+
+    max-width:90vw;
+    max-height:88vh;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    animation:viewerZoom .45s ease;
+
+}
+
+#viewer-image{
+
+    max-width:100%;
+    max-height:78vh;
+
+    border-radius:30px;
+
+    border:3px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.45),
+        0 0 40px rgba(255,213,74,.18);
+
+    object-fit:contain;
+
+    user-select:none;
+
+}
+
+/* =====================================
+   CAPTION
+===================================== */
+
+.viewer-caption{
+
+    margin-top:22px;
+
+    padding:14px 24px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    font-weight:600;
+
+    text-align:center;
+
+    max-width:700px;
+
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.viewer-close,
+.viewer-arrow{
+
+    position:absolute;
+
+    width:68px;
+    height:68px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:1.4rem;
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.10);
+
+    backdrop-filter:blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    transition:
+        transform .35s,
+        background .35s,
+        box-shadow .35s;
+
+    z-index:10;
+
+}
+
+.viewer-close:hover,
+.viewer-arrow:hover{
+
+    transform:scale(1.12);
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFD54A,
+            #FFC107
+        );
+
+    color:#166534;
+
+    box-shadow:
+        0 0 30px rgba(255,213,74,.6);
+
+}
+
+/* Close */
+
+.viewer-close{
+
+    top:35px;
+    right:35px;
+
+}
+
+/* Left */
+
+.viewer-prev{
+
+    left:40px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+}
+
+/* Right */
+
+.viewer-next{
+
+    right:40px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+}
+
+/* Prevent hover overriding translateY */
+
+.viewer-prev:hover{
+
+    transform:
+        translateY(-50%)
+        scale(1.12);
+
+}
+
+.viewer-next:hover{
+
+    transform:
+        translateY(-50%)
+        scale(1.12);
+
+}
+
+/* =====================================
+   GALLERY IMAGE HOVER
+===================================== */
+
+.gallery-image{
+
+    cursor:pointer;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        filter .35s ease;
+
+}
+
+.gallery-image:hover{
+
+    transform:
+        scale(1.03);
+
+    filter:
+        brightness(1.05);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.18);
+
+}
+
+/* =====================================
+   OPEN ANIMATION
+===================================== */
+
+@keyframes viewerZoom{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            scale(.88);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:768px){
+
+    .viewer-arrow{
+
+        width:54px;
+        height:54px;
+
+        font-size:1.1rem;
+
+    }
+
+    .viewer-close{
+
+        width:56px;
+        height:56px;
+
+        top:18px;
+        right:18px;
+
+    }
+
+    .viewer-prev{
+
+        left:10px;
+
+    }
+
+    .viewer-next{
+
+        right:10px;
+
+    }
+
+    #viewer-image{
+
+        border-radius:20px;
+
+        max-height:70vh;
+
+    }
+
+    .viewer-caption{
+
+        width:92%;
+        font-size:.95rem;
+
+    }
+
+}
