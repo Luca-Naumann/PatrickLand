@@ -6,8 +6,6 @@ PatrickLand is a modern, responsive theme park website built with HTML, CSS, and
 
 ![PatrickLand Banner](images/logo.png)
 
-<img src="logo.png" alt="Banner" style="width:80%; height:auto;">
-
 ## 🌐 Live Demo
 
 🔗 https://luca-naumann.github.io/PatrickLand/
