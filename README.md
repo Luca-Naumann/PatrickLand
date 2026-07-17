@@ -4,7 +4,8 @@
 
 PatrickLand is a modern, responsive theme park website built with HTML, CSS, and JavaScript. The project focuses on creating an immersive experience through smooth animations, interactive elements, and a premium user interface that showcases a fictional family-friendly amusement park.
 
-![PatrickLand Banner](images/logo.png
+![PatrickLand Banner](images/logo.png)
+<img src="banner.png" alt="Banner" style="width:80%; height:auto;">
 
 
 ## 🌐 Live Demo
