@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PatrickLand | Where Family Adventures Come Alive!</title>
+
+    <meta name="description"
+        content="PatrickLand is Sydney's most unforgettable family adventure destination. Exciting attractions, hilarious challenges, unforgettable memories, and fun for all ages.">
+
+    <meta name="keywords"
+        content="PatrickLand, Lalor Park, Sydney, playground, amusement park, family fun, kids, attractions">
+
+    <meta name="author" content="PatrickLand">
+
+    <meta name="theme-color" content="#15803d">
+
+    <meta name="color-scheme" content="light">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="PatrickLand">
+    <meta property="og:description"
+        content="Where Family Adventures Come Alive!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/social-preview.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700;800&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS (BEFORE Tailwind) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+
+                    fontFamily: {
+                        heading: ['Fredoka', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif']
+                    },
+
+                    colors: {
+
+                        patrick: {
+                            green: '#15803d',
+                            light: '#22c55e',
+                            yellow: '#FFD54A',
+                            blue: '#60A5FA',
+                            coral: '#FF7F50',
+                            cream: '#FFF9EC'
+                        }
+
+                    },
+
+                    boxShadow: {
+                        soft: '0 10px 30px rgba(0,0,0,.12)',
+                        glow: '0 0 30px rgba(255,213,74,.45)'
+                    }
+
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Splide Carousel -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="images/favicon.png">
+
+</head>
+<body class="font-sans antialiased">
+
+
+<!-- =========================
+     PatrickLand Navigation v2
+========================= -->
+
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+
+    <!-- Decorative Background -->
+    <div class="absolute inset-0 nav-glass"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+        <div class="flex items-center justify-between h-20">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 logo-group">
+
+                <div class="logo-circle">
+                    <i class="fas fa-umbrella-beach"></i>
+                </div>
+
+                <div>
+                    <h1 class="logo-text">
+                        PatrickLand
+                    </h1>
+
+                    <p class="logo-subtitle">
+                        Family Adventures
+                    </p>
+                </div>
+
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="hidden lg:flex items-center gap-8 nav-links">
+
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#attractions">
+                        Attractions
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#gallery">
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#reviews">
+                        Reviews
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#visit">
+                        Visit
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Desktop Ticket Button -->
+            <div class="hidden lg:flex">
+
+                <button
+                    onclick="openTicketModal()"
+                    class="ticket-button">
+
+                    <i class="fas fa-ticket-alt"></i>
+
+                    <span>
+                        Buy Tickets
+                    </span>
+
+                </button>
+
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-button"
+                class="lg:hidden mobile-toggle"
+                aria-label="Open Menu"
+                aria-expanded="false">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- =========================
+     Fullscreen Mobile Menu
+========================= -->
+
+<div
+    id="mobile-menu"
+    class="mobile-overlay">
+
+    <!-- Close Button -->
+
+    <button
+        id="mobile-close-button"
+        class="mobile-close"
+        aria-label="Close Menu">
+
+        <i class="fas fa-times"></i>
+
+    </button>
+
+    <!-- Branding -->
+
+    <div class="mobile-brand">
+
+        <div class="mobile-logo">
+
+            <i class="fas fa-umbrella-beach"></i>
+
+        </div>
+
+        <h2>
+            PatrickLand
+        </h2>
+
+        <p>
+            Family Adventures Await
+        </p>
+
+    </div>
+
+    <!-- Links -->
+
+    <nav class="mobile-nav-links">
+
+        <a href="#about">About</a>
+
+        <a href="#attractions">Attractions</a>
+
+        <a href="#gallery">Gallery</a>
+
+        <a href="#reviews">Reviews</a>
+
+        <a href="#visit">Plan Your Visit</a>
+
+    </nav>
+
+    <!-- CTA -->
+
+    <button
+        onclick="openTicketModal()"
+        class="mobile-ticket-button">
+
+         Buy Tickets
+
+    </button>
+
+    <!-- Socials -->
+
+    <div class="mobile-socials">
+
+        <a
+            href="https://www.facebook.com/share/1TfCuNmfT3/"
+            target="_blank">
+
+            <i class="fab fa-facebook"></i>
+
+        </a>
+
+        <a
+            href="https://www.instagram.com/patri.ckland?igsh=aG01dHprcjFyMmsy"
+            target="_blank">
+
+            <i class="fab fa-instagram"></i>
+
+        </a>
+
+    </div>
+
+</div>
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero-section">
+
+    <!-- Background -->
+
+    <div class="hero-overlay"></div>
+
+    <!-- Sun Glow -->
+
+    <div class="hero-sun"></div>
+    <!-- Decorative Trees -->
+
+<div class="hero-tree tree-left">
+<svg viewBox="0 0 180 220">
+
+    <rect x="78" y="120" width="24" height="80" rx="6" fill="#7B4F2A"/>
+
+    <circle cx="90" cy="90" r="55" fill="#34D399"/>
+    <circle cx="60" cy="105" r="42" fill="#22C55E"/>
+    <circle cx="120" cy="105" r="42" fill="#22C55E"/>
+    <circle cx="90" cy="55" r="40" fill="#4ADE80"/>
+
+</svg>
+</div>
+
+<div class="hero-tree tree-right">
+<svg viewBox="0 0 180 220">
+
+    <rect x="78" y="120" width="24" height="80" rx="6" fill="#7B4F2A"/>
+
+    <circle cx="90" cy="90" r="55" fill="#34D399"/>
+    <circle cx="60" cy="105" r="42" fill="#22C55E"/>
+    <circle cx="120" cy="105" r="42" fill="#22C55E"/>
+    <circle cx="90" cy="55" r="40" fill="#4ADE80"/>
+
+</svg>
+</div>
+
+<!-- Decorative Balloons -->
+
+<div class="balloon balloon-left">
+
+<svg viewBox="0 0 120 180">
+
+    <ellipse cx="60" cy="55" rx="38" ry="48" fill="#FF7F50"/>
+
+    <line x1="60" y1="100" x2="60" y2="145"
+          stroke="#666"
+          stroke-width="3"/>
+
+    <rect x="48" y="145"
+          width="24"
+          height="18"
+          rx="3"
+          fill="#8B5A2B"/>
+
+</svg>
+
+</div>
+
+<div class="balloon balloon-right">
+
+<svg viewBox="0 0 120 180">
+
+    <ellipse cx="60" cy="55" rx="38" ry="48" fill="#60A5FA"/>
+
+    <line x1="60" y1="100" x2="60" y2="145"
+          stroke="#666"
+          stroke-width="3"/>
+
+    <rect x="48" y="145"
+          width="24"
+          height="18"
+          rx="3"
+          fill="#8B5A2B"/>
+
+</svg>
+
+</div>
+
+    <!-- Clouds -->
+
+    <div class="hero-cloud cloud-1"></div>
+
+    <div class="hero-cloud cloud-2"></div>
+
+    <div class="hero-cloud cloud-3"></div>
+
+    <!-- Decorative Ferris Wheel -->
+
+<div class="ferris-wheel">
+
+<svg viewBox="0 0 300 300">
+
+    <!-- Stand -->
+
+    <line x1="120" y1="285" x2="150" y2="210"
+          stroke="#4b5563"
+          stroke-width="8"/>
+
+    <line x1="180" y1="285" x2="150" y2="210"
+          stroke="#4b5563"
+          stroke-width="8"/>
+
+    <!-- Wheel -->
+
+    <circle
+        cx="150"
+        cy="120"
+        r="90"
+        fill="none"
+        stroke="#FFD54A"
+        stroke-width="8"/>
+
+    <!-- Centre -->
+
+    <circle
+        cx="150"
+        cy="120"
+        r="12"
+        fill="#15803d"/>
+
+    <!-- Spokes -->
+
+    <line x1="150" y1="30" x2="150" y2="210" stroke="#FFD54A" stroke-width="4"/>
+    <line x1="60" y1="120" x2="240" y2="120" stroke="#FFD54A" stroke-width="4"/>
+    <line x1="86" y1="56" x2="214" y2="184" stroke="#FFD54A" stroke-width="4"/>
+    <line x1="214" y1="56" x2="86" y2="184" stroke="#FFD54A" stroke-width="4"/>
+
+    <!-- Gondolas -->
+
+    <circle cx="150" cy="30" r="8" fill="#FF7F50"/>
+    <circle cx="214" cy="56" r="8" fill="#60A5FA"/>
+    <circle cx="240" cy="120" r="8" fill="#22c55e"/>
+    <circle cx="214" cy="184" r="8" fill="#FFD54A"/>
+    <circle cx="150" cy="210" r="8" fill="#FF7F50"/>
+    <circle cx="86" cy="184" r="8" fill="#60A5FA"/>
+    <circle cx="60" cy="120" r="8" fill="#22c55e"/>
+    <circle cx="86" cy="56" r="8" fill="#FFD54A"/>
+
+</svg>
+
+</div>
+
+    <!-- Floating Sparkles -->
+
+    <div class="sparkle sparkle-1"></div>
+    <div class="sparkle sparkle-2"></div>
+    <div class="sparkle sparkle-3"></div>
+    <div class="sparkle sparkle-4"></div>
+
+    <!-- Content -->
+    <!-- Theme Park Skyline -->
+
+</div>
+    <div class="hero-grass"></div>
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            🌴 Sydney's Most Fun Backyard Adventure
+        </span>
+
+        <h1 class="hero-title">
+            Where Family
+            <br>
+            Adventures
+            <br>
+            Come Alive!
+        </h1>
+
+        <p class="hero-subtitle">
+
+            Explore PatrickLand — an unforgettable place filled with laughs,
+            adventure, imagination and memories for the whole family.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                onclick="openTicketModal()"
+                class="hero-ticket">
+
+                <i class="fas fa-ticket-alt"></i>
+
+                Buy Tickets
+
+            </button>
+
+            <a
+                href="#attractions"
+                class="hero-explore">
+
+                <i class="fas fa-compass"></i>
+
+                Explore Attractions
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Decorative Grass -->
+
+    <div class="hero-grass"></div>
+
+    <!-- Scroll Indicator -->
+
+    <a href="#about" class="hero-scroll">
+
+        <i class="fas fa-chevron-down"></i>
+
+    </a>
+
+</section>
+    
+<div class="hero-wave">
+
+<svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+
+<path fill="#f9fafb"
+d="M0,64L60,74.7C120,85,240,107,360,117.3C480,128,600,128,720,112C840,96,960,64,1080,69.3C1200,75,1320,117,1380,138.7L1440,160L1440,181L1380,181C1320,181,1200,181,1080,181C960,181,840,181,720,181C600,181,480,181,360,181C240,181,120,181,60,181L0,181Z"
+></path>
+
+</svg>
+
+</div>
+<section id="about" class="about-section">
+
+
+<div class="about-blob about-blob-gold"></div>
+
+<div class="about-blob about-blob-green"></div>
+
+<div class="about-sparkle as-1"></div>
+
+<div class="about-sparkle as-2"></div>
+
+<div class="about-sparkle as-3"></div>
+
+<div class="about-sparkle as-4"></div>
+
+<div class="about-sparkle as-5"></div>
+
+
+<div class="about-wrap">
+
+
+<div class="about-header" data-reveal>
+
+<span class="about-badge"><i class="fas fa-ticket"></i> Est. In Lalor Park, Sydney</span>
+
+<h2 class="about-heading">Where Every <em>Adventure</em> Creates Memories</h2>
+
+<p class="about-subtitle">PatrickLand is a place where families, friends, and children can experience unforgettable adventures filled with excitement, imagination, and happiness.</p>
+
+</div>
+
+
+<!-- The Ticket -->
+
+<div class="ticket" data-reveal>
+
+
+<div class="ticket-stub">
+
+<img src="images/about.jpg"
+alt="Happy family enjoying PatrickLand"
+loading="lazy"
+class="gallery-image">
+
+<div class="ticket-stamp">Admit One<br>Family Pass</div>
+
+<div class="ticket-stub-overlay">
+
+<p>Built For Families</p>
+
+<p>Creating magical moments since day one</p>
+
+</div>
+
+</div>
+
+
+<div class="ticket-seam"></div>
+
+
+<div class="ticket-info">
+
+<span class="ticket-eyebrow"><i class="fas fa-map-pin"></i> Our Story</span>
+
+<h3 class="ticket-title">More Than Just A Theme Park</h3>
+
+<p class="body">PatrickLand was created to bring families together through exciting attractions, unforgettable experiences, and moments that last a lifetime.</p>
+
+<p class="body">From thrilling rides to magical environments, every corner is designed to inspire joy, imagination, and adventure — right here at 8 Koorabel Rd, Lalor Park.</p>
+
+
+<ul class="ticket-list">
+
+<li><i class="fas fa-check-circle"></i> Safe & supervised play areas</li>
+
+<li><i class="fas fa-check-circle"></i> Themed zones for toddlers to big kids</li>
+
+<li><i class="fas fa-check-circle"></i> Picnic spots, shade sails & café area</li>
+
+</ul>
+
+
+<a href="#attractions" class="ticket-cta">Discover PatrickLand <i class="fas fa-arrow-right"></i></a>
+
+
+<div class="ticket-barcode">
+
+<div class="ticket-barcode-bars"></div>
+
+<span class="ticket-barcode-text">PatrickLand · Lalor Park NSW</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Trail stops -->
+
+<div class="trail">
+
+<div class="trail-path"></div>
+
+<div class="trail-grid">
+
+
+<div class="trail-stop" data-reveal>
+
+<div class="trail-pin"><span>01</span></div>
+
+<div class="trail-icon">🎢</div>
+
+<h4>Exciting Attractions</h4>
+
+<p>Experience unforgettable rides and attractions designed for all ages.</p>
+
+</div>
+
+
+<div class="trail-stop" data-reveal>
+
+<div class="trail-pin"><span>02</span></div>
+
+<div class="trail-icon">👨‍👩‍👧‍👦</div>
+
+<h4>Family First</h4>
+
+<p>Creating safe and enjoyable experiences where everyone belongs.</p>
+
+</div>
+
+
+<div class="trail-stop" data-reveal>
+
+<div class="trail-pin"><span>03</span></div>
+
+<div class="trail-icon">✨</div>
+
+<h4>Magical Moments</h4>
+
+<p>Every visit creates memories that families treasure forever.</p>
+
+</div>
+
+
+<div class="trail-stop" data-reveal>
+
+<div class="trail-pin"><span>04</span></div>
+
+<div class="trail-icon">🌱</div>
+
+<h4>Community</h4>
+
+<p>A place where friendships grow and families connect.</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- Stats -->
+
+<div class="stats" data-reveal>
+
+<div>
+
+<span class="stat-num" data-count="10" data-suffix="+">0</span>
+
+<span class="stat-label">Attractions</span>
+
+</div>
+
+<div>
+
+<span class="stat-num" data-count="50" data-suffix="K+">0</span>
+
+<span class="stat-label">Happy Visitors</span>
+
+</div>
+
+<div>
+
+<span class="stat-num" data-count="100" data-suffix="%">0</span>
+
+<span class="stat-label">Family Fun</span>
+
+</div>
+
+<div>
+
+<span class="stat-num" data-count="5" data-suffix="★">0</span>
+
+<span class="stat-label">Guest Experience</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<section id="attractions" class="attractions-section">
+
+    <div class="attractions-blob attractions-blob-gold"></div>
+    <div class="attractions-blob attractions-blob-green"></div>
+    <div class="attractions-sparkle at-1"></div>
+    <div class="attractions-sparkle at-2"></div>
+    <div class="attractions-sparkle at-3"></div>
+    <div class="attractions-sparkle at-4"></div>
+
+    <div class="attractions-wrap">
+
+        <div class="attractions-header" data-reveal>
+            <span class="attractions-badge"><i class="fas fa-ferris-wheel"></i> Rides &amp; Adventures For Every Age</span>
+            <h2 class="attractions-heading">Rides, Slides &amp; <em>Big</em> Adventures</h2>
+            <p class="attractions-subtitle">Every ride at PatrickLand is picked for its own kind of magic — pick a pass below and see what's waiting.</p>
+        </div>
+
+        <div class="ride-grid">
+
+            <!-- Giant Adventure Slides -->
+            <div class="ride-card" data-reveal>
+                <div class="ride-card-media">
+                    <span class="ride-tag ride-tag-thrill"><i class="fas fa-bolt"></i> Thrill</span>
+                    <img src="images/giant-slide.png" alt="Giant Adventure Slides" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'ride-card-fallback',innerHTML:'<i class=&quot;fas fa-person-falling-burst&quot;></i>'}));">
+                </div>
+                <div class="ride-card-stats">
+                    <span><i class="fas fa-ruler-vertical"></i> 120cm+</span>
+                    <span><i class="fas fa-clock"></i> ~5 min</span>
+                    <span><i class="fas fa-child"></i> Ages 6+</span>
+                </div>
+                <div class="ride-card-body">
+                    <h3>Giant Adventure Slides</h3>
+                    <p>Twisty, thrilling slides guaranteed to bring big laughs — and a few happy screams.</p>
+                </div>
+            </div>
+
+            <!-- Patrick's Playground -->
+            <div class="ride-card" data-reveal>
+                <div class="ride-card-media">
+                    <span class="ride-tag ride-tag-family"><i class="fas fa-people-roof"></i> All Ages</span>
+                    <img src="images/playground.jpg" alt="Patrick's Playground" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'ride-card-fallback',innerHTML:'<i class=&quot;fas fa-shapes&quot;></i>'}));">
+                </div>
+                <div class="ride-card-stats">
+                    <span><i class="fas fa-ruler-vertical"></i> No limit</span>
+                    <span><i class="fas fa-user-shield"></i> Supervised</span>
+                    <span><i class="fas fa-child"></i> Ages 1+</span>
+                </div>
+                <div class="ride-card-body">
+                    <h3>Patrick's Playground</h3>
+                    <p>Climbing frames, swings, and interactive zones built for every age and stage.</p>
+                </div>
+            </div>
+
+            <!-- Star Carousel -->
+            <div class="ride-card" data-reveal>
+                <div class="ride-card-media">
+                    <span class="ride-tag ride-tag-classic"><i class="fas fa-star"></i> Family</span>
+                    <img src="images/carousel.jpg" alt="Star Carousel" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'ride-card-fallback',innerHTML:'<i class=&quot;fas fa-horse&quot;></i>'}));">
+                </div>
+                <div class="ride-card-stats">
+                    <span><i class="fas fa-ruler-vertical"></i> 90cm+</span>
+                    <span><i class="fas fa-clock"></i> ~3 min</span>
+                    <span><i class="fas fa-child"></i> Ages 2+</span>
+                </div>
+                <div class="ride-card-body">
+                    <h3>Star Carousel</h3>
+                    <p>Classic rides with a magical PatrickLand twist — a favourite for the little ones.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+<section id="gallery" class="gallery-section">
+
+    <div class="gallery-blob gallery-blob-gold"></div>
+    <div class="gallery-blob gallery-blob-green"></div>
+    <div class="gallery-sparkle g-1"></div>
+    <div class="gallery-sparkle g-2"></div>
+    <div class="gallery-sparkle g-3"></div>
+    <div class="gallery-sparkle g-4"></div>
+
+    <div class="gallery-wrap">
+
+        <div class="gallery-header" data-reveal>
+            <span class="gallery-badge"><i class="fas fa-camera-retro"></i> Straight From Our Photo Wall</span>
+            <h2 class="gallery-heading">Moments of <em>Joy</em></h2>
+            <p class="gallery-subtitle">Every visit tells its own story — here's a peek at the smiles, thrills, and sunny days families share at PatrickLand.</p>
+        </div>
+
+        <div class="polaroid-grid">
+
+            <div class="polaroid polaroid-1" data-reveal>
+                <span class="polaroid-pin"></span>
+                <div class="polaroid-photo">
+                    <img src="images/gallery-1.jpg" alt="Kids on slides" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'polaroid-fallback',innerHTML:'<i class=&quot;fas fa-child&quot;></i>'}));">
+                </div>
+                <p class="polaroid-caption">Slide Squad</p>
+            </div>
+
+            <div class="polaroid polaroid-2" data-reveal>
+                <span class="polaroid-pin"></span>
+                <div class="polaroid-photo">
+                    <img src="images/gallery-2.jpg" alt="Family fun" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'polaroid-fallback',innerHTML:'<i class=&quot;fas fa-people-group&quot;></i>'}));">
+                </div>
+                <p class="polaroid-caption">Family Day Out</p>
+            </div>
+
+            <div class="polaroid polaroid-3" data-reveal>
+                <span class="polaroid-pin"></span>
+                <div class="polaroid-photo">
+                    <img src="images/gallery-3.jpg" alt="Playground action" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'polaroid-fallback',innerHTML:'<i class=&quot;fas fa-puzzle-piece&quot;></i>'}));">
+                </div>
+                <p class="polaroid-caption">Playground Adventures</p>
+            </div>
+
+            <div class="polaroid polaroid-4" data-reveal>
+                <span class="polaroid-pin"></span>
+                <div class="polaroid-photo">
+                    <img src="images/gallery-4.jpg" alt="Smiling visitors" loading="lazy" class="gallery-image"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'polaroid-fallback',innerHTML:'<i class=&quot;fas fa-face-laugh-beam&quot;></i>'}));">
+                </div>
+                <p class="polaroid-caption">Happy Faces All Round</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section id="reviews" class="py-24 bg-white">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-5xl font-bold text-center text-green-800 mb-16">What Families Are Saying</h2>
+<div class="reviews-carousel">
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Unique retaining wall out front and so much silicon! Could do with a little more special compound."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">DN</div>
+<div><p class="font-semibold">Dre Naumann</p><p class="text-sm text-gray-500">10th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Bathrooms were pretty good, really needs a skirting tile though."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">FS</div>
+<div><p class="font-semibold">Fannie Schmellar</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Good place has bird in the roof."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">BD</div>
+<div><p class="font-semibold">Ben Dofer</p><p class="text-sm text-gray-500">13 of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"big deck only thing is there is a random red screw."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">A</div>
+<div><p class="font-semibold">Amanda</p><p class="text-sm text-gray-500">13th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★★☆</div>
+<p class="italic mb-6">"Craftsmanship at every turn."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">JS</div>
+<div><p class="font-semibold">Justin Sider-Flanges</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★★☆</div>
+<p class="italic mb-6">"Great location. Close to bottles shops and housing commission flats."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">MC</div>
+<div><p class="font-semibold">Mike Cox-Woelen</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Large gum tree out front that has been expertly trimmed recently."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">JT</div>
+<div><p class="font-semibold">Jena Tayleah</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Great floor plan. The designer who designed this home must have been a certified genius."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">CL</div>
+<div><p class="font-semibold">Connie Linghus</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+
+<div class="review-card">
+<div class="flex text-yellow-400 text-2xl mb-4">★★★☆☆</div>
+<p class="italic mb-6">"Decent master suite. I feel it could use a space to store suitcases though. Maybe above the entry?"</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-xl font-bold">OB</div>
+<div><p class="font-semibold">Ophelia Bulges</p><p class="text-sm text-gray-500">12th of June</p></div>
+</div>
+</div>
+</div>
+<div class="review-navigation">
+
+
+    <div class="review-indicators" id="reviewIndicators"></div>
+</div>
+</div>
+</section>
+
+<section id="visit" class="py-24 bg-green-700 text-white">
+<div class="max-w-6xl mx-auto px-6">
+<h2 class="text-5xl font-bold text-center mb-16">Plan Your Visit</h2>
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<h3 class="text-3xl font-semibold mb-8">Location & Details</h3>
+<div class="space-y-6 text-lg">
+<p><strong>Address:</strong><br>8 Koorabel Rd, Lalor Park NSW 2147</p>
+<p><strong>Opening Hours:</strong><br>1:00 AM – 7:00 AM daily (weather permitting)</p>
+<p>
+    <strong>Ticket Prices:</strong><br>
+    Adults: A$26,222.67<br>
+    Children: A$10,014.85<br>
+    Family (2A+2C): A$122,723.00
+</p>
+<p><strong>Contact Us:</strong><br><a href="tel:0418635586" class="hover:underline">0418 635 586</a></p>
+<div class="bg-yellow-400 text-green-900 p-6 rounded-3xl font-medium">
+<strong>Bonus Challenge:</strong><br>
+Phone <a href="tel:0418635586" class="font-bold underline">0418 635 586</a> with your best Borat impression and have the chance to win a <strong>FREE FAMILY TICKET!</strong>
+</div>
+</div>
+<a href="https://maps.app.goo.gl/c7SZ9XarvcT3aCum9" target="_blank"
+class="mt-8 inline-flex items-center gap-3 bg-white text-green-700 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all">
+<i class="fas fa-map-marker-alt"></i> Open in Google Maps
+</a>
+</div>
+<div class="rounded-3xl overflow-hidden shadow-2xl">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.5!2d150.9289408!3d-33.7622951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12990030cdecff%3A0x179a86d04f2028f2!2s8+Koorabel+Rd%2C+Lalor+Park+NSW+2147!5e0!3m2!1sen!2sau!4v1623456789" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<!-- =======================================================
+     PatrickLand Premium Image Viewer (Lightbox)
+======================================================= -->
+
+<div id="image-viewer" class="image-viewer">
+
+    <!-- Background -->
+    <div class="image-viewer-backdrop"></div>
+
+    <!-- Close Button -->
+    <button id="viewer-close"
+            class="viewer-close"
+            aria-label="Close Image Viewer">
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+    <!-- Previous -->
+    <button id="viewer-prev"
+            class="viewer-arrow viewer-prev"
+            aria-label="Previous Image">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+    </button>
+
+    <!-- Image Container -->
+    <div class="viewer-content">
+
+        <img
+            id="viewer-image"
+            src=""
+            alt="PatrickLand Image"
+        >
+
+        <div id="viewer-caption"
+             class="viewer-caption">
+        </div>
+
+    </div>
+
+    <!-- Next -->
+    <button id="viewer-next"
+            class="viewer-arrow viewer-next"
+            aria-label="Next Image">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </button>
+
+</div>
+
+<div id="ticket-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100] p-4">
+<div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+<div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+<h3 class="text-3xl font-bold text-green-800">Get Your Tickets</h3>
+<button onclick="closeModal()" class="text-3xl text-gray-400 hover:text-gray-600">×</button>
+</div>
+<div class="p-12 text-center">
+<noscript><a href="https://www.eventbrite.com/e/patrickland-tickets-1992098976665" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
+<button id="eventbrite-widget-modal-trigger-1992098976665" type="button" class="bg-green-700 hover:bg-green-600 text-white px-10 py-5 rounded-full text-2xl font-bold transition-all shadow-lg hover:shadow-xl">
+Select Ticket Options
+</button>
+</div>
+</div>
+</div>
+
+<footer class="bg-gray-900 text-white py-16">
+<div class="max-w-6xl mx-auto px-6 text-center">
+<p class="text-3xl font-bold mb-4">PatrickLand</p>
+<p class="mb-8">Making memories in Lalor Park, Sydney © 2024-2026</p>
+<div class="flex justify-center gap-8 text-3xl">
+<a href="https://www.facebook.com/share/1TfCuNmfT3/" class="hover:text-yellow-400 transition"><i class="fab fa-facebook"></i></a>
+<a href="https://www.instagram.com/patri.ckland?igsh=aG01dHprcjFyMmsy" class="hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+</footer>
+
+
+
+<!-- Load Eventbrite BEFORE your custom JS so it can use EBWidgets properly -->
+<script src="https://www.eventbrite.com.au/static/widgets/eb_widgets.js"></script>
+<!-- Load your custom JavaScript SECOND (defines all functions) -->
+<script src="script.js"></script>
+</body>
+    </html>
