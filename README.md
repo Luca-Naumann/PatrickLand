@@ -88,6 +88,7 @@ PatrickLand/
 │   ├── hero-bg.jpg
 │   ├── giant-slide.png
 │   ├── about.jpg
+|   ├── logo.png
 │   └── ...
 │
 └── README.md
