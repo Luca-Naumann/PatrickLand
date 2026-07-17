@@ -148,12 +148,12 @@ images/screenshots/gallery.png
 # 🌈 Future Improvements
 
 - [ ] Interactive park map
-- [ ] Event calendar
 - [ ] Dark mode
 - [ ] Weather integration
 - [ ] Accessibility improvements
 - [ ] Progressive Web App (PWA)
 - [ ] Multi-language support
+- [ ] Immersive sound experience
 
 ---
 
