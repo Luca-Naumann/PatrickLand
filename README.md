@@ -147,6 +147,7 @@ images/screenshots/gallery.png
 
 # 🌈 Future Improvements
 
+- [ ] More photos
 - [ ] Interactive park map
 - [ ] Dark mode
 - [ ] Weather integration
