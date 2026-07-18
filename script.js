@@ -736,6 +736,8 @@ function initGallerySection() {
 }
 
 // ============================================
+// INITIALIZATION
+// ============================================
 // VISIT SECTION — scroll reveal
 // ============================================
 function initVisitSection() {
@@ -757,7 +759,196 @@ function initVisitSection() {
     revealTargets.forEach((el) => revealObserver.observe(el));
 }
 
+// ============================================
+// CROSS-PLATFORM HAPTICS (Android + iOS)
+// ============================================
 
+let hapticCheckbox = null;
+
+// iOS Checkbox Hack
+function triggerIOSHaptic() {
+    if (!hapticCheckbox) {
+        hapticCheckbox = document.getElementById('ios-haptic-trigger');
+    }
+    if (hapticCheckbox) {
+        // Rapid toggle to trigger iOS system haptics
+        hapticCheckbox.checked = true;
+        setTimeout(() => {
+            hapticCheckbox.checked = false;
+        }, 10);
+    }
+}
+
+// Main haptic function
+function triggerHaptic(element) {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && 'ontouchend' in document);
+
+    // Android: Native Vibration API
+    if (navigator.vibrate && !isIOS) {
+        if (element.classList.contains('ticket-button') || 
+            element.classList.contains('hero-ticket') || 
+            element.classList.contains('mobile-ticket-button')) {
+            navigator.vibrate([60, 20, 40]);   // Premium ticket feel
+        } else {
+            navigator.vibrate(45);             // Standard tap
+        }
+        return;
+    }
+
+    // iOS: Checkbox hack + visual feedback
+    if (isIOS) {
+        triggerIOSHaptic();
+    }
+
+    // Visual feedback for all platforms (especially iOS)
+    element.classList.add('haptic-press');
+    setTimeout(() => {
+        element.classList.remove('haptic-press');
+    }, 200);
+}
+
+// Initialize
+function initHapticFeedback() {
+    const selectors = [
+        'button',
+        'a[href^="#"]',
+        '.ticket-button',
+        '.hero-ticket',
+        '.hero-explore',
+        '.mobile-ticket-button',
+        '.review-prev',
+        '.review-next',
+        '.review-indicator',
+        '.viewer-arrow',
+        '.viewer-close',
+        '.mobile-toggle'
+    ];
+
+    document.querySelectorAll(selectors.join(', ')).forEach(element => {
+        if (!element.dataset.hapticAdded) {
+            element.addEventListener('click', () => triggerHaptic(element));
+            element.dataset.hapticAdded = 'true';
+        }
+    });
+}
+
+// ============================================
+// PREMIUM REVIEWS SECTION HAPTICS (Add-on)
+// ============================================
+
+function enhanceReviewsHaptics() {
+    // Carousel navigation buttons
+    const prevBtn = document.querySelector('.review-prev');
+    const nextBtn = document.querySelector('.review-next');
+    const indicators = document.querySelectorAll('.review-indicator');
+
+    const reviewsHaptic = (element, strength = 'medium') => {
+        // Use existing triggerHaptic if available, otherwise fallback
+        if (typeof triggerHaptic === 'function') {
+            triggerHaptic(element, strength === 'medium' ? 'carousel' : 'light');
+        } else {
+            // Fallback to basic haptic if main system not loaded yet
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            if (navigator.vibrate && !isIOS) {
+                navigator.vibrate(strength === 'medium' ? [35, 25, 35] : 30);
+            } else if (isIOS) {
+                const checkbox = document.getElementById('ios-haptic-trigger');
+                if (checkbox) {
+                    checkbox.checked = true;
+                    setTimeout(() => checkbox.checked = false, 12);
+                }
+            }
+        }
+    };
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => reviewsHaptic(prevBtn, 'medium'));
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => reviewsHaptic(nextBtn, 'medium'));
+    }
+
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => reviewsHaptic(indicator, 'light'));
+    });
+
+    // Optional: Haptic when carousel auto-advances (feels premium)
+    const originalScrollToCard = typeof scrollToCard === 'function' ? scrollToCard : null;
+    if (originalScrollToCard) {
+        window.scrollToCard = function(index) {
+            const result = originalScrollToCard.call(this, index);
+            
+            // Light haptic on auto-advance (only when not from user click)
+            const activeIndicator = document.querySelector('.review-indicator.active');
+            if (activeIndicator) {
+                setTimeout(() => {
+                    reviewsHaptic(activeIndicator, 'light');
+                }, 50);
+            }
+            return result;
+        };
+    }
+}
+
+// ============================================
+// REVIEWS CAROUSEL SWIPE + AUTOPLAY HAPTICS
+// ============================================
+
+function addReviewsSwipeAndAutoplayHaptics() {
+    const carousel = document.querySelector(".reviews-carousel");
+    if (!carousel) return;
+
+    let touchStartX = 0;
+
+    const triggerReviewHaptic = (strength = 'medium') => {
+        if (typeof triggerHaptic === 'function') {
+            const dummy = document.createElement('div');
+            triggerHaptic(dummy, strength === 'medium' ? 'carousel' : 'light');
+        } else {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            if (navigator.vibrate && !isIOS) {
+                navigator.vibrate(strength === 'medium' ? [40, 30, 40] : 35);
+            } else if (isIOS) {
+                const cb = document.getElementById('ios-haptic-trigger');
+                if (cb) {
+                    cb.checked = true;
+                    setTimeout(() => cb.checked = false, 15);
+                }
+            }
+        }
+    };
+
+    // Swipe detection
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = Math.abs(touchStartX - touchEndX);
+
+        if (diff > 40) {                    // Minimum swipe distance
+            triggerReviewHaptic('medium');
+        }
+    }, { passive: true });
+
+    // Autoplay haptic (when it advances automatically)
+    const originalScrollToCard = window.scrollToCard;
+    if (typeof originalScrollToCard === 'function') {
+        window.scrollToCard = function(index) {
+            const result = originalScrollToCard.apply(this, arguments);
+
+            // Only add haptic on autoplay (not when user clicked buttons/indicators)
+            // We detect autoplay by checking if the call came from the interval
+            setTimeout(() => {
+                triggerReviewHaptic('light');
+            }, 80);
+
+            return result;
+        };
+    }
+}
 
 //============================================
 //Initialisation
@@ -775,5 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAttractionsSection();
     initGallerySection();
     initVisitSection();
+    initHapticFeedback();
+    enhanceReviewsHaptics();
+    addReviewsSwipeAndAutoplayHaptics();
 });
-
