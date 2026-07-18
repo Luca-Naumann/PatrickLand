@@ -764,7 +764,7 @@ function initVisitSection() {
 }
 
 // ============================================
-// CROSS-PLATFORM HAPTICS (Android + iOS)
+// CROSS-PLATFORM HAPTICS (Android + Linux)
 // ============================================
 
 let vibrationUnlocked = false;
@@ -775,34 +775,32 @@ function unlockVibration() {
 
     vibrationUnlocked = true;
 
-    if (navigator.vibrate) {
-        navigator.vibrate(1);
-    }
+   if (vibrationUnlocked && navigator.vibrate) {
+    navigator.vibrate([40, 30, 40]);
+}
 
 }
 
-let hapticCheckbox = null;
+function triggerHaptic(element) {
 
-    // Android: Native Vibration API
-    if (navigator.vibrate && !isIOS) {
-        if (element.classList.contains('ticket-button') || 
-            element.classList.contains('hero-ticket') || 
-            element.classList.contains('mobile-ticket-button')) {
-            navigator.vibrate([60, 20, 40]);   // Premium ticket feel
-        } else {
-            navigator.vibrate(45);             // Standard tap
-        }
-        return;
+    if (!navigator.vibrate || !vibrationUnlocked) return;
+
+    if (
+        element.classList.contains("ticket-button") ||
+        element.classList.contains("hero-ticket") ||
+        element.classList.contains("mobile-ticket-button")
+    ) {
+        navigator.vibrate([60, 20, 40]);
+    } else {
+        navigator.vibrate(45);
     }
 
+    element.classList.add("haptic-press");
 
-    // Visual feedback for all platforms (especially iOS, Windows, and Linux)
-    element.classList.add('haptic-press');
     setTimeout(() => {
-        element.classList.remove('haptic-press');
+        element.classList.remove("haptic-press");
     }, 200);
 }
-
 // Initialize
 function initHapticFeedback() {
     const selectors = [
@@ -892,23 +890,29 @@ function addReviewsSwipeAndAutoplayHaptics() {
 
     let touchStartX = 0;
 
-    const triggerReviewHaptic = (strength = 'medium') => {
-        if (typeof triggerHaptic === 'function') {
-            const dummy = document.createElement('div');
-            triggerHaptic(dummy, strength === 'medium' ? 'carousel' : 'light');
-        } else {
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            if (navigator.vibrate && !isIOS) {
-                navigator.vibrate(strength === 'medium' ? [40, 30, 40] : 35);
-            } else if (isIOS) {
-                const cb = document.getElementById('ios-haptic-trigger');
-                if (cb) {
-                    cb.checked = true;
-                    setTimeout(() => cb.checked = false, 15);
-                }
-            }
-        }
-    };
+   const triggerReviewHaptic = (strength = "medium") => {
+
+    if (!navigator.vibrate || !vibrationUnlocked) return;
+
+    switch (strength) {
+
+        case "light":
+            navigator.vibrate(25);
+            break;
+
+        case "medium":
+            navigator.vibrate([40, 30, 40]);
+            break;
+
+        case "strong":
+            navigator.vibrate([60, 30, 60]);
+            break;
+
+        default:
+            navigator.vibrate(35);
+    }
+
+};
 
     // Swipe detection
     carousel.addEventListener('touchstart', (e) => {
@@ -926,21 +930,6 @@ function addReviewsSwipeAndAutoplayHaptics() {
 }
     }, { passive: true });
 
-    // Autoplay haptic (when it advances automatically)
-    const originalScrollToCard = window.scrollToCard;
-    if (typeof originalScrollToCard === 'function') {
-        window.scrollToCard = function(index) {
-            const result = originalScrollToCard.apply(this, arguments);
-
-            // Only add haptic on autoplay (not when user clicked buttons/indicators)
-            // We detect autoplay by checking if the call came from the interval
-            setTimeout(() => {
-                triggerReviewHaptic('light');
-            }, 80);
-
-            return result;
-        };
-    }
 }
 
 //============================================
