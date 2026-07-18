@@ -834,6 +834,65 @@ function initHapticFeedback() {
 }
 
 // ============================================
+// PREMIUM REVIEWS SECTION HAPTICS (Add-on)
+// ============================================
+
+function enhanceReviewsHaptics() {
+    // Carousel navigation buttons
+    const prevBtn = document.querySelector('.review-prev');
+    const nextBtn = document.querySelector('.review-next');
+    const indicators = document.querySelectorAll('.review-indicator');
+
+    const reviewsHaptic = (element, strength = 'medium') => {
+        // Use existing triggerHaptic if available, otherwise fallback
+        if (typeof triggerHaptic === 'function') {
+            triggerHaptic(element, strength === 'medium' ? 'carousel' : 'light');
+        } else {
+            // Fallback to basic haptic if main system not loaded yet
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            if (navigator.vibrate && !isIOS) {
+                navigator.vibrate(strength === 'medium' ? [35, 25, 35] : 30);
+            } else if (isIOS) {
+                const checkbox = document.getElementById('ios-haptic-trigger');
+                if (checkbox) {
+                    checkbox.checked = true;
+                    setTimeout(() => checkbox.checked = false, 12);
+                }
+            }
+        }
+    };
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => reviewsHaptic(prevBtn, 'medium'));
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => reviewsHaptic(nextBtn, 'medium'));
+    }
+
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => reviewsHaptic(indicator, 'light'));
+    });
+
+    // Optional: Haptic when carousel auto-advances (feels premium)
+    const originalScrollToCard = typeof scrollToCard === 'function' ? scrollToCard : null;
+    if (originalScrollToCard) {
+        window.scrollToCard = function(index) {
+            const result = originalScrollToCard.call(this, index);
+            
+            // Light haptic on auto-advance (only when not from user click)
+            const activeIndicator = document.querySelector('.review-indicator.active');
+            if (activeIndicator) {
+                setTimeout(() => {
+                    reviewsHaptic(activeIndicator, 'light');
+                }, 50);
+            }
+            return result;
+        };
+    }
+}
+
+
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initNavbarScroll();
@@ -848,5 +907,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initGallerySection();
     initVisitSection();
     initHapticFeedback();
+    enhanceReviewsHaptics();
 });
 
