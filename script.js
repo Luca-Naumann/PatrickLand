@@ -307,10 +307,15 @@ function initReviewsCarousel() {
         if (!reviewsVisible) return;
 
         autoplayTimer = setInterval(() => {
-            // If the section is not visible (user scrolled away), don't advance
-            if (!reviewsVisible) return;
 
-            scrollToCard(currentIndex + 1);
+    if (!reviewsVisible) return;
+
+    scrollToCard(currentIndex + 1);
+
+    // Autoplay haptic
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
 
         }, 5500);
     }
@@ -735,8 +740,7 @@ function initGallerySection() {
     revealTargets.forEach((el) => revealObserver.observe(el));
 }
 
-// ============================================
-// INITIALIZATION
+
 // ============================================
 // VISIT SECTION — scroll reveal
 // ============================================
@@ -763,26 +767,21 @@ function initVisitSection() {
 // CROSS-PLATFORM HAPTICS (Android + iOS)
 // ============================================
 
-let hapticCheckbox = null;
+let vibrationUnlocked = false;
 
-// iOS Checkbox Hack
-function triggerIOSHaptic() {
-    if (!hapticCheckbox) {
-        hapticCheckbox = document.getElementById('ios-haptic-trigger');
+function unlockVibration() {
+
+    if (vibrationUnlocked) return;
+
+    vibrationUnlocked = true;
+
+    if (navigator.vibrate) {
+        navigator.vibrate(1);
     }
-    if (hapticCheckbox) {
-        // Rapid toggle to trigger iOS system haptics
-        hapticCheckbox.checked = true;
-        setTimeout(() => {
-            hapticCheckbox.checked = false;
-        }, 10);
-    }
+
 }
 
-// Main haptic function
-function triggerHaptic(element) {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                  (navigator.platform === 'MacIntel' && 'ontouchend' in document);
+let hapticCheckbox = null;
 
     // Android: Native Vibration API
     if (navigator.vibrate && !isIOS) {
@@ -796,12 +795,8 @@ function triggerHaptic(element) {
         return;
     }
 
-    // iOS: Checkbox hack + visual feedback
-    if (isIOS) {
-        triggerIOSHaptic();
-    }
 
-    // Visual feedback for all platforms (especially iOS)
+    // Visual feedback for all platforms (especially iOS, Windows, and Linux)
     element.classList.add('haptic-press');
     setTimeout(() => {
         element.classList.remove('haptic-press');
@@ -843,25 +838,34 @@ function enhanceReviewsHaptics() {
     const nextBtn = document.querySelector('.review-next');
     const indicators = document.querySelectorAll('.review-indicator');
 
-    const reviewsHaptic = (element, strength = 'medium') => {
-        // Use existing triggerHaptic if available, otherwise fallback
-        if (typeof triggerHaptic === 'function') {
-            triggerHaptic(element, strength === 'medium' ? 'carousel' : 'light');
-        } else {
-            // Fallback to basic haptic if main system not loaded yet
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            if (navigator.vibrate && !isIOS) {
-                navigator.vibrate(strength === 'medium' ? [35, 25, 35] : 30);
-            } else if (isIOS) {
-                const checkbox = document.getElementById('ios-haptic-trigger');
-                if (checkbox) {
-                    checkbox.checked = true;
-                    setTimeout(() => checkbox.checked = false, 12);
-                }
-            }
-        }
-    };
+   const reviewsHaptic = (element, strength = "medium") => {
 
+    // Use your main haptic system if available
+    if (typeof triggerHaptic === "function" && element) {
+        triggerHaptic(element);
+        return;
+    }
+
+    // Fallback
+    if (!navigator.vibrate || !vibrationUnlocked) return;
+
+    switch (strength) {
+        case "light":
+            navigator.vibrate(25);
+            break;
+
+        case "medium":
+            navigator.vibrate([35, 25, 35]);
+            break;
+
+        case "strong":
+            navigator.vibrate([60, 30, 60]);
+            break;
+
+        default:
+            navigator.vibrate(35);
+    }
+};
     if (prevBtn) {
         prevBtn.addEventListener('click', () => reviewsHaptic(prevBtn, 'medium'));
     }
@@ -873,21 +877,8 @@ function enhanceReviewsHaptics() {
         indicator.addEventListener('click', () => reviewsHaptic(indicator, 'light'));
     });
 
-    // Optional: Haptic when carousel auto-advances (feels premium)
-    const originalScrollToCard = typeof scrollToCard === 'function' ? scrollToCard : null;
-    if (originalScrollToCard) {
-        window.scrollToCard = function(index) {
-            const result = originalScrollToCard.call(this, index);
-            
-            // Light haptic on auto-advance (only when not from user click)
-            const activeIndicator = document.querySelector('.review-indicator.active');
-            if (activeIndicator) {
-                setTimeout(() => {
-                    reviewsHaptic(activeIndicator, 'light');
-                }, 50);
-            }
-            return result;
-        };
+    
+  
     }
 }
 
@@ -928,9 +919,11 @@ function addReviewsSwipeAndAutoplayHaptics() {
         const touchEndX = e.changedTouches[0].screenX;
         const diff = Math.abs(touchStartX - touchEndX);
 
-        if (diff > 40) {                    // Minimum swipe distance
-            triggerReviewHaptic('medium');
-        }
+        if (diff > 40) {
+    if (vibrationUnlocked) {
+        triggerReviewHaptic('medium');
+    }
+}
     }, { passive: true });
 
     // Autoplay haptic (when it advances automatically)
@@ -954,6 +947,18 @@ function addReviewsSwipeAndAutoplayHaptics() {
 //Initialisation
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    [
+    "touchstart",
+    "pointerdown",
+    "mousedown",
+    "click"
+].forEach(event => {
+    document.addEventListener(event, unlockVibration, {
+        passive: true,
+        once: true
+    });
+});
+    
     initMobileMenu();
     initNavbarScroll();
     initSmoothScroll();
