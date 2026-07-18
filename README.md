@@ -155,7 +155,6 @@ images/screenshots/gallery.png
 - [ ] Progressive Web App (PWA)
 - [ ] Multi-language support
 - [ ] Immersive sound experience
-- [ ] Vibration for devices
 - [ ] Visual improvements
 - [ ] PatrickLand's shop with various merchandise
 - [ ] Dynamic weather
@@ -163,6 +162,7 @@ images/screenshots/gallery.png
 - [ ] Reappearing animations
 - [ ] Cursor art
 - [ ] Loading animation
+- [ ] AR attraction previews
 - [ ] More Reviews
 - [ ] More Information
 
