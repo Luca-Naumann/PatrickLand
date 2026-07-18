@@ -760,6 +760,80 @@ function initVisitSection() {
 }
 
 // ============================================
+// CROSS-PLATFORM HAPTICS (Android + iOS)
+// ============================================
+
+let hapticCheckbox = null;
+
+// iOS Checkbox Hack
+function triggerIOSHaptic() {
+    if (!hapticCheckbox) {
+        hapticCheckbox = document.getElementById('ios-haptic-trigger');
+    }
+    if (hapticCheckbox) {
+        // Rapid toggle to trigger iOS system haptics
+        hapticCheckbox.checked = true;
+        setTimeout(() => {
+            hapticCheckbox.checked = false;
+        }, 10);
+    }
+}
+
+// Main haptic function
+function triggerHaptic(element) {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && 'ontouchend' in document);
+
+    // Android: Native Vibration API
+    if (navigator.vibrate && !isIOS) {
+        if (element.classList.contains('ticket-button') || 
+            element.classList.contains('hero-ticket') || 
+            element.classList.contains('mobile-ticket-button')) {
+            navigator.vibrate([60, 20, 40]);   // Premium ticket feel
+        } else {
+            navigator.vibrate(45);             // Standard tap
+        }
+        return;
+    }
+
+    // iOS: Checkbox hack + visual feedback
+    if (isIOS) {
+        triggerIOSHaptic();
+    }
+
+    // Visual feedback for all platforms (especially iOS)
+    element.classList.add('haptic-press');
+    setTimeout(() => {
+        element.classList.remove('haptic-press');
+    }, 200);
+}
+
+// Initialize
+function initHapticFeedback() {
+    const selectors = [
+        'button',
+        'a[href^="#"]',
+        '.ticket-button',
+        '.hero-ticket',
+        '.hero-explore',
+        '.mobile-ticket-button',
+        '.review-prev',
+        '.review-next',
+        '.review-indicator',
+        '.viewer-arrow',
+        '.viewer-close',
+        '.mobile-toggle'
+    ];
+
+    document.querySelectorAll(selectors.join(', ')).forEach(element => {
+        if (!element.dataset.hapticAdded) {
+            element.addEventListener('click', () => triggerHaptic(element));
+            element.dataset.hapticAdded = 'true';
+        }
+    });
+}
+
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initNavbarScroll();
@@ -773,5 +847,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAttractionsSection();
     initGallerySection();
     initVisitSection();
+    initHapticFeedback();
 });
 
