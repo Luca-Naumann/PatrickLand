@@ -159,7 +159,13 @@ images/screenshots/gallery.png
 - [ ] Visual improvements
 - [ ] PatrickLand's shop with various merchandise
 - [ ] Dynamic weather
+- [ ] Slower scrolling
+- [ ] Reappearing animations
+- [ ] Cursor art
+- [ ] Loading animation
+- [ ] More Reviews
 - [ ] More Information
+
 
 ---
 
