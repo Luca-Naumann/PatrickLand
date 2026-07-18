@@ -891,6 +891,51 @@ function enhanceReviewsHaptics() {
     }
 }
 
+// ============================================
+// REVIEWS CAROUSEL SWIPE HAPTICS
+// ============================================
+
+function addReviewsSwipeHaptics() {
+    const carousel = document.querySelector(".reviews-carousel");
+    if (!carousel) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const reviewsHaptic = (strength = 'medium') => {
+        if (typeof triggerHaptic === 'function') {
+            // Reuse your main haptic function
+            const fakeElement = document.createElement('div'); // dummy for trigger
+            triggerHaptic(fakeElement, strength === 'medium' ? 'carousel' : 'light');
+        } else {
+            // Fallback
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            if (navigator.vibrate && !isIOS) {
+                navigator.vibrate(strength === 'medium' ? [40, 30, 40] : 35);
+            } else if (isIOS) {
+                const checkbox = document.getElementById('ios-haptic-trigger');
+                if (checkbox) {
+                    checkbox.checked = true;
+                    setTimeout(() => checkbox.checked = false, 15);
+                }
+            }
+        }
+    };
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+
+        // Only trigger if actual swipe happened (not just tap)
+        if (Math.abs(diff) > 30) {
+            reviewsHaptic('medium');   // Nice swipe feedback
+        }
+    }, { passive: true });
+}
 
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -908,5 +953,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initVisitSection();
     initHapticFeedback();
     enhanceReviewsHaptics();
+    addReviewsSwipeHaptics();
 });
 
