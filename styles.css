@@ -1,0 +1,4848 @@
+/* =======================================================
+   PatrickLand v2 Navigation
+======================================================= */
+
+/* ------------------------------
+   Navbar
+------------------------------ */
+
+#navbar{
+    transition:all .35s ease;
+}
+
+.nav-glass{
+    background:rgba(21,128,61,.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+/* ------------------------------
+   Logo
+------------------------------ */
+
+.logo-group{
+    text-decoration:none;
+    transition:.3s;
+}
+
+.logo-group:hover{
+    transform:translateY(-2px);
+}
+
+.logo-circle{
+
+    width:64px;
+    height:64px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(135deg,#FFD54A,#FFC107);
+
+    color:#15803d;
+
+    font-size:1.6rem;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+    transition:.35s;
+
+}
+
+.logo-group:hover .logo-circle{
+
+    transform:rotate(-10deg) scale(1.08);
+
+}
+
+.logo-text{
+
+    color:white;
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+    line-height:1;
+
+    font-family:'Fredoka',sans-serif;
+
+}
+
+.logo-subtitle{
+
+    color:rgba(255,255,255,.8);
+
+    font-size:.82rem;
+
+    margin-top:2px;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+}
+
+/* ------------------------------
+   Desktop Links
+------------------------------ */
+
+.nav-links{
+
+    list-style:none;
+
+}
+
+.nav-links a{
+
+    position:relative;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:1rem;
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:#FFD54A;
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-6px;
+
+    width:0;
+
+    height:3px;
+
+    border-radius:99px;
+
+    background:#FFD54A;
+
+    transition:.35s;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+/* ------------------------------
+   Ticket Button
+------------------------------ */
+
+.ticket-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.65rem;
+
+    padding:.95rem 1.7rem;
+
+    border:none;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    color:#15803d;
+
+    background:#FFD54A;
+
+    font-weight:700;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(255,213,74,.35);
+
+}
+
+.ticket-button:hover{
+
+    transform:translateY(-4px) scale(1.04);
+
+    background:#FFE680;
+
+    box-shadow:0 15px 35px rgba(255,213,74,.5);
+
+}
+
+/* ------------------------------
+   Mobile Hamburger
+------------------------------ */
+
+.mobile-toggle{
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:7px;
+
+}
+
+.mobile-toggle span{
+
+    width:30px;
+
+    height:3px;
+
+    background:white;
+
+    border-radius:99px;
+
+    transition:.35s;
+
+}
+
+/* ------------------------------
+   Mobile Overlay
+------------------------------ */
+
+.mobile-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        linear-gradient(180deg,#15803d,#14532d);
+
+    backdrop-filter:blur(20px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:2rem;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transform:translateX(100%);
+
+    transition:
+
+        opacity .45s ease,
+
+        transform .45s ease,
+
+        visibility .45s ease;
+
+    z-index:999;
+
+}
+
+.mobile-overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+    pointer-events:auto;
+
+    transform:translateX(0);
+
+}
+
+.mobile-close{
+
+    position:absolute;
+
+    top:30px;
+
+    right:30px;
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    font-size:1.6rem;
+
+}
+
+.mobile-brand{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.mobile-logo{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    border-radius:50%;
+
+    background:#FFD54A;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#15803d;
+
+    font-size:2.5rem;
+
+}
+
+.mobile-brand h2{
+
+    color:white;
+
+    font-size:2.3rem;
+
+    font-family:'Fredoka',sans-serif;
+
+}
+
+.mobile-brand p{
+
+    color:rgba(255,255,255,.8);
+
+}
+
+.mobile-nav-links{
+
+    width:100%;
+
+    max-width:340px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.mobile-nav-links a{
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.mobile-nav-links a:hover{
+
+    background:#FFD54A;
+
+    color:#15803d;
+
+    transform:translateX(8px);
+
+}
+
+.mobile-ticket-button{
+
+    margin-top:45px;
+
+    width:100%;
+
+    max-width:340px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#FFD54A;
+
+    color:#15803d;
+
+    font-weight:700;
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.mobile-ticket-button:hover{
+
+    transform:scale(1.03);
+
+}
+
+.mobile-socials{
+
+    margin-top:45px;
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.mobile-socials a{
+
+    color:white;
+
+    font-size:2rem;
+
+    transition:.3s;
+
+}
+
+.mobile-socials a:hover{
+
+    color:#FFD54A;
+
+    transform:translateY(-5px);
+
+}
+
+/* ------------------------------
+   Responsive
+------------------------------ */
+
+@media(max-width:1023px){
+
+    .logo-text{
+
+        font-size:1.4rem;
+
+    }
+
+    .logo-circle{
+
+        width:50px;
+        height:50px;
+
+        font-size:1.35rem;
+
+    }
+
+}
+/* =====================================
+   Shrinking Navbar
+===================================== */
+
+#navbar.scrolled{
+
+    padding-top:.2rem;
+
+    padding-bottom:.2rem;
+
+}
+
+#navbar.scrolled .nav-glass{
+
+    background:rgba(21,128,61,.88);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+/* =====================================
+   Animated Ticket Button
+===================================== */
+
+.ticket-button{
+
+    animation:pulseTicket 3s infinite;
+
+}
+
+@keyframes pulseTicket{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* =====================================
+   Link Entrance
+===================================== */
+
+.mobile-nav-links a{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+}
+
+.mobile-overlay.active .mobile-nav-links a{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.mobile-nav-links a:nth-child(1){
+
+    transition:.35s .10s;
+
+}
+
+.mobile-nav-links a:nth-child(2){
+
+    transition:.35s .18s;
+
+}
+
+.mobile-nav-links a:nth-child(3){
+
+    transition:.35s .26s;
+
+}
+
+.mobile-nav-links a:nth-child(4){
+
+    transition:.35s .34s;
+
+}
+
+.mobile-nav-links a:nth-child(5){
+
+    transition:.35s .42s;
+
+}
+
+/* =====================================
+   Floating Logo
+===================================== */
+
+.logo-circle{
+
+    animation:floatLogo 4s ease-in-out infinite;
+
+}
+
+@keyframes floatLogo{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero-section{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #60A5FA 0%,
+            #87CEEB 40%,
+            #B9F6FF 100%
+        );
+}
+
+/* Dark overlay */
+
+.hero-overlay{
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.30)
+        );
+
+}
+
+/* ==========================================
+   PREMIUM ANIMATED SUN
+========================================== */
+
+.hero-sun{
+    position:absolute;
+    top:-140px;
+    right:-120px;
+
+    width:340px;
+    height:340px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        #FFF9B0 0%,
+        #FFD54A 45%,
+        #FFC107 70%,
+        rgba(255,193,7,.15) 100%
+    );
+
+    box-shadow:
+        0 0 80px rgba(255,213,74,.9),
+        0 0 180px rgba(255,213,74,.55);
+
+    animation:
+        sunPulse 6s ease-in-out infinite;
+
+    z-index:1;
+}
+.hero-sun::before{
+    content:"";
+
+    position:absolute;
+
+    inset:-80px;
+
+    border-radius:50%;
+
+    background:
+        repeating-conic-gradient(
+            rgba(255,235,120,.55) 0deg 8deg,
+            transparent 8deg 20deg
+        );
+
+    filter:blur(6px);
+
+    animation:sunRotate 40s linear infinite;
+}
+
+.hero-sun::after{
+    content:"";
+
+    position:absolute;
+
+    inset:-35px;
+
+    border-radius:50%;
+
+    border:4px solid rgba(255,255,255,.18);
+
+    animation:
+        sunRing 5s ease-in-out infinite;
+}
+
+/* ======================
+   CONTENT
+====================== */
+
+.hero-content{
+
+    position:relative;
+
+    z-index:20;
+
+    max-width:900px;
+
+    padding:0 24px;
+
+    text-align:center;
+
+}
+
+.hero-tag{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.25);
+
+    backdrop-filter:blur(14px);
+
+    color:white;
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+}
+
+.hero-title{
+
+    color:white;
+
+    font-family:'Fredoka',sans-serif;
+
+    font-size:clamp(3.8rem,9vw,6.8rem);
+
+    line-height:.95;
+
+    text-shadow:
+        0 10px 35px rgba(0,0,0,.25);
+
+}
+
+.hero-subtitle{
+
+    margin:35px auto;
+
+    max-width:700px;
+
+    color:white;
+
+    font-size:1.4rem;
+
+    line-height:1.7;
+
+}
+
+/* ======================
+BUTTONS
+====================== */
+
+.hero-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:22px;
+
+flex-wrap:wrap;
+
+margin-top:45px;
+
+}
+
+.hero-ticket{
+
+padding:22px 48px;
+
+border-radius:999px;
+
+border:none;
+
+cursor:pointer;
+
+font-size:1.25rem;
+
+font-weight:700;
+
+color:#14532d;
+
+background:
+linear-gradient(
+135deg,
+#FFD54A,
+#FFC107,
+#FFE680
+);
+
+box-shadow:
+0 15px 40px rgba(255,193,7,.45);
+
+transition:.35s;
+
+}
+
+.hero-ticket:hover{
+
+transform:
+translateY(-6px)
+scale(1.05);
+
+box-shadow:
+0 0 40px rgba(255,213,74,.7);
+
+}
+
+.hero-explore{
+
+padding:22px 48px;
+
+border-radius:999px;
+
+text-decoration:none;
+
+font-size:1.25rem;
+
+font-weight:700;
+
+color:white;
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(20px);
+
+border:2px solid rgba(255,255,255,.4);
+
+transition:.35s;
+
+}
+
+.hero-explore:hover{
+
+background:white;
+
+color:#15803d;
+
+transform:translateY(-6px);
+
+}
+
+/* ======================
+CLOUDS
+====================== */
+
+.hero-cloud{
+
+position:absolute;
+
+background:white;
+
+opacity:.9;
+
+border-radius:999px;
+
+filter:blur(2px);
+   
+z-index:10;
+
+}
+
+.hero-cloud::before,
+.hero-cloud::after{
+
+content:"";
+
+position:absolute;
+
+background:white;
+
+border-radius:50%;
+
+}
+
+.cloud {
+  animation: cloudMove 25s ease-in-out infinite;
+}
+
+@keyframes cloudMove {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(40px);
+  }
+}
+
+.cloud-1{
+
+width:170px;
+height:60px;
+
+top:120px;
+left:8%;
+
+animation:cloud1 32s linear infinite;
+
+}
+
+.cloud-1::before{
+
+width:70px;
+height:70px;
+
+left:20px;
+top:-30px;
+
+}
+
+.cloud-1::after{
+
+width:80px;
+height:80px;
+
+right:20px;
+top:-35px;
+
+}
+
+.cloud-2{
+
+width:210px;
+height:70px;
+
+top:220px;
+right:12%;
+
+animation:cloud2 40s linear infinite;
+
+}
+
+.cloud-2::before{
+
+width:90px;
+height:90px;
+
+left:25px;
+top:-40px;
+
+}
+
+.cloud-2::after{
+
+width:95px;
+height:95px;
+
+right:25px;
+top:-45px;
+
+}
+
+.cloud-3{
+
+width:140px;
+height:50px;
+
+bottom:180px;
+left:22%;
+
+animation:cloud3 36s linear infinite;
+
+}
+
+.cloud-3::before{
+
+width:60px;
+height:60px;
+
+left:18px;
+top:-25px;
+
+}
+
+.cloud-3::after{
+
+width:65px;
+height:65px;
+
+right:18px;
+top:-30px;
+
+}
+
+@keyframes cloud1{
+
+50%{
+
+transform:translateX(70px);
+
+}
+
+}
+
+@keyframes cloud2{
+
+50%{
+
+transform:translateX(-80px);
+
+}
+
+}
+
+@keyframes cloud3{
+
+50%{
+
+transform:translateX(60px);
+
+}
+
+}
+
+/* ======================
+GRASS
+====================== */
+
+.hero-grass{
+
+position:absolute;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:120px;
+
+background:
+linear-gradient(
+180deg,
+#22c55e,
+#15803d
+);
+
+border-radius:
+100% 100% 0 0;
+
+}
+
+/* ======================
+SPARKLES
+====================== */
+
+.sparkle{
+
+position:absolute;
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+background:white;
+
+animation:twinkle 3s infinite;
+
+}
+
+.sparkle-1{top:20%;left:25%;}
+.sparkle-2{top:35%;right:30%;}
+.sparkle-3{bottom:30%;left:18%;}
+.sparkle-4{bottom:20%;right:18%;}
+
+@keyframes twinkle{
+
+0%,100%{
+
+opacity:.2;
+transform:scale(.6);
+
+}
+
+50%{
+
+opacity:1;
+transform:scale(1.5);
+
+}
+
+}
+
+//* ======================
+   SCROLL ICON
+====================== */
+.hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    display: inline-block; /* Ensures smooth animation scaling and rendering */
+    animation: bounce 2s infinite; /* Double check that this matches your @keyframes name! */
+    z-index: 30;
+}
+
+.hero-wave {
+    line-height: 0;
+    margin-top: -1px;
+    background:#B9F6FF;
+}
+
+.hero-wave svg {
+    display: block;
+    width: 100%;
+    height: 120px;
+}
+
+
+/* ==========================================
+   FLOATING SHAPES
+========================================== */
+
+.hero-section::before{
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    left:-250px;
+    top:-250px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            rgba(255,255,255,.18),
+            transparent 70%
+        );
+
+    animation:floatBlob1 12s ease-in-out infinite;
+}
+
+.hero-section::after{
+    content:"";
+
+    position:absolute;
+
+    width:550px;
+    height:550px;
+
+    right:-180px;
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            rgba(255,213,74,.25),
+            transparent 70%
+        );
+
+    animation:floatBlob2 14s ease-in-out infinite;
+}
+
+@keyframes floatBlob1{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-35px);
+
+}
+
+}
+
+@keyframes floatBlob2{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(30px);
+
+}
+
+}/* ==========================================
+   GLASS HERO CONTENT
+========================================== */
+
+.hero-content{
+
+    /* 1. Adjusted to .04 to let more background color bleed through */
+    background:
+        rgba(255,255,255,.04);
+
+    /* 2. Reduced from 18px to 10px so the blur feels thin and clear */
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px); /* Added for Safari compatibility */
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:40px;
+
+    padding:70px;
+
+    /* 3. Softened the shadow so it doesn't add dark weight to the card */
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.12); 
+
+}
+
+
+.hero-title{
+
+    letter-spacing:-3px;
+
+    text-shadow:
+
+        0 6px 0 rgba(0,0,0,.08),
+
+        0 15px 40px rgba(0,0,0,.30);
+
+}
+
+.hero-subtitle{
+
+    font-weight:600;
+
+    opacity:.97;
+
+}
+
+.hero-ticket,
+.hero-explore{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    min-width:280px;
+
+}
+.hero-buttons{
+
+    position:relative;
+
+}
+
+.hero-buttons::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:140px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+
+        radial-gradient(
+
+            rgba(255,213,74,.30),
+
+            transparent 70%
+
+        );
+
+    z-index:-1;
+
+    filter:blur(30px);
+
+}
+/* ==========================================
+   ROLLING HILLS
+========================================== */
+
+.hero-grass{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:180px;
+    overflow:hidden;
+    z-index:2;
+}
+
+.hero-grass::before{
+    content:"";
+
+    position:absolute;
+
+    width:140%;
+    height:280px;
+
+    left:-20%;
+    bottom:-160px;
+
+    background:#22c55e;
+
+    border-radius:50%;
+}
+
+.hero-grass::after{
+    content:"";
+
+    position:absolute;
+
+    width:120%;
+    height:220px;
+
+    left:-10%;
+    bottom:-120px;
+
+    background:#15803d;
+
+    border-radius:50%;
+}
+
+
+.hero-content{
+
+    animation:heroFade 4.8s ease;
+
+}
+
+@keyframes heroFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.hero-section{
+
+    animation:heroZoom 12s ease-in-out infinite alternate;
+
+}
+
+@keyframes heroZoom{
+
+    from{
+
+        background-size:100%;
+
+    }
+
+    to{
+
+        background-size:108%;
+
+    }
+
+}
+
+/* ==========================================
+   THEME PARK SKYLINE
+========================================== */
+
+.theme-park{
+
+    position:absolute;
+
+    bottom:90px;
+
+    left:0;
+
+    width:100%;
+
+    height:240px;
+
+    z-index:3;
+
+    pointer-events:none;
+
+}
+
+/* ==========================
+   Ferris Wheel
+========================== */
+
+.ferris-wheel{
+
+    position:absolute;
+
+    right:-40px;
+
+    bottom:0px;
+
+    width:360px;
+
+    opacity:.45;
+
+    z-index:2;
+
+}
+
+.ferris-wheel svg{
+
+    width:100%;
+
+    height:auto;
+
+}
+
+   }
+.hero {
+  background: linear-gradient(
+    180deg,
+    #87ceeb,
+    #fff4c2
+  );
+  background-size: 200% 200%;
+  animation: skyMove 12s ease infinite;
+}
+
+@keyframes skyMove {
+  0% {
+    background-position: top;
+  }
+  50% {
+    background-position: bottom;
+  }
+  100% {
+    background-position: top;
+  }
+}
+
+/* ==========================
+   Trees
+========================== */
+
+.hero-tree{
+    position:absolute;
+    bottom:0;
+    width:190px;
+    z-index:2;
+    animation:treeFloat 6s ease-in-out infinite;
+}
+
+.hero-tree svg{
+    width:100%;
+}
+
+.tree-left{
+    left:3%;
+}
+
+.tree-right{
+    right:14%;
+}
+
+/* ==========================
+   Balloons
+========================== */
+
+.balloon{
+    position:absolute;
+    width:95px;
+    z-index:15;
+    animation:balloonFloat 7s ease-in-out infinite;
+}
+
+.balloon svg{
+    width:100%;
+}
+
+.balloon-left{
+    top:120px;
+    left:14%;
+}
+
+.balloon-right{
+    top:90px;
+    right:18%;
+    animation-delay:2.5s;
+}
+
+/* ==========================
+   Animations
+========================== */
+
+@keyframes balloonFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(2deg);
+    }
+
+}
+
+@keyframes treeFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+
+}
+
+@keyframes sunRotate{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes sunPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+}
+
+@keyframes sunRing{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:.35;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:.7;
+    }
+
+}
+
+/* ==========================================
+   REVIEWS SECTION
+========================================== */
+
+#reviews h2{
+    font-family:'Fredoka',sans-serif;
+    letter-spacing:-2px;
+}
+
+
+/* Review Card */
+
+.review-card{
+
+    position:relative;
+
+    background:white;
+
+    border-radius:32px;
+
+    padding:32px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.08);
+
+    border:
+    1px solid rgba(21,128,61,.08);
+
+    transition:.4s;
+
+    overflow:hidden;
+
+}
+
+
+.review-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:6px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #FFD54A,
+        #22c55e
+    );
+
+}
+
+
+.review-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 30px 70px rgba(0,0,0,.15);
+
+}
+
+
+/* Stars */
+
+.review-stars{
+
+    color:#FFD54A;
+
+    font-size:1.8rem;
+
+    letter-spacing:3px;
+
+}
+
+
+/* Quote */
+
+.review-card p{
+
+    line-height:1.7;
+
+}
+
+
+/* Avatar */
+
+.review-avatar{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #FFD54A,
+        #FF7F50
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:800;
+
+    color:#15803d;
+
+    font-size:1.2rem;
+
+}
+
+/* =====================================================
+   PREMIUM PATRICKLAND REVIEWS CAROUSEL
+===================================================== */
+
+
+/* Section */
+
+#reviews{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fffbea 100%
+    );
+
+}
+
+
+/* Decorative glow */
+
+#reviews::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    top:-200px;
+
+    right:-200px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,213,74,.25),
+        transparent 70%
+    );
+
+}
+
+
+#reviews::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    bottom:-200px;
+
+    left:-200px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(34,197,94,.18),
+        transparent 70%
+    );
+
+}
+
+
+/* Heading */
+
+#reviews h2{
+
+    position:relative;
+
+    z-index:2;
+
+    font-family:'Fredoka',sans-serif;
+
+    letter-spacing:-2px;
+
+    color:#166534;
+
+}
+
+
+
+/* =====================================================
+   HORIZONTAL CAROUSEL
+===================================================== */
+
+
+.reviews-carousel{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    gap:35px;
+
+    overflow-x:auto;
+
+    scroll-snap-type:x mandatory;
+
+    scroll-behavior:smooth;
+
+    padding:
+
+    50px 20px 70px;
+
+
+    scrollbar-width:none;
+
+}
+
+
+.reviews-carousel::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+
+/* =====================================================
+   REVIEW CARD
+===================================================== */
+
+
+.review-card{
+
+    position:relative;
+
+    flex:
+
+    0 0 380px;
+
+
+    scroll-snap-align:center;
+
+    scroll-snap-stop:always;
+
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(255,255,255,.95),
+
+        rgba(255,255,255,.75)
+
+    );
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border-radius:38px;
+
+
+    padding:35px;
+
+
+    border:
+
+    1px solid rgba(255,213,74,.35);
+
+
+    box-shadow:
+
+    0 25px 70px rgba(0,0,0,.12);
+
+
+    transition:
+
+    transform .4s ease,
+
+    box-shadow .4s ease;
+
+}
+
+
+
+/* Gold luxury line */
+
+
+.review-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:12%;
+
+
+    width:76%;
+
+    height:5px;
+
+
+    border-radius:999px;
+
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        #FFD54A,
+
+        transparent
+
+    );
+
+}
+
+
+
+/* Hover */
+
+
+.review-card:hover{
+
+    transform:
+
+    translateY(-12px);
+
+
+    box-shadow:
+
+    0 40px 90px rgba(0,0,0,.18);
+
+}
+
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+
+.review-card .text-yellow-400{
+
+    color:#FFD54A;
+
+
+    font-size:1.8rem;
+
+
+    letter-spacing:4px;
+
+
+    text-shadow:
+
+    0 0 15px rgba(255,213,74,.7);
+
+}
+
+
+
+/* =====================================================
+   REVIEW TEXT
+===================================================== */
+
+
+.review-card p{
+
+    color:#374151;
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+}
+
+
+
+/* =====================================================
+   REVIEW USER
+===================================================== */
+
+
+.review-card .flex.items-center{
+
+    margin-top:25px;
+
+}
+
+
+
+.review-card .w-12.h-12{
+
+    width:65px;
+
+    height:65px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #FFD54A,
+
+        #FF7F50
+
+    );
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    box-shadow:
+
+    0 12px 30px rgba(255,213,74,.45);
+
+}
+
+
+
+/* User name */
+
+.review-card .font-semibold{
+
+    color:#166534;
+
+    font-size:1.1rem;
+
+}
+
+
+
+/* Date */
+
+.review-card .text-gray-500{
+
+    color:#6b7280;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+
+@media(max-width:700px){
+
+
+    .reviews-carousel{
+
+        padding-left:25px;
+
+        padding-right:25px;
+
+    }
+
+
+    .review-card{
+
+        flex:
+
+        0 0 85vw;
+
+        padding:30px;
+
+    }
+
+
+}
+
+/* =====================================================
+   PREMIUM REVIEW INDICATORS
+===================================================== */
+
+
+.review-indicators{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+/* Individual dots */
+
+.review-indicator{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:999px;
+
+    background:
+
+    rgba(21,128,61,.25);
+
+
+    border:
+
+    1px solid rgba(255,213,74,.5);
+
+
+    cursor:pointer;
+
+    transition:
+
+    width .4s ease,
+
+    background .4s ease,
+
+    transform .4s ease;
+
+}
+
+
+
+/* Active */
+
+.review-indicator.active{
+
+    width:42px;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        #FFD54A,
+
+        #FFC107
+
+    );
+
+
+    box-shadow:
+
+    0 0 20px rgba(255,213,74,.7);
+
+
+    transform:
+
+    translateY(-2px);
+
+}
+
+
+
+/* Hover */
+
+.review-indicator:hover{
+
+    transform:
+
+    scale(1.2);
+
+}
+
+/* =======================================================
+   ABOUT SECTION — "ADMIT ONE" TICKET THEME
+   Signature idea: the story card is shaped like a real
+   admission ticket (perforated seam + notches + stamp +
+   barcode), and the four pillars below are laid out as
+   numbered stops along a dashed trail.
+======================================================= */
+.about-section{
+
+position:relative;
+
+overflow:hidden;
+
+padding:120px 24px;
+
+background:linear-gradient(180deg,#B9F6FF 0%,#ffffff 16%,#fff3d4 50%,#fff9ec 100%);
+
+}
+
+
+.about-wrap{
+
+position:relative;
+
+z-index:2;
+
+max-width:1160px;
+
+margin:0 auto;
+
+}
+
+
+/* ---------- Decorative backdrop ---------- */
+
+
+.about-blob{
+
+position:absolute;
+
+border-radius:50%;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+.about-blob-gold{
+
+width:520px; height:520px;
+
+top:-200px; left:-200px;
+
+background:radial-gradient(rgba(255,213,74,.35),transparent 70%);
+
+animation:aboutDrift1 16s ease-in-out infinite;
+
+}
+
+.about-blob-green{
+
+width:560px; height:560px;
+
+bottom:-220px; right:-200px;
+
+background:radial-gradient(rgba(21,128,61,.16),transparent 70%);
+
+animation:aboutDrift2 18s ease-in-out infinite;
+
+}
+
+@keyframes aboutDrift1{ 0%,100%{transform:translate(0,0)} 50%{transform:translate(24px,26px)} }
+
+@keyframes aboutDrift2{ 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-18px)} }
+
+
+.about-sparkle{
+
+position:absolute;
+
+width:6px; height:6px;
+
+border-radius:50%;
+
+background:#FFD54A;
+
+box-shadow:0 0 8px rgba(255,213,74,.85);
+
+animation:aboutTwinkle 3.2s ease-in-out infinite;
+
+z-index:1;
+
+}
+
+.as-1{ top:6%; left:10%; animation-delay:0s; }
+
+.as-2{ top:20%; right:14%; animation-delay:.5s; }
+
+.as-3{ top:58%; left:5%; animation-delay:1s; }
+
+.as-4{ bottom:16%; right:8%; animation-delay:1.5s; }
+
+.as-5{ bottom:6%; left:42%; animation-delay:2s; }
+
+@keyframes aboutTwinkle{
+
+0%,100%{ opacity:.2; transform:scale(.6) translateY(0); }
+
+50%{ opacity:1; transform:scale(1.4) translateY(-7px); }
+
+}
+
+
+/* ---------- Header ---------- */
+
+
+.about-header{
+
+text-align:center;
+
+max-width:760px;
+
+margin:0 auto 64px;
+
+opacity:0;
+
+transform:translateY(24px);
+
+transition:opacity .7s ease, transform .7s ease;
+
+}
+
+.about-header.is-visible{ opacity:1; transform:translateY(0); }
+
+
+.about-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:9px 22px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.65);
+
+backdrop-filter:blur(14px);
+
+-webkit-backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,213,74,.5);
+
+box-shadow:0 10px 26px rgba(0,0,0,.08);
+
+color:#166534;
+
+font-weight:800;
+
+font-size:.82rem;
+
+letter-spacing:.04em;
+
+text-transform:uppercase;
+
+margin-bottom:22px;
+
+animation:aboutBadgeFloat 5s ease-in-out infinite;
+
+}
+
+@keyframes aboutBadgeFloat{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+
+.about-heading{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(2.3rem,5vw,3.5rem);
+
+line-height:1.08;
+
+color:#14532d;
+
+margin:0 0 20px;
+
+}
+
+.about-heading em{
+
+font-style:normal;
+
+background:linear-gradient(135deg,#FFC107,#FFD54A 55%,#FFE680);
+
+-webkit-background-clip:text;
+
+background-clip:text;
+
+color:transparent;
+
+}
+
+
+.about-subtitle{
+
+font-size:1.15rem;
+
+line-height:1.75;
+
+color:#4b5563;
+
+max-width:640px;
+
+margin:0 auto;
+
+}
+
+
+/* ---------- The Ticket (main story card) ---------- */
+
+
+.ticket{
+
+position:relative;
+
+display:grid;
+
+grid-template-columns:1fr;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.8));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.4);
+
+border-radius:34px;
+
+box-shadow:0 30px 80px rgba(0,0,0,.13);
+
+margin-bottom:56px;
+
+opacity:0;
+
+transform:translateY(32px);
+
+transition:opacity .8s ease, transform .8s ease;
+
+}
+
+.ticket.is-visible{ opacity:1; transform:translateY(0); }
+
+
+@media (min-width:920px){
+
+.ticket{ grid-template-columns:1.05fr 1fr; }
+
+}
+
+
+.ticket-stub{
+
+position:relative;
+
+min-height:320px;
+
+overflow:hidden;
+
+border-radius:34px 34px 0 0;
+
+}
+
+@media (min-width:920px){
+
+.ticket-stub{ min-height:100%; border-radius:34px 0 0 34px; }
+
+}
+
+.ticket-stub img{
+
+width:100%; height:100%;
+
+min-height:320px;
+
+object-fit:cover;
+
+display:block;
+
+transform:scale(1.02);
+
+transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.ticket:hover .ticket-stub img{ transform:scale(1.1); }
+
+
+.ticket-stub-fallback{
+
+width:100%; height:100%; min-height:320px;
+
+background:linear-gradient(135deg,#15803d,#166534 60%,#14532d);
+
+display:flex; align-items:center; justify-content:center;
+
+color:rgba(255,213,74,.5);
+
+font-size:4rem;
+
+}
+
+
+.ticket-stub-overlay{
+
+position:absolute; inset:auto 0 0 0;
+
+padding:28px 30px;
+
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.68));
+
+color:#fff;
+
+}
+
+.ticket-stub-overlay p:first-child{
+
+font-family:'Fredoka',sans-serif;
+
+font-size:1.35rem;
+
+font-weight:600;
+
+margin:0 0 3px;
+
+}
+
+.ticket-stub-overlay p:last-child{
+
+font-size:.9rem;
+
+opacity:.85;
+
+margin:0;
+
+}
+
+
+.ticket-stamp{
+
+position:absolute;
+
+top:22px; right:22px;
+
+width:92px; height:92px;
+
+border-radius:50%;
+
+border:2px dashed rgba(255,213,74,.9);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+transform:rotate(-12deg);
+
+background:rgba(20,83,45,.55);
+
+backdrop-filter:blur(4px);
+
+color:#FFE680;
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:.62rem;
+
+letter-spacing:.06em;
+
+line-height:1.25;
+
+text-transform:uppercase;
+
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+
+.ticket-seam{
+
+position:relative;
+
+display:none;
+
+}
+
+@media (min-width:920px){
+
+.ticket-seam{
+
+display:block;
+
+border-left:3px dashed rgba(255,193,7,.5);
+
+}
+
+.ticket-seam::before,
+
+.ticket-seam::after{
+
+content:"";
+
+position:absolute;
+
+left:-13px;
+
+width:26px; height:26px;
+
+border-radius:50%;
+
+background:#fffbea;
+
+box-shadow:inset 0 0 0 1px rgba(255,213,74,.4);
+
+}
+
+.ticket-seam::before{ top:-13px; }
+
+.ticket-seam::after{ bottom:-13px; }
+
+}
+
+
+.ticket-info{
+
+padding:42px 44px 38px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+border-top:3px dashed rgba(255,193,7,.5);
+
+}
+
+@media (min-width:920px){
+
+.ticket-info{ border-top:none; grid-column:3; }
+
+}
+
+
+.ticket-eyebrow{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+width:fit-content;
+
+padding:6px 14px;
+
+border-radius:999px;
+
+background:#14532d;
+
+color:#FFD54A;
+
+font-size:.7rem;
+
+font-weight:800;
+
+letter-spacing:.1em;
+
+text-transform:uppercase;
+
+margin-bottom:16px;
+
+}
+
+
+.ticket-title{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(1.5rem,3vw,2rem);
+
+color:#14532d;
+
+margin:0 0 16px;
+
+}
+
+
+.ticket-info p.body{
+
+line-height:1.75;
+
+color:#4b5563;
+
+margin:0 0 14px;
+
+}
+
+
+.ticket-list{
+
+list-style:none;
+
+margin:16px 0 26px;
+
+padding:0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:11px;
+
+}
+
+.ticket-list li{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:11px;
+
+font-size:1rem;
+
+color:#374151;
+
+}
+
+.ticket-list i{ color:#15803d; margin-top:3px; }
+
+
+.ticket-cta{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+width:fit-content;
+
+padding:15px 34px;
+
+border-radius:999px;
+
+text-decoration:none;
+
+font-weight:700;
+
+color:#14532d;
+
+background:linear-gradient(135deg,#FFD54A,#FFC107,#FFE680);
+
+box-shadow:0 14px 36px rgba(255,193,7,.4);
+
+transition:.35s;
+
+margin-bottom:26px;
+
+}
+
+.ticket-cta:hover{ transform:translateY(-4px); box-shadow:0 0 32px rgba(255,213,74,.7); }
+
+
+.ticket-barcode{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding-top:18px;
+
+border-top:1px dashed rgba(0,0,0,.1);
+
+}
+
+.ticket-barcode-bars{
+
+height:30px;
+
+flex-shrink:0;
+
+background-image:repeating-linear-gradient(
+
+90deg,
+
+#14532d 0 2px,
+
+transparent 2px 5px,
+
+#14532d 5px 6px,
+
+transparent 6px 11px,
+
+#14532d 11px 14px,
+
+transparent 14px 17px
+
+);
+
+width:110px;
+
+}
+
+.ticket-barcode-text{
+
+font-size:.72rem;
+
+letter-spacing:.08em;
+
+color:#9ca3af;
+
+font-weight:700;
+
+text-transform:uppercase;
+
+}
+
+
+/* ---------- Trail stops (feature cards) ---------- */
+
+
+.trail{
+
+position:relative;
+
+margin-bottom:56px;
+
+}
+
+
+.trail-path{
+
+display:none;
+
+}
+
+@media (min-width:1024px){
+
+.trail-path{
+
+display:block;
+
+position:absolute;
+
+top:34px;
+
+left:12.5%;
+
+right:12.5%;
+
+height:0;
+
+border-top:3px dashed rgba(21,128,61,.28);
+
+z-index:0;
+
+}
+
+}
+
+
+.trail-grid{
+
+position:relative;
+
+z-index:1;
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:26px;
+
+}
+
+@media (min-width:640px){ .trail-grid{ grid-template-columns:1fr 1fr; } }
+
+@media (min-width:1024px){ .trail-grid{ grid-template-columns:repeat(4,1fr); } }
+
+
+.trail-stop{
+
+position:relative;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.78));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.32);
+
+border-radius:28px;
+
+padding:40px 24px 28px;
+
+text-align:center;
+
+box-shadow:0 18px 46px rgba(0,0,0,.08);
+
+transition:transform .4s ease, box-shadow .4s ease;
+
+opacity:0;
+
+transform:translateY(26px);
+
+}
+
+.trail-stop.is-visible{ opacity:1; transform:translateY(0); }
+
+.trail-stop:hover{ transform:translateY(-10px); box-shadow:0 32px 64px rgba(0,0,0,.14); }
+
+.trail-stop:hover .trail-pin{ transform:translate(-50%,-4px) rotate(0deg) scale(1.08); }
+
+.trail-stop:hover .trail-icon{ transform:rotate(-8deg) scale(1.1); }
+
+
+.trail-pin{
+
+position:absolute;
+
+top:-18px; left:50%;
+
+transform:translateX(-50%);
+
+width:36px; height:36px;
+
+border-radius:50% 50% 50% 0;
+
+background:linear-gradient(135deg,#FFD54A,#FFC107);
+
+transform-origin:center;
+
+display:flex; align-items:center; justify-content:center;
+
+box-shadow:0 8px 18px rgba(0,0,0,.2);
+
+transition:transform .4s ease;
+
+rotate: -45deg;
+
+}
+
+.trail-pin span{
+
+rotate:45deg;
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:700;
+
+font-size:.7rem;
+
+color:#14532d;
+
+}
+
+
+.trail-icon{
+
+font-size:2.4rem;
+
+margin:12px 0 14px;
+
+display:inline-block;
+
+transition:transform .35s ease;
+
+}
+
+.trail-stop h4{
+
+font-family:'Fredoka',sans-serif;
+
+font-size:1.15rem;
+
+color:#14532d;
+
+margin:0 0 8px;
+
+}
+
+.trail-stop p{
+
+font-size:.92rem;
+
+color:#6b7280;
+
+line-height:1.6;
+
+margin:0;
+
+}
+
+
+/* ---------- Stats strip ---------- */
+
+
+.stats{
+
+position:relative;
+
+z-index:1;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:28px;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.78));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.4);
+
+border-radius:34px;
+
+box-shadow:0 30px 80px rgba(0,0,0,.13);
+
+padding:44px 28px;
+
+text-align:center;
+
+opacity:0;
+
+transform:translateY(26px);
+
+transition:opacity .8s ease, transform .8s ease;
+
+}
+
+.stats.is-visible{ opacity:1; transform:translateY(0); }
+
+@media (min-width:768px){ .stats{ grid-template-columns:repeat(4,1fr); } }
+
+
+.stat-num{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(2.1rem,4vw,2.9rem);
+
+background:linear-gradient(135deg,#FFC107,#FFD54A);
+
+-webkit-background-clip:text;
+
+background-clip:text;
+
+color:transparent;
+
+display:block;
+
+}
+
+.stat-label{
+
+color:#166534;
+
+font-weight:700;
+
+font-size:.88rem;
+
+}
+
+/* =======================================================
+   PATRICKLAND PREMIUM IMAGE VIEWER
+======================================================= */
+
+.image-viewer{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
+
+    z-index:99999;
+
+}
+
+/* Open */
+
+.image-viewer.active{
+
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+}
+
+/* =====================================
+   BACKDROP
+===================================== */
+
+.image-viewer-backdrop{
+
+    position:absolute;
+    inset:0;
+
+    background:
+        rgba(10,18,15,.82);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+}
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.viewer-content{
+
+    position:relative;
+
+    z-index:5;
+
+    max-width:90vw;
+    max-height:88vh;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    animation:viewerZoom .45s ease;
+
+}
+
+#viewer-image{
+
+    max-width:100%;
+    max-height:78vh;
+
+    border-radius:30px;
+
+    border:3px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.45),
+        0 0 40px rgba(255,213,74,.18);
+
+    object-fit:contain;
+
+    user-select:none;
+
+}
+
+/* =====================================
+   CAPTION
+===================================== */
+
+.viewer-caption{
+
+    margin-top:22px;
+
+    padding:14px 24px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    font-weight:600;
+
+    text-align:center;
+
+    max-width:700px;
+
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.viewer-close,
+.viewer-arrow{
+
+    position:absolute;
+
+    width:68px;
+    height:68px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:1.4rem;
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.10);
+
+    backdrop-filter:blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    transition:
+        transform .35s,
+        background .35s,
+        box-shadow .35s;
+
+    z-index:10;
+
+}
+
+.viewer-close:hover,
+.viewer-arrow:hover{
+
+    transform:scale(1.12);
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFD54A,
+            #FFC107
+        );
+
+    color:#166534;
+
+    box-shadow:
+        0 0 30px rgba(255,213,74,.6);
+
+}
+
+/* Close */
+
+.viewer-close{
+
+    top:35px;
+    right:35px;
+
+}
+
+/* Left */
+
+.viewer-prev{
+
+    left:40px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+}
+
+/* Right */
+
+.viewer-next{
+
+    right:40px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+}
+
+/* Prevent hover overriding translateY */
+
+.viewer-prev:hover{
+
+    transform:
+        translateY(-50%)
+        scale(1.12);
+
+}
+
+.viewer-next:hover{
+
+    transform:
+        translateY(-50%)
+        scale(1.12);
+
+}
+
+/* =====================================
+   GALLERY IMAGE HOVER
+===================================== */
+
+.gallery-image{
+
+    cursor:pointer;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        filter .35s ease;
+
+}
+
+.gallery-image:hover{
+
+    transform:
+        scale(1.03);
+
+    filter:
+        brightness(1.05);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.18);
+
+}
+
+/* =====================================
+   OPEN ANIMATION
+===================================== */
+
+@keyframes viewerZoom{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            scale(.88);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:768px){
+
+    .viewer-arrow{
+
+        width:54px;
+        height:54px;
+
+        font-size:1.1rem;
+
+    }
+
+    .viewer-close{
+
+        width:56px;
+        height:56px;
+
+        top:18px;
+        right:18px;
+
+    }
+
+    .viewer-prev{
+
+        left:10px;
+
+    }
+
+    .viewer-next{
+
+        right:10px;
+
+    }
+
+    #viewer-image{
+
+        border-radius:20px;
+
+        max-height:70vh;
+
+    }
+
+    .viewer-caption{
+
+        width:92%;
+        font-size:.95rem;
+
+    }
+
+}
+/* =======================================================
+
+ATTRACTIONS SECTION — "RIDE PASS" CARDS
+
+Continues straight on from About's cream background so
+
+the two sections read as one continuous scroll, and
+
+reuses the glass + gold-line + reveal language already
+
+established there.
+
+======================================================= */
+
+
+.attractions-section{
+
+position:relative;
+
+overflow:hidden;
+
+padding:100px 24px 120px;
+
+background:linear-gradient(180deg,#fff9ec 0%,#fffdf7 30%,#ffffff 55%,#ffffff 100%);
+
+}
+
+
+.attractions-wrap{
+
+position:relative;
+
+z-index:2;
+
+max-width:1160px;
+
+margin:0 auto;
+
+}
+
+
+/* ---------- Decorative backdrop (reuses About's drift/twinkle keyframes) ---------- */
+
+
+.attractions-blob{
+
+position:absolute;
+
+border-radius:50%;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+.attractions-blob-gold{
+
+width:460px; height:460px;
+
+top:-140px; right:-160px;
+
+background:radial-gradient(rgba(255,213,74,.28),transparent 70%);
+
+animation:aboutDrift1 17s ease-in-out infinite;
+
+}
+
+.attractions-blob-green{
+
+width:480px; height:480px;
+
+bottom:-180px; left:-160px;
+
+background:radial-gradient(rgba(21,128,61,.14),transparent 70%);
+
+animation:aboutDrift2 19s ease-in-out infinite;
+
+}
+
+
+.attractions-sparkle{
+
+position:absolute;
+
+width:6px; height:6px;
+
+border-radius:50%;
+
+background:#FFD54A;
+
+box-shadow:0 0 8px rgba(255,213,74,.85);
+
+animation:aboutTwinkle 3.4s ease-in-out infinite;
+
+z-index:1;
+
+}
+
+.at-1{ top:10%; left:8%; animation-delay:.2s; }
+
+.at-2{ top:24%; right:10%; animation-delay:.9s; }
+
+.at-3{ bottom:22%; left:14%; animation-delay:1.6s; }
+
+.at-4{ bottom:10%; right:16%; animation-delay:2.3s; }
+
+
+/* ---------- Header ---------- */
+
+
+.attractions-header{
+
+text-align:center;
+
+max-width:720px;
+
+margin:0 auto 60px;
+
+opacity:0;
+
+transform:translateY(24px);
+
+transition:opacity .7s ease, transform .7s ease;
+
+}
+
+.attractions-header.is-visible{ opacity:1; transform:translateY(0); }
+
+
+.attractions-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:9px 22px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.65);
+
+backdrop-filter:blur(14px);
+
+-webkit-backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,213,74,.5);
+
+box-shadow:0 10px 26px rgba(0,0,0,.08);
+
+color:#166534;
+
+font-weight:800;
+
+font-size:.82rem;
+
+letter-spacing:.04em;
+
+text-transform:uppercase;
+
+margin-bottom:22px;
+
+animation:aboutBadgeFloat 5s ease-in-out infinite;
+
+}
+
+
+.attractions-heading{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:clamp(2.2rem,5vw,3.3rem);
+
+line-height:1.1;
+
+color:#14532d;
+
+margin:0 0 18px;
+
+}
+
+.attractions-heading em{
+
+font-style:normal;
+
+background:linear-gradient(135deg,#FFC107,#FFD54A 55%,#FFE680);
+
+-webkit-background-clip:text;
+
+background-clip:text;
+
+color:transparent;
+
+}
+
+
+.attractions-subtitle{
+
+font-size:1.1rem;
+
+line-height:1.7;
+
+color:#4b5563;
+
+max-width:600px;
+
+margin:0 auto;
+
+}
+
+
+/* ---------- Ride cards ---------- */
+
+
+.ride-grid{
+
+display:grid;
+
+grid-template-columns:1fr;
+
+gap:32px;
+
+position:relative;
+
+z-index:1;
+
+}
+
+@media (min-width:768px){ .ride-grid{ grid-template-columns:repeat(3,1fr); } }
+
+
+.ride-card{
+
+position:relative;
+
+background:linear-gradient(150deg,rgba(255,255,255,.96),rgba(255,255,255,.8));
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,213,74,.32);
+
+border-radius:32px;
+
+overflow:hidden;
+
+box-shadow:0 20px 55px rgba(0,0,0,.09);
+
+transition:opacity .6s ease, transform .45s ease, box-shadow .45s ease;
+
+opacity:0;
+
+transform:translateY(28px);
+
+}
+
+.ride-card.is-visible{ opacity:1; transform:translateY(0); }
+
+.ride-card:hover{ transform:translateY(-12px); box-shadow:0 36px 76px rgba(0,0,0,.16); }
+
+
+.ride-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0; left:14%;
+
+width:72%; height:4px;
+
+border-radius:999px;
+
+background:linear-gradient(90deg,transparent,#FFD54A,transparent);
+
+z-index:3;
+
+}
+
+
+.ride-card-media{
+
+position:relative;
+
+height:230px;
+
+overflow:hidden;
+
+}
+
+.ride-card-media img{
+
+width:100%; height:100%;
+
+object-fit:cover;
+
+display:block;
+
+transform:scale(1.02);
+
+transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.ride-card:hover .ride-card-media img{ transform:scale(1.12); }
+
+
+.ride-card-fallback{
+
+width:100%; height:100%;
+
+background:linear-gradient(135deg,#15803d,#166534 60%,#14532d);
+
+display:flex; align-items:center; justify-content:center;
+
+color:rgba(255,213,74,.5);
+
+font-size:3.4rem;
+
+}
+
+
+.ride-tag{
+
+position:absolute;
+
+top:16px; left:16px;
+
+z-index:2;
+
+display:inline-flex;
+
+align-items:center;
+
+gap:6px;
+
+padding:7px 15px;
+
+border-radius:999px;
+
+font-size:.72rem;
+
+font-weight:800;
+
+letter-spacing:.04em;
+
+text-transform:uppercase;
+
+box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+backdrop-filter:blur(6px);
+
+-webkit-backdrop-filter:blur(6px);
+
+transition:transform .35s ease;
+
+}
+
+.ride-card:hover .ride-tag{ transform:translateY(-3px); }
+
+
+.ride-tag-thrill{ background:rgba(255,193,7,.92); color:#5c3a00; }
+
+.ride-tag-family{ background:rgba(21,128,61,.92); color:#eafff0; }
+
+.ride-tag-classic{ background:rgba(96,165,250,.92); color:#0b2e59; }
+
+
+.ride-card-stats{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:8px;
+
+padding:14px 20px;
+
+background:rgba(255,251,234,.7);
+
+border-bottom:1px dashed rgba(255,193,7,.4);
+
+}
+
+.ride-card-stats span{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+font-size:.74rem;
+
+font-weight:700;
+
+color:#166534;
+
+white-space:nowrap;
+
+}
+
+.ride-card-stats i{ color:#FFC107; }
+
+
+.ride-card-body{
+
+padding:24px 24px 28px;
+
+}
+
+.ride-card-body h3{
+
+font-family:'Fredoka',sans-serif;
+
+font-weight:600;
+
+font-size:1.3rem;
+
+color:#14532d;
+
+margin:0 0 10px;
+
+}
+
+.ride-card-body p{
+
+color:#6b7280;
+
+font-size:.95rem;
+
+line-height:1.65;
+
+margin:0;
+
+}
+
+
+.ride-grid .ride-card:nth-child(1){ transition-delay:0s; }
+
+.ride-grid .ride-card:nth-child(2){ transition-delay:.1s; }
+
+.ride-grid .ride-card:nth-child(3){ transition-delay:.2s; }
+
+/* =======================================================
+   GALLERY SECTION — "MEMORY WALL" POLAROIDS
+   Distinct shape from the ticket (About) and ride-pass
+   (Attractions) cards, but same gold/green glass world —
+   pinned, tilted photo memories with handwritten captions.
+======================================================= */
+
+.gallery-section{
+    position:relative;
+    overflow:hidden;
+    padding:110px 24px;
+    background:linear-gradient(180deg,#ffffff 0%,#e8f5ec 45%,#ffffff 100%);
+}
+
+.gallery-wrap{
+    position:relative;
+    z-index:2;
+    max-width:1160px;
+    margin:0 auto;
+}
+
+/* ---------- Decorative backdrop (reuses About's keyframes) ---------- */
+
+.gallery-blob{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:0;
+}
+.gallery-blob-gold{
+    width:440px; height:440px;
+    top:-150px; left:-140px;
+    background:radial-gradient(rgba(255,213,74,.24),transparent 70%);
+    animation:aboutDrift1 18s ease-in-out infinite;
+}
+.gallery-blob-green{
+    width:460px; height:460px;
+    bottom:-170px; right:-150px;
+    background:radial-gradient(rgba(21,128,61,.16),transparent 70%);
+    animation:aboutDrift2 20s ease-in-out infinite;
+}
+
+.gallery-sparkle{
+    position:absolute;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:#FFD54A;
+    box-shadow:0 0 8px rgba(255,213,74,.85);
+    animation:aboutTwinkle 3.3s ease-in-out infinite;
+    z-index:1;
+}
+.g-1{ top:12%; right:12%; animation-delay:.3s; }
+.g-2{ top:46%; left:6%;  animation-delay:1s; }
+.g-3{ bottom:20%; right:8%; animation-delay:1.7s; }
+.g-4{ bottom:8%;  left:38%; animation-delay:2.4s; }
+
+/* ---------- Header ---------- */
+
+.gallery-header{
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 64px;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+.gallery-header.is-visible{ opacity:1; transform:translateY(0); }
+
+.gallery-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 22px;
+    border-radius:999px;
+    background:rgba(255,255,255,.65);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,213,74,.5);
+    box-shadow:0 10px 26px rgba(0,0,0,.08);
+    color:#166534;
+    font-weight:800;
+    font-size:.82rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+    animation:aboutBadgeFloat 5s ease-in-out infinite;
+}
+
+.gallery-heading{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:clamp(2.2rem,5vw,3.3rem);
+    line-height:1.1;
+    color:#14532d;
+    margin:0 0 18px;
+}
+.gallery-heading em{
+    font-style:normal;
+    background:linear-gradient(135deg,#FFC107,#FFD54A 55%,#FFE680);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.gallery-subtitle{
+    font-size:1.1rem;
+    line-height:1.7;
+    color:#4b5563;
+    max-width:560px;
+    margin:0 auto;
+}
+
+/* ---------- Polaroid grid ---------- */
+
+.polaroid-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:36px 28px;
+}
+@media (min-width:768px){
+    .polaroid-grid{ grid-template-columns:repeat(4,1fr); gap:0 28px; align-items:start; }
+}
+
+.polaroid{
+    position:relative;
+    background:#fffdf7;
+    padding:14px 14px 46px;
+    border-radius:6px;
+    box-shadow:0 18px 40px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.08);
+    transition:transform .45s ease, box-shadow .45s ease, opacity .6s ease;
+    opacity:0;
+    transform:translateY(26px) rotate(0deg);
+}
+.polaroid.is-visible{ opacity:1; }
+
+.polaroid-1.is-visible{ transform:rotate(-4deg); }
+.polaroid-2.is-visible{ transform:rotate(3deg); }
+.polaroid-3.is-visible{ transform:rotate(-3deg); }
+.polaroid-4.is-visible{ transform:rotate(4deg); }
+
+@media (min-width:768px){
+    .polaroid-2{ margin-top:26px; }
+    .polaroid-4{ margin-top:14px; }
+}
+
+.polaroid:hover{
+    transform:rotate(0deg) translateY(-10px) scale(1.04);
+    box-shadow:0 30px 60px rgba(0,0,0,.22), 0 4px 10px rgba(0,0,0,.1);
+    z-index:5;
+}
+
+.polaroid-pin{
+    position:absolute;
+    top:-11px; left:50%;
+    transform:translateX(-50%);
+    width:20px; height:20px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#FFE680,#FFC107 60%,#b8860b 100%);
+    box-shadow:0 4px 8px rgba(0,0,0,.3);
+    z-index:2;
+}
+
+.polaroid-photo{
+    position:relative;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#e5e7eb;
+}
+.polaroid-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .6s ease;
+}
+.polaroid:hover .polaroid-photo img{ transform:scale(1.08); }
+
+.polaroid-fallback{
+    width:100%; height:100%;
+    background:linear-gradient(135deg,#15803d,#166534 60%,#14532d);
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(255,213,74,.55);
+    font-size:2.6rem;
+}
+
+.polaroid-caption{
+    position:absolute;
+    bottom:8px; left:0; right:0;
+    text-align:center;
+    font-family:'Caveat',cursive;
+    font-weight:700;
+    font-size:1.3rem;
+    color:#14532d;
+    margin:0;
+}
+
+/* =======================================================
+   VISIT SECTION — "VISITOR INFO BOARD"
+   Splits the old info-dump into scannable cards. The white
+   -> gold -> green fade lives in a fixed 320px overlay
+   (.visit-dawn) rather than as percentage stops on the
+   section itself — percentages would land at a different
+   pixel on every screen size (mobile stacks the cards
+   taller), so a percentage-only approach can't guarantee
+   the fade actually finishes before real content appears.
+   The section's own background starts already-safe at
+   brand green and only handles the long, forgiving fade
+   down to the exact footer colour (#111827) at the bottom.
+======================================================= */
+
+.visit-section{
+    position:relative;
+    overflow:hidden;
+    padding:360px 24px 100px;
+    background:linear-gradient(180deg,#178f43 0%,#156b35 40%,#0f4d28 65%,#0a331e 85%,#111827 100%);
+    color:#fff;
+}
+
+.visit-dawn{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:320px;
+    z-index:1;
+    background:linear-gradient(180deg,#ffffff 0%,#fdf3da 20%,#FFE680 38%,#b8d66a 55%,#178f43 72%,#178f43 100%);
+    pointer-events:none;
+}
+
+.visit-wrap{
+    position:relative;
+    z-index:2;
+    max-width:1160px;
+    margin:0 auto;
+}
+
+/* ---------- Decorative backdrop ---------- */
+
+.visit-blob{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:0;
+}
+.visit-blob-gold{
+    width:520px; height:520px;
+    top:20%; right:-200px;
+    background:radial-gradient(rgba(255,213,74,.14),transparent 70%);
+    animation:aboutDrift1 20s ease-in-out infinite;
+}
+
+.visit-sparkle{
+    position:absolute;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:#FFD54A;
+    box-shadow:0 0 8px rgba(255,213,74,.85);
+    animation:aboutTwinkle 3.6s ease-in-out infinite;
+    z-index:1;
+}
+.v-1{ top:8%;  left:10%; animation-delay:.2s; }
+.v-2{ top:30%; right:12%; animation-delay:1s; }
+.v-3{ bottom:34%; left:6%; animation-delay:1.8s; }
+.v-4{ bottom:14%; right:20%; animation-delay:2.5s; }
+
+/* ---------- Header ---------- */
+
+.visit-header{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 56px;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+.visit-header.is-visible{ opacity:1; transform:translateY(0); }
+
+.visit-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 22px;
+    border-radius:999px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,213,74,.4);
+    color:#FFE680;
+    font-weight:800;
+    font-size:.82rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+}
+
+.visit-heading{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:clamp(2.2rem,5vw,3.3rem);
+    line-height:1.1;
+    color:#fff;
+    margin:0 0 16px;
+}
+.visit-heading em{
+    font-style:normal;
+    background:linear-gradient(135deg,#FFC107,#FFD54A 55%,#FFE680);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.visit-subtitle{
+    font-size:1.1rem;
+    line-height:1.7;
+    color:rgba(255,255,255,.78);
+    max-width:520px;
+    margin:0 auto;
+}
+
+/* ---------- Info cards ---------- */
+
+.visit-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+    margin-bottom:36px;
+}
+@media (min-width:700px){ .visit-grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:1024px){ .visit-grid{ grid-template-columns:repeat(4,1fr); } }
+
+.visit-card{
+    position:relative;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:28px;
+    padding:32px 26px;
+    transition:opacity .6s ease, transform .4s ease, box-shadow .4s ease, background .4s ease;
+    opacity:0;
+    transform:translateY(24px);
+}
+.visit-card.is-visible{ opacity:1; transform:translateY(0); }
+.visit-card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,.13);
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+}
+
+.visit-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:16%;
+    width:68%; height:3px;
+    border-radius:999px;
+    background:linear-gradient(90deg,transparent,#FFD54A,transparent);
+}
+
+.visit-card-icon{
+    width:52px; height:52px;
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#FFD54A,#FFC107);
+    color:#14532d;
+    font-size:1.3rem;
+    margin-bottom:18px;
+}
+
+.visit-card h3{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    color:#fff;
+    margin:0 0 10px;
+}
+
+.visit-card p{
+    color:rgba(255,255,255,.78);
+    line-height:1.6;
+    font-size:.96rem;
+    margin:0;
+}
+
+.visit-card-note{
+    font-size:.82rem;
+    color:rgba(255,255,255,.5);
+}
+
+.visit-card-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:16px;
+    color:#FFD54A;
+    font-weight:700;
+    font-size:.9rem;
+    text-decoration:none;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    transition:gap .25s ease;
+}
+.visit-card-link:hover{ gap:12px; }
+.visit-card-link-button{ font-family:'Nunito',sans-serif; }
+
+.visit-price-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.visit-price-list li{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-size:.88rem;
+    color:rgba(255,255,255,.85);
+    padding-bottom:8px;
+    border-bottom:1px dashed rgba(255,255,255,.15);
+}
+.visit-price-list li span:last-child{
+    font-weight:700;
+    color:#FFE680;
+}
+
+.visit-phone{
+    color:#FFE680;
+    font-weight:700;
+    font-size:1.05rem;
+    text-decoration:none;
+}
+.visit-phone:hover{ text-decoration:underline; }
+
+.visit-social-row{
+    display:flex;
+    gap:10px;
+    margin-top:16px;
+}
+.visit-social-btn{
+    width:42px; height:42px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    color:#fff;
+    font-size:1.05rem;
+    transition:transform .3s ease, background .3s ease, color .3s ease;
+}
+.visit-social-btn:hover{
+    transform:translateY(-4px);
+    background:linear-gradient(135deg,#FFD54A,#FFC107);
+    color:#14532d;
+}
+
+/* ---------- Insider tip ribbon ---------- */
+
+.visit-tip{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    max-width:800px;
+    margin:0 auto 48px;
+    padding:26px 32px;
+    border-radius:24px;
+    background:rgba(255,213,74,.14);
+    border:1.5px dashed rgba(255,213,74,.6);
+    box-shadow:0 0 0 rgba(255,213,74,0);
+    animation:visitTipGlow 3.2s ease-in-out infinite;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+.visit-tip.is-visible{ opacity:1; transform:translateY(0); }
+
+@keyframes visitTipGlow{
+    0%,100%{ box-shadow:0 0 0 rgba(255,213,74,0); }
+    50%{ box-shadow:0 0 34px rgba(255,213,74,.35); }
+}
+
+.visit-tip-icon{
+    flex-shrink:0;
+    width:42px; height:42px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#FFD54A,#FFC107);
+    color:#14532d;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.05rem;
+    margin-top:2px;
+    animation:visitTipIconPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes visitTipIconPulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.12); }
+}
+
+.visit-tip p{
+    margin:0;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:rgba(255,255,255,.92);
+}
+.visit-tip p strong{
+    color:#FFE680;
+}
+.visit-tip a{
+    color:#FFE680;
+    font-weight:700;
+    text-decoration:underline;
+}
+
+/* ---------- Map frame ---------- */
+
+.visit-map-frame{
+    position:relative;
+    z-index:1;
+    border-radius:32px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 30px 70px rgba(0,0,0,.3);
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+.visit-map-frame.is-visible{ opacity:1; transform:translateY(0); }
+
+.visit-map-frame iframe{
+    display:block;
+    width:100%;
+    filter:saturate(.9);
+}
+
+.visit-map-chip{
+    position:absolute;
+    bottom:20px; left:20px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#FFD54A,#FFC107,#FFE680);
+    color:#14532d;
+    font-weight:700;
+    font-size:.9rem;
+    text-decoration:none;
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+    transition:transform .3s ease;
+}
+.visit-map-chip:hover{ transform:translateY(-3px); }
+
+.visit-grid .visit-card:nth-child(1){ transition-delay:0s; }
+.visit-grid .visit-card:nth-child(2){ transition-delay:.08s; }
+.visit-grid .visit-card:nth-child(3){ transition-delay:.16s; }
+.visit-grid .visit-card:nth-child(4){ transition-delay:.24s; }
+
+/* =======================================================
+   VISIT SECTION — CREATIVE ENHANCEMENTS
+   String lights + fireworks pay off the "closing time"
+   dusk gradient already in place; a dashed trail + pulsing
+   pin lead the eye from the info cards to the map; the
+   insider tip becomes a torn ticket stub, echoing About's
+   "Admit One" ticket for a full-circle bookend.
+======================================================= */
+
+/* ---------- Wave cap (bridges Gallery's white into solid green) ---------- */
+
+.visit-wave-top{
+    position:absolute;
+    top:0; left:0; right:0;
+    z-index:1;
+    line-height:0;
+    pointer-events:none;
+}
+.visit-wave-top svg{
+    display:block;
+    width:100%;
+    height:100px;
+}
+
+/* ---------- Park skyline silhouette ---------- */
+
+.visit-skyline{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:160px;
+    z-index:1;
+    pointer-events:none;
+    opacity:.5;
+}
+.visit-skyline svg{
+    display:block;
+    width:100%;
+    height:100%;
+}
+.visit-skyline polygon{
+    fill:rgba(255,255,255,.05);
+}
+.visit-skyline circle,
+.visit-skyline line{
+    fill:none;
+    stroke:rgba(255,255,255,.12);
+    stroke-width:2;
+}
+.visit-skyline circle:last-child{
+    fill:rgba(255,213,74,.5);
+    stroke:none;
+}
+
+/* ---------- String lights ---------- */
+
+.visit-lights{
+    position:absolute;
+    top:280px; left:0; right:0;
+    height:56px;
+    z-index:1;
+    pointer-events:none;
+}
+.visit-lights-wire{
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+}
+.visit-bulb{
+    position:absolute;
+    top:22px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:#FFE680;
+    box-shadow:0 0 10px 3px rgba(255,213,74,.7);
+    animation:visitBulbGlow 2.4s ease-in-out infinite;
+}
+.visit-bulb:nth-child(even){ top:16px; background:#fff3d0; box-shadow:0 0 10px 3px rgba(255,243,208,.6); }
+.visit-bulb:nth-child(3n){ animation-delay:.4s; }
+.visit-bulb:nth-child(4n){ animation-delay:.8s; }
+.visit-bulb:nth-child(5n){ animation-delay:1.2s; }
+
+@keyframes visitBulbGlow{
+    0%,100%{ opacity:.55; transform:scale(.9); }
+    50%{ opacity:1; transform:scale(1.15); }
+}
+
+/* ---------- Fireworks ---------- */
+
+.firework{
+    position:absolute;
+    z-index:1;
+    width:4px; height:4px;
+    pointer-events:none;
+}
+.fw-1{ top:310px; left:16%; }
+.fw-2{ top:360px; right:13%; }
+.fw-3{ top:290px; left:56%; }
+
+.firework span{
+    position:absolute;
+    top:0; left:0;
+    width:4px; height:4px;
+    border-radius:50%;
+    background:#FFE680;
+    box-shadow:0 0 6px 1px rgba(255,213,74,.8);
+    animation:fireworkBurst 4.5s ease-out infinite;
+}
+.fw-2 span{ background:#fff3d0; box-shadow:0 0 6px 1px rgba(255,243,208,.8); }
+
+.firework span:nth-child(1){ transform:rotate(0deg);   animation-delay:0s; }
+.firework span:nth-child(2){ transform:rotate(60deg);  animation-delay:0s; }
+.firework span:nth-child(3){ transform:rotate(120deg); animation-delay:0s; }
+.firework span:nth-child(4){ transform:rotate(180deg); animation-delay:0s; }
+.firework span:nth-child(5){ transform:rotate(240deg); animation-delay:0s; }
+.firework span:nth-child(6){ transform:rotate(300deg); animation-delay:0s; }
+
+.fw-2 span{ animation-delay:1.5s; }
+.fw-3 span{ animation-delay:3s; }
+
+@keyframes fireworkBurst{
+    0%{ opacity:0; transform:rotate(var(--r,0deg)) translateY(0) scale(1); }
+    8%{ opacity:1; }
+    35%{ opacity:0; transform:rotate(var(--r,0deg)) translateY(-34px) scale(.4); }
+    100%{ opacity:0; transform:rotate(var(--r,0deg)) translateY(-34px) scale(.4); }
+}
+.firework span:nth-child(1){ --r:0deg; }
+.firework span:nth-child(2){ --r:60deg; }
+.firework span:nth-child(3){ --r:120deg; }
+.firework span:nth-child(4){ --r:180deg; }
+.firework span:nth-child(5){ --r:240deg; }
+.firework span:nth-child(6){ --r:300deg; }
+
+/* ---------- Insider tip as torn ticket stub ---------- */
+
+.visit-tip{
+    position:relative;
+    padding-right:110px;
+}
+.visit-tip-stub{
+    position:absolute;
+    top:50%; right:18px;
+    transform:translateY(-50%) rotate(-6deg);
+    padding:6px 12px;
+    border:1.5px dashed rgba(255,213,74,.7);
+    border-radius:8px;
+    font-family:'Fredoka',sans-serif;
+    font-size:.65rem;
+    font-weight:600;
+    letter-spacing:.06em;
+    color:#FFE680;
+    white-space:nowrap;
+}
+.visit-tip::after{
+    content:"";
+    position:absolute;
+    top:10px; bottom:10px;
+    right:96px;
+    border-left:1.5px dashed rgba(255,213,74,.4);
+}
+@media (max-width:560px){
+    .visit-tip{ padding-right:24px; }
+    .visit-tip-stub, .visit-tip::after{ display:none; }
+}
+
+/* ---------- Trail connector to map ---------- */
+
+.visit-trail{
+    position:relative;
+    z-index:1;
+    width:0;
+    height:56px;
+    margin:0 auto;
+    border-left:3px dashed rgba(255,213,74,.4);
+}
+.visit-trail::after{
+    content:"";
+    position:absolute;
+    bottom:-5px; left:50%;
+    transform:translateX(-50%);
+    width:10px; height:10px;
+    border-radius:50%;
+    background:#FFD54A;
+    box-shadow:0 0 10px 3px rgba(255,213,74,.6);
+}
+
+/* ---------- Map "You Are Here" pin ---------- */
+
+.visit-map-pin{
+    position:absolute;
+    top:18px; right:18px;
+    z-index:3;
+    width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center;
+    color:#14532d;
+    background:linear-gradient(135deg,#FFD54A,#FFC107);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+    box-shadow:0 8px 18px rgba(0,0,0,.3);
+}
+.visit-map-pin i{ transform:rotate(45deg); font-size:.95rem; }
+
+.visit-map-pin-pulse{
+    position:absolute;
+    inset:-8px;
+    border-radius:50%;
+    border:2px solid rgba(255,213,74,.6);
+    animation:visitPinPulse 2.2s ease-out infinite;
+}
+@keyframes visitPinPulse{
+    0%{ transform:scale(.6); opacity:.8; }
+    100%{ transform:scale(1.8); opacity:0; }
+}
+
+/* ---------- Footer continuity ----------
+   A few small stars carrying Visit's night sky across the
+   DOM boundary, since the colours already match exactly but
+   the motion/decoration stopped dead at the section edge. */
+
+.footer-continuity{
+    position:relative;
+    overflow:hidden;
+}
+.fs-1{ top:18px; left:12%; }
+.fs-2{ top:34px; right:18%; }
+.fs-3{ top:12px; left:48%; }
+
+/* Premium Haptic Visual Feedback */
+.haptic-press {
+    animation: hapticPop 200ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes hapticPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(0.90); }
+    75%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+/* Stronger feel for important buttons */
+.ticket-button.haptic-press,
+.hero-ticket.haptic-press,
+.mobile-ticket-button.haptic-press,
+.review-prev.haptic-press,
+.review-next.haptic-press {
+    animation: hapticPop 260ms cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+/* =======================================================
+   REVIEWS SECTION HEADER
+   Was a bare Tailwind h2 (Nunito, the body font) while
+   every other section uses a Fredoka heading with a badge
+   above it — brought in line with that established pattern.
+======================================================= */
+
+.reviews-header{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 56px;
+}
+
+.reviews-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 22px;
+    border-radius:999px;
+    background:rgba(255,255,255,.7);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,213,74,.5);
+    box-shadow:0 10px 26px rgba(0,0,0,.08);
+    color:#166534;
+    font-weight:800;
+    font-size:.82rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+.reviews-badge i{ color:#FFC107; }
+
+.reviews-heading{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:clamp(2.2rem,5vw,3.3rem);
+    line-height:1.1;
+    color:#14532d;
+    margin:0;
+}
+
+/* =======================================================
+   REVIEWS SECTION BACKGROUND
+   This section sat between Gallery and Visit as flat, static
+   bg-white with zero gradient movement — a big motionless gap
+   in what's supposed to be a continuous "day journey" flow.
+   Matches Gallery's exact ending white and Visit-dawn's exact
+   starting white on both sides, with its own gentle dip so it
+   doesn't just sit dead flat in between.
+======================================================= */
+
+.reviews-section{
+    position:relative;
+    overflow:hidden;
+    padding:110px 24px;
+    background:linear-gradient(180deg,#ffffff 0%,#fef8ec 45%,#ffffff 100%);
+}
+
+/* =======================================================
+   GRAIN OVERLAY
+   Very low opacity fractal noise, fixed over the whole
+   viewport. Large, pale, close-color gradients (the white/
+   cream sections especially) can render as visible stepped
+   bands rather than a true smooth blend — an 8-bit color
+   depth limitation, not a mismatch. High-frequency dither
+   breaks that up, and reads as a nice filmic texture besides.
+======================================================= */
+
+.grain-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    pointer-events:none;
+    opacity:.035;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* =======================================================
+   REVIEWS PROGRESS THUMB
+   Dots still show the settled "you are on card N" state, but
+   previously gave zero feedback DURING a drag — nothing moved
+   until the browser's snap-scroll settled. This thumb tracks
+   raw scroll position 1:1 (no transition delay, unlike the
+   dots' own .4s ease) so it visibly rides along with the
+   swipe/drag in real time.
+======================================================= */
+
+.review-indicators::after{
+    content:"";
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0; right:0;
+    height:2px;
+    background:rgba(21,128,61,.15);
+    border-radius:999px;
+}
+
+.review-progress-thumb{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    width:7px; height:7px;
+    margin-top:-2.5px;
+    margin-left:-3.5px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#FFD54A,#FFC107);
+    box-shadow:0 0 8px rgba(255,213,74,.7);
+    pointer-events:none;
+    z-index:2;
+}
