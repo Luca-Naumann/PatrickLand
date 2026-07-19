@@ -165,6 +165,7 @@ images/screenshots/gallery.png
 - [ ] AR attraction previews
 - [ ] More Reviews
 - [ ] More Information
+- [ ] Advertisements
 
 
 ---
