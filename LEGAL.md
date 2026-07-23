@@ -8,9 +8,9 @@
 - All content including the location (8 Koorabel Rd, Lalor Park), attractions, ticket prices, opening hours, reviews, and contact details are **entirely fictional** and created for entertainment purposes only.
 - This website is a parody intended for humour and web development demonstration.
 - The Eventbrite checkout link is part of the joke and is **not connected** to any payment processor, PayPal, credit card, or real transaction system. No real tickets can be purchased.
-- Please do not attempt to visit the fictional address or purchase tickets.
+- Please do not attempt to visit the address or purchase tickets.
 
-**This is all in good fun!** 😄
+**This is intended for dfun** 
 
 ---
 
@@ -70,4 +70,4 @@ For questions about this project (technical or otherwise), feel free to open an 
 
 ---
 
-Thank you for understanding the humorous nature of this project! 🎢✨
+Thank you for understanding the humorous nature of this project!
