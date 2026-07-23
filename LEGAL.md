@@ -4,7 +4,7 @@
 
 **PatrickLand is a satirical joke website and a complete work of fiction.**
 
-<sup> - PatrickLand does **not** exist as a real theme park or business.
+- PatrickLand does **not** exist as a real theme park or business.
 - All content including the location (8 Koorabel Rd, Lalor Park), attractions, ticket prices, opening hours, reviews, and contact details are **entirely fictional** and created for entertainment purposes only.
 - This website is a parody intended for humour and web development demonstration.
 - The Eventbrite checkout link is part of the joke and is **not connected** to any payment processor, PayPal, credit card, or real transaction system. No real tickets can be purchased.
@@ -13,7 +13,7 @@
 **This is all in good fun!** 😄
 
 ---
-</sup>
+
 
 ## Project Purpose
 
