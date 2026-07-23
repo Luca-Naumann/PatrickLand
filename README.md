@@ -228,4 +228,4 @@ Thank you for checking out PatrickLand!
 
 Have fun exploring the magic! 🎢✨
 
-<small>This text is smaller.</small>
+<sup>This text is tiny.</sup>
