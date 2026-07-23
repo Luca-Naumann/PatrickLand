@@ -10,7 +10,7 @@
 - The Eventbrite checkout link is part of the joke and is **not connected** to any payment processor, PayPal, credit card, or real transaction system. No real tickets can be purchased.
 - Please do not attempt to visit the address or purchase tickets.
 
-**This is intended for dfun** 
+**This is intended for fun** 
 
 ---
 
