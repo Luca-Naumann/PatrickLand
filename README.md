@@ -227,3 +227,5 @@ It helps others discover the project and motivates future development.
 Thank you for checking out PatrickLand!
 
 Have fun exploring the magic! 🎢✨
+
+<small>This text is smaller.</small>
