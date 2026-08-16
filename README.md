@@ -78,19 +78,22 @@ Libraries used:
 PatrickLand/
 │
 ├── index.html
-├── css/
-│   └── style.css
+├── style.css
+├── script.js
 │
-├── js/
-│   └── script.js
-│
-├── images/
+| images/
 │   ├── hero-bg.jpg
 │   ├── giant-slide.png
 │   ├── about.jpg
 |   ├── logo.png
 │   └── ...
-│
+│── audio/
+|   ├── button-press.wav
+|   ├── review-swipe.wav
+|   └── ...
+|
+├── LICENSE
+├── LEGAL.md
 └── README.md
 ```
 
