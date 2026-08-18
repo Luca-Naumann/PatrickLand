@@ -1,3 +1,21 @@
+<table>
+  <tr>
+    <!-- Active Tab -->
+    <td bgcolor="#24292e" align="center" width="150">
+      <a href="README.md" style="color: #ffffff; font-weight: bold; text-decoration: none;">🏠 English</a>
+    </td>
+    <!-- Inactive Tab 1 -->
+    <td bgcolor="#f6f8fa" align="center" width="150">
+      <a href="LEGAL.mdstyle="color: #0366d6; text-decoration: none;">🇫🇷 Français</a>
+    </td>
+    <!-- Inactive Tab 2 -->
+    <td bgcolor="#f6f8fa" align="center" width="150">
+      <a href="LICENSE" style="color: #0366d6; text-decoration: none;">⚙️ Setup</a>
+    </td>
+  </tr>
+</table>
+
+
 # 🎢 PatrickLand
 
 > **Where Every Visit Creates Magic ✨**
